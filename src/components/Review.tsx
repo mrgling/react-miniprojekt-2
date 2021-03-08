@@ -84,4 +84,3 @@ export default function Review() {
     </React.Fragment>
   );
 }
-© 2021 GitHub, Inc.

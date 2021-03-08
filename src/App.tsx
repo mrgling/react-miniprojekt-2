@@ -3,6 +3,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
+import Checkout from './components/Checkout';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,6 +33,9 @@ export default function FullWidthGrid() {
 
         <Grid item xs={12}>
           <Paper className={classes.paper}>xs=12</Paper>
+          
+          <Checkout />
+
         </Grid>
 
 
