@@ -1,8 +1,8 @@
-## Miniprojekt 2 - Create React App
+## Miniprojekt 2 - Webbshop med designsystem
 
-# Webbshop
+# Marsvinstema?
 
-**Marsvinstema?**
+**React + Material-UI**
 
 *JavaScript - fördjupning, 30 yhp*
 
