@@ -1,57 +1,29 @@
-import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import { Container } from '@material-ui/core';
-import Checkout from './Checkout';
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import Cart from './Cart';
+import ProductView from './ProductView';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-    },
-  }),
-);
 
-export default function FullWidthGrid() {
-  const classes = useStyles();
 
-  return (
-    <div className={classes.root}>
-      <Container maxWidth="xl">
+interface Props {}
 
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>MARSVINSTEMA</Paper>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Paper className={classes.paper}>xs=12 sm=6</Paper>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Paper className={classes.paper}>xs=12 sm=6</Paper>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>Produkt 1</Paper>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>Produkt 2</Paper>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>Produkt 3</Paper>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>Produkt 4</Paper>
-        </Grid>
-      </Grid>
+interface State {
 
-<Checkout />
-        
-      </Container>
-    </div>
-  );
 }
+class Layout extends Component<Props, State> {
+   
+    render() {
+
+        return (
+            <div>
+                <Route exact path="/">
+                    <ProductView/>
+                </Route>
+
+                <Route path="/kundvagn" component={Cart}/>
+                
+            </div>
+        )
+    }
+}
+export default Layout;
