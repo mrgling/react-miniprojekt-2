@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Cart from './Cart';
+import Checkout from './Checkout';
+import ProductDetail from './ProductDetail';
 import ProductView from './ProductView';
 
 
@@ -21,6 +23,8 @@ class Layout extends Component<Props, State> {
                 </Route>
 
                 <Route path="/kundvagn" component={Cart}/>
+                <Route path="/checkout" component={Checkout}/>
+                <Route path="/produkt1" component={ProductDetail}/>
                 
             </div>
         )

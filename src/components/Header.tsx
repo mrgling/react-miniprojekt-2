@@ -36,13 +36,13 @@ const headerStyle: CSSProperties = {
     background: 'linear-gradient(0deg, #FFFFFF, #00A3FF)', 
     height: '7rem',
     display: 'flex',
-    padding: '0 1rem',
+    padding: '0 2rem',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
 }
 
 const headerItem: CSSProperties = {
-    fontSize: '2rem',    
+    fontSize: '1.5rem',    
     margin: '0',
     padding: '0',
     display: 'flex',

@@ -27,11 +27,8 @@ export default function FullWidthGrid() {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <h1>Kundvagn</h1>
-            <Link style={linkStyle}  to="/checkout">
-                <Button variant="contained" color="primary">Checkout</Button>
+            <h1>Detail</h1>
             
-            </Link>
           </Paper>
         </Grid>
       </Grid>
