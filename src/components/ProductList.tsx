@@ -1,4 +1,4 @@
-import bear from '../assets/bear.jpg';
+
 
 export interface Product {
     name: string

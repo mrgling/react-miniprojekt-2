@@ -1,6 +1,5 @@
 import React, { CSSProperties } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Box, Container } from '@material-ui/core';
 import { Link } from 'react-router-dom';
