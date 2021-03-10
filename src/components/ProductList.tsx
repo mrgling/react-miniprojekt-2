@@ -1,3 +1,5 @@
+import bear from '../assets/bear.jpg';
+
 export interface Product {
     name: string
     url: string
@@ -11,8 +13,8 @@ export const productList: Product[] = [
         url: 'rustning',
         description: 'Exklusiv handgjord ringbrynja med matchande hjälm. En självklar accessoar till medeltidsveckan!',
         price: 199999,
-        img: 'https://i.imgur.com/DRInboh.jpg'},
-    
+        img: bear
+    },
     {
         name: 'Fluffig myskorg',
         url: 'myskorg',

@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { Box, Container } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import  { productList } from './ProductList'
+import ProductCard from './ProductCard';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -27,19 +28,15 @@ export default function FullWidthGrid() {
     <div className={classes.root}>
       <Container maxWidth="lg">
       <Box pt={5}>
-
-      <Grid container spacing={3}>
-        {productList.map((product, index) => (
-
-          <Grid item xs={12} sm={6} md={3} key={ index }>
-            <Link style={linkStyle} to={product.url}>                
-              <Paper className={classes.paper}>
-                
-                {product.name}</Paper>  
-            </Link>
-          </Grid>
-        ), )}
-      </Grid>
+        <Grid container spacing={3}>
+          {productList.map((product, index) => (
+            <Grid item xs={12} sm={6} md={3} key={ index }>
+              <Link style={linkStyle} to={product.url}>
+                <ProductCard product={product}/> 
+              </Link>
+            </Grid>
+          ), )}
+        </Grid>
       </Box>
         
       </Container>
