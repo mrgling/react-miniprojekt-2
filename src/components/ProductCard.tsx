@@ -46,12 +46,12 @@ export default function ProductCard(props: Props) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary" onClick={() => setIsVisible(false)}>
+      <CardActions style={{justifyContent:"center"}}>
+        {/* <Button size="small" color="primary" onClick={() => setIsVisible(false)}>
           Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
+        </Button> */}
+        <Button size="small" variant="contained" color="primary">
+          Lägg till i kundvagn
         </Button>
       </CardActions>
     </Card>
