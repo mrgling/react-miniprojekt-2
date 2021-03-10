@@ -4,6 +4,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Box, Container } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import  { productList } from './ProductList'
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,36 +26,22 @@ export default function FullWidthGrid() {
   return (
     <div className={classes.root}>
       <Container maxWidth="lg">
-        <Box pt={5}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} md={3}>
-              <Link style={linkStyle} to="/produkt1">
-                <Paper className={classes.paper}>Produkt 1</Paper>
-              </Link>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper className={classes.paper}>Produkt 2</Paper>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper className={classes.paper}>Produkt 3</Paper>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper className={classes.paper}>Produkt 4</Paper>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper className={classes.paper}>Produkt 5</Paper>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper className={classes.paper}>Produkt 6</Paper>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper className={classes.paper}>Produkt 7</Paper>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper className={classes.paper}>Produkt 8</Paper>
-            </Grid>
+      <Box pt={5}>
+
+      <Grid container spacing={3}>
+        {productList.map((product, index) => (
+
+          <Grid item xs={12} sm={6} md={3} key={ index }>
+            <Link style={linkStyle} to={product.url}>                
+              <Paper className={classes.paper}>
+                
+                {product.name}</Paper>  
+            </Link>
           </Grid>
-        </Box>
+        ), )}
+      </Grid>
+      </Box>
+        
       </Container>
     </div>
   );
