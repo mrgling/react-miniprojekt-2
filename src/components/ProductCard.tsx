@@ -9,6 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Product } from './ProductList';
+import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -47,13 +48,15 @@ export default function ProductCard(props: Props) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions style={{justifyContent:"center"}}>
+      <CardActions>
         {/* <Button size="small" color="primary" onClick={() => setIsVisible(false)}>
           Share
         </Button> */}
-        <Button size="small" variant="contained" color="primary">
-          Lägg till i kundvagn
-        </Button>
+        <Grid container direction="row" justify="flex-end" alignItems="center">
+          <Button size="small" variant="contained" color="primary">
+            Lägg i kundvagn
+          </Button>
+        </Grid>
       </CardActions>
     </Card>
   );
