@@ -13,7 +13,7 @@ export const productList: Product[] = [
         url: 'rustning',
         description: 'Exklusiv handgjord ringbrynja med matchande hjälm. En självklar accessoar till medeltidsveckan!',
         price: 199999,
-        img: bear
+        img: 'https://i.imgur.com/DRInboh.jpg'
     },
     {
         name: 'Fluffig myskorg',
