@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import Header from './Header'
 import Main from './Main'
 
-
 interface Props {}
 
-interface State {
+interface State {}
 
-}
 class Layout extends Component<Props, State> {
    
     render() {
-
         return (
             <div>
                 <Header />
@@ -20,6 +17,5 @@ class Layout extends Component<Props, State> {
         )
     }
 }
-
 
 export default Layout;

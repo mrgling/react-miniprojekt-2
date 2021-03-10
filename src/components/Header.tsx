@@ -1,8 +1,8 @@
+import React, { CSSProperties } from 'react';
 import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import React, { CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 
 const StyledBadge = withStyles((theme) => ({
@@ -16,29 +16,28 @@ const StyledBadge = withStyles((theme) => ({
 
 function Header() {
     return (
-        <div style={ headerStyle }>
+        <div style={headerStyle}>
             <Link style={linkStyle} to="/">
-                <h1 style={ headerItem }>MARSVINSTEMA</h1>
+                <h1 style={headerItem}>MARSVINSTEMA</h1>
             </Link>
             <Link style={linkStyle} to="/kundvagn">
                 <IconButton aria-label="cart">
                     <StyledBadge badgeContent={4} color="secondary">
-                    <ShoppingCartIcon />
+                        <ShoppingCartIcon />
                     </StyledBadge>
                 </IconButton>
-            
             </Link>
         </div>
     )
 }
 
 const headerStyle: CSSProperties = {
-    background: 'linear-gradient(0deg, #FFFFFF, #00A3FF)', 
+    background: 'linear-gradient(0deg, #FAFAFA, #00A3FF)', 
     height: '7rem',
     display: 'flex',
     padding: '0 2rem',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
 }
 
 const headerItem: CSSProperties = {
@@ -50,8 +49,7 @@ const headerItem: CSSProperties = {
 }
 
 const linkStyle: CSSProperties = {
-    textDecoration:'none' 
+    textDecoration: 'none' 
 }
-
 
 export default Header;

@@ -5,29 +5,24 @@ import Checkout from './Checkout';
 import ProductDetail from './ProductDetail';
 import ProductView from './ProductView';
 
-
-
 interface Props {}
 
-interface State {
+interface State {}
 
-}
 class Layout extends Component<Props, State> {
    
     render() {
-
         return (
             <div>
                 <Route exact path="/">
-                    <ProductView/>
+                    <ProductView />
                 </Route>
-
-                <Route path="/kundvagn" component={Cart}/>
-                <Route path="/checkout" component={Checkout}/>
-                <Route path="/produkt1" component={ProductDetail}/>
-                
+                <Route path="/kundvagn" component={Cart} />
+                <Route path="/checkout" component={Checkout} />
+                <Route path="/produkt1" component={ProductDetail} />
             </div>
         )
     }
 }
+
 export default Layout;
