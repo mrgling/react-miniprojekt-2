@@ -21,6 +21,10 @@ class Layout extends Component<Props, State> {
                 <Route path="/checkout" component={Checkout} />
                 <Route path="/rustning" component={ProductDetail} />
                 <Route path="/myskorg-fluff" component={ProductDetail} />
+                <Route path="/tomteluva" component={ProductDetail} />
+                <Route path="/myskorg-kiwi" component={ProductDetail} />
+                <Route path="/korv" component={ProductDetail} />
+                <Route path="/tunnel" component={ProductDetail} />
 
             </div>
         )
