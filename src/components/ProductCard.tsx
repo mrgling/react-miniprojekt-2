@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Product } from './ProductList';
 import { Grid } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -29,11 +30,11 @@ export default function ProductCard(props: Props) {
   // const [isVisible, setIsVisible] = useState(true);
   // const [product, setProduct] = useState<Product>();
   
-  const { name, img, price } = props.product;
+  const { name, img, price, url} = props.product;
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea component={Link} to={url}>
         <CardMedia
           className={classes.media}
           image={img}
@@ -52,7 +53,7 @@ export default function ProductCard(props: Props) {
         {/* <Button size="small" color="primary" onClick={() => setIsVisible(false)}>
           Share
         </Button> */}
-        <Grid container direction="row" justify="flex-end" alignItems="center">
+        <Grid container justify="flex-end">
           <Button size="small" variant="contained" color="primary">
             Lägg i kundvagn
           </Button>
