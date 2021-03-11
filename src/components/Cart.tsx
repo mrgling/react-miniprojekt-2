@@ -1,7 +1,9 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, useContext } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Box, Button, Container, Grid, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { CartContext } from './contexts/CartContext';
+import ProductCard from './ProductCard';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,6 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function FullWidthGrid() {
   const classes = useStyles();
+  const cart = useContext(CartContext)
 
   return (
     <div className={classes.root}>
@@ -27,6 +30,11 @@ export default function FullWidthGrid() {
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <h1>Kundvagn</h1>
+                  {cart.cart.map((product, index) => (
+                    <Grid item xs={12} sm={6} md={3} key={index}>
+                      <ProductCard product={product} />
+                    </Grid>
+                  ))}
                 <Link style={linkStyle} to="/checkout">
                   <Button variant="contained" color="primary">Checkout</Button>
                 </Link>
