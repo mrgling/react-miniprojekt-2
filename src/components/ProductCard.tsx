@@ -1,5 +1,5 @@
 // import React, { useState } from 'react';
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { Product } from './ProductList';
 import { Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { CartContext } from './contexts/CartContext';
 
 const useStyles = makeStyles({
   root: {
@@ -25,12 +26,15 @@ interface Props {
     product: Product;
 }
 
+
 export default function ProductCard(props: Props) {
   const classes = useStyles();
   // const [isVisible, setIsVisible] = useState(true);
   // const [product, setProduct] = useState<Product>();
-  
+  const cart = useContext(CartContext)
+  console.log(cart)
   const { name, img, price, url} = props.product;
+ 
 
   return (
     <Card className={classes.root}>
@@ -54,7 +58,8 @@ export default function ProductCard(props: Props) {
           Share
         </Button> */}
         <Grid container justify="flex-end">
-          <Button size="small" variant="contained" color="primary">
+          <Button size="small" variant="contained" color="primary" onClick={() => cart.addToCart(props.product)}>
+            {/* onClick={() => addToCart(product)} */} 
             Lägg i kundvagn
           </Button>
         </Grid>

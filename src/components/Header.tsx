@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
+import { CartContext } from './contexts/CartContext';
 
 const StyledBadge = withStyles((theme) => ({
     badge: {
@@ -17,20 +18,28 @@ const StyledBadge = withStyles((theme) => ({
 
 function Header() {
     return (
-        <div style={headerStyle}>
-            <Typography>
-                <Link style={linkStyle} to="/">
-                    <h1 style={headerItem}>MARSVINSTEMA</h1>
-                </Link>
-            </Typography>
-            <Link style={linkStyle} to="/kundvagn">
-                <IconButton aria-label="cart">
-                    <StyledBadge badgeContent={4} color="secondary">
-                        <ShoppingCartIcon />
-                    </StyledBadge>
-                </IconButton>
-            </Link>
-        </div>
+        <CartContext.Consumer>
+                {({ cart }) => {
+                    return (
+                        <div style={headerStyle}>
+                            <Typography>
+                                <Link style={linkStyle} to="/">
+                                    <h1 style={headerItem}>MARSVINSTEMA</h1>
+                                </Link>
+                            </Typography>
+                            <Link style={linkStyle} to="/kundvagn">
+                                <IconButton aria-label="cart">
+                                    <StyledBadge badgeContent={cart.length} color="secondary">
+                                        <ShoppingCartIcon />
+                                    </StyledBadge>
+                                </IconButton>
+                            </Link>
+                        </div>
+                    )
+                }}
+            </CartContext.Consumer>
+
+        
     )
 }
 
