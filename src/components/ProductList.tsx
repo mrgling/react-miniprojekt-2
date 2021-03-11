@@ -17,24 +17,24 @@ export const productList: Product[] = [
     },
     {
         name: 'Fluffig myskorg',
-        url: 'myskorg',
+        url: 'myskorg-fluff',
         description: 'Vem vill inte sjunka ner i en rosa myskorg dekorerad med fluffiga enhörningar?',
         price: 299,
         img: 'https://cdn.shopify.com/s/files/1/1338/9237/products/guineapigwheekly-5_1024x.jpg?v=1602972185'
     },
     {
-        name:'Marsvinsrustning', 
-        url: 'rustning',
-        description: 'Exklusiv handgjord ringbrynja med matchande hjälm. En självklar accessoar till medeltidsveckan!',
-        price: 199999,
-        img: 'https://i.imgur.com/DRInboh.jpg'},
+        name:'Kiwiformad myskorg', 
+        url: 'myskorg-kiwi',
+        description: 'Stilfull myskorg i mjukaste fleece, formad som en kiwiskiva. FRUKTansvärt fin!',
+        price: 399,
+        img: 'https://i.etsystatic.com/7165241/r/il/178e41/579811693/il_794xN.579811693_ne72.jpg'},
     
     {
-        name: 'Fluffig myskorg',
-        url: 'myskorg',
-        description: 'Vem vill inte sjunka ner i en rosa myskorg dekorerad med fluffiga enhörningar?',
-        price: 299,
-        img: 'https://cdn.shopify.com/s/files/1/1338/9237/products/guineapigwheekly-5_1024x.jpg?v=1602972185'
+        name: 'Lektunnel',
+        url: 'tunnel',
+        description: 'En flexibel tunnel att springa runt i.',
+        price: 199,
+        img: 'https://www.omlet.us/images/originals/Guinea-pig-tunnel-playpen-run.jpg'
     },
     {
         name:'Marsvinsrustning', 
