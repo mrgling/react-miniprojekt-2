@@ -37,7 +37,7 @@ export default function ProductCard(props: Props) {
         <CardMedia
           className={classes.media}
           image={img}
-          title="Contemplative Reptile"
+          title={props.product.name}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
