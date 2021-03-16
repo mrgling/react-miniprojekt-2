@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     media: {
         height: 50,
+        width: 50
       },
   }),
 );
@@ -90,12 +91,7 @@ export default function CartItem(props: Props) {
             <div className={classes.demo}>
                 <List>
                     <ListItem component={Link} to={url}>
-                    <CardMedia className={classes.media} image={img} title={props.product.name} />
-                        <ListItemAvatar>
-                            <Avatar>
-                                <FolderIcon />
-                            </Avatar>
-                        </ListItemAvatar>
+                        <CardMedia className={classes.media} image={img} />
                         <ListItemText>
                             {name}
                         </ListItemText>
