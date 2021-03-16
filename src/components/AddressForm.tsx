@@ -9,7 +9,7 @@ export default function AddressForm() {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Shipping address
+      Leveransadress
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
@@ -17,7 +17,7 @@ export default function AddressForm() {
             required
             id="firstName"
             name="firstName"
-            label="First name"
+            label="Förnamn"
             fullWidth
             autoComplete="given-name"
           />
@@ -27,7 +27,7 @@ export default function AddressForm() {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Efternamn"
             fullWidth
             autoComplete="family-name"
           />
@@ -37,39 +37,29 @@ export default function AddressForm() {
             required
             id="address1"
             name="address1"
-            label="Address line 1"
+            label="Gatuadress"
             fullWidth
             autoComplete="shipping address-line1"
           />
         </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="address2"
-            name="address2"
-            label="Address line 2"
-            fullWidth
-            autoComplete="shipping address-line2"
-          />
-        </Grid>
+        
         <Grid item xs={12} sm={6}>
           <TextField
             required
             id="city"
             name="city"
-            label="City"
+            label="Ort"
             fullWidth
             autoComplete="shipping address-level2"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField id="state" name="state" label="State/Province/Region" fullWidth />
-        </Grid>
+        
         <Grid item xs={12} sm={6}>
           <TextField
             required
             id="zip"
             name="zip"
-            label="Zip / Postal code"
+            label="Postnummer"
             fullWidth
             autoComplete="shipping postal-code"
           />
@@ -79,7 +69,7 @@ export default function AddressForm() {
             required
             id="country"
             name="country"
-            label="Country"
+            label="Land"
             fullWidth
             autoComplete="shipping country"
           />
@@ -87,7 +77,7 @@ export default function AddressForm() {
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Use this address for payment details"
+            label="Använd denna adress för betalningsdetaljer"
           />
         </Grid>
       </Grid>
