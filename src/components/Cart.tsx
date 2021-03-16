@@ -25,6 +25,10 @@ export default function FullWidthGrid() {
   const classes = useStyles();
   const cart = useContext(CartContext)
 
+  // const totalSum = () => {
+  //   console.log('TJENA')
+  // }
+
   return (
     <div className={classes.root}>
       <Container maxWidth="md">
@@ -32,16 +36,16 @@ export default function FullWidthGrid() {
           <Grid container spacing={1}>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Typography>
-                  <h1>Kundvagn</h1>
+                <Typography variant="h3">
+                  Kundvagn
                 </Typography>
                 <Box pt={0} pb={0} style={{ border: '1px solid black' }}>
                   {cart.cart.map((product, index) => (
-                    <CartItem product={product} />
+                    <CartItem product={product} key={index} />
                   ))}
                 </Box>
-                <Typography style={{ background: 'azure' }}>
-                  <h2>Summa:</h2>
+                <Typography variant="h4">
+                  Summa: 
                 </Typography>
                 <Box m={0} pt={0}>
                   <Grid container justify="space-evenly">
