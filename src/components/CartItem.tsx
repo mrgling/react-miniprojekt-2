@@ -64,13 +64,13 @@ interface Props {
     product: Product;
 }
 
-function generate(element: React.ReactElement) {
-    return [0, 1, 2].map((value) =>
-      React.cloneElement(element, {
-        key: value,
-      }),
-    );
-  }
+// function generate(element: React.ReactElement) {
+//     return [0, 1, 2].map((value) =>
+//       React.cloneElement(element, {
+//         key: value,
+//       }),
+//     );
+//   }
 
 
 export default function CartItem(props: Props) {
@@ -86,7 +86,7 @@ export default function CartItem(props: Props) {
         <div className={classes.root}>
             <div className={classes.demo}>
                 <List>
-                    <ListItem>
+                    <ListItem component={Link} to={url}>
                         <ListItemAvatar>
                             <Avatar>
                                 image={img}
