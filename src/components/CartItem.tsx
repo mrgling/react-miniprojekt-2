@@ -46,6 +46,9 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       margin: theme.spacing(4, 0, 2),
     },
+    media: {
+        height: 50,
+      },
   }),
 );
 
@@ -87,9 +90,9 @@ export default function CartItem(props: Props) {
             <div className={classes.demo}>
                 <List>
                     <ListItem component={Link} to={url}>
+                    <CardMedia className={classes.media} image={img} title={props.product.name} />
                         <ListItemAvatar>
                             <Avatar>
-                                image={img}
                                 <FolderIcon />
                             </Avatar>
                         </ListItemAvatar>
