@@ -21,33 +21,10 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function FullWidthGrid() {
+export default function Cart() {
   const classes = useStyles();
-  const cart = useContext(CartContext)
-
-  // const totalSum = () => {
-  // }
-
-  const totalPrice = () => {
-
-    let totalSum = 0;
-    
-    for (const product of cart.cart) {
-      totalSum += product.price      
-      // console.log(totalSum)
-      console.log(cart.cart[0])
-    } 
-    return totalSum;
-  }
-   
-  // obj.totalCount = function() {
-  //   var totalCount = 0;
-  //   for(var item in cart) {
-  //     totalCount += cart[item].count;
-  //   }
-  //   return totalCount;
-  // }
-  
+  const {cart} = useContext(CartContext)
+  const totalPrice = cart.reduce((total, { price = 0 }) => total + price, 0);
 
   return (
     <div className={classes.root}>
@@ -60,7 +37,7 @@ export default function FullWidthGrid() {
                   Kundvagn
                 </Typography>
                 <Box pt={0} pb={0} style={{ border: '1px solid black' }}>
-                  {cart.cart.map((product, index) => (
+                  {cart.map((product, index) => (
                     <CartItem product={product} key={index} />
                   ))}
                 </Box>
