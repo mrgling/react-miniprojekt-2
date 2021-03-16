@@ -3,7 +3,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Box, Button, Container, Grid, Paper, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { CartContext } from './contexts/CartContext';
-import CartCard from './CartItem';
+import CartItem from './CartItem';
 import { Copyright } from './Checkout';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -37,7 +37,7 @@ export default function FullWidthGrid() {
                 </Typography>
                 <Box pt={3} pb={3} style={{ background: 'steelblue' }}>
                   {cart.cart.map((product, index) => (
-                    <CartCard product={product} />
+                    <CartItem product={product} />
                   ))}
                 </Box>
                 <Typography style={{ background: 'azure' }}>
