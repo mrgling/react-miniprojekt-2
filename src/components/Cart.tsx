@@ -35,7 +35,7 @@ export default function FullWidthGrid() {
                 <Typography>
                   <h1>Kundvagn</h1>
                 </Typography>
-                <Box pt={0} pb={0} style={{ background: 'steelblue', border: '1px solid black' }}>
+                <Box pt={0} pb={0} style={{ border: '1px solid black' }}>
                   {cart.cart.map((product, index) => (
                     <CartItem product={product} />
                   ))}
