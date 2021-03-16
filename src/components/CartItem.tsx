@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 // import { CartContext } from './contexts/CartContext';
 import { Product } from './ProductList';
 
@@ -18,13 +18,13 @@ import DeleteIcon from '@material-ui/icons/Delete';
 // import CardActionArea from '@material-ui/core/CardActionArea';
 // import CardActions from '@material-ui/core/CardActions';
 // import CardContent from '@material-ui/core/CardContent';
-// import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 // import Typography from '@material-ui/core/Typography';
-// import { Box } from '@material-ui/core';
-// import Badge from '@material-ui/core/Badge';
-// import ButtonGroup from '@material-ui/core/ButtonGroup';
-// import AddIcon from '@material-ui/icons/Add';
-// import RemoveIcon from '@material-ui/icons/Remove';
+import { Box } from '@material-ui/core';
+import Badge from '@material-ui/core/Badge';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
 // import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 // import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -83,31 +83,43 @@ export default function CartItem(props: Props) {
   // const cart = useContext(CartContext)
 
   // console.log(cart)
-  const { name, img, price, url} = props.product;
+  const { name, img, price} = props.product;
 
-  // const [count, setCount] = React.useState(1); 
+  const [count, setCount] = React.useState(1); 
 
     return (
-        <div className={classes.root}>
-            <div className={classes.demo}>
-                <List>
-                    <ListItem component={Link} to={url}>
-                        <CardMedia className={classes.media} image={img} />
-                        <ListItemText>
-                            {name}
-                        </ListItemText>
-                        <ListItemText>
-                            {price} kr
-                                    </ListItemText>
-                        <ListItemSecondaryAction>
-                            <IconButton edge="end" aria-label="delete">
-                                <DeleteIcon />
-                            </IconButton>
-                        </ListItemSecondaryAction>
-                    </ListItem>
-                </List>
-            </div>
+      <div className={classes.root}>
+        <div className={classes.demo}>
+          <List>
+            <ListItem>
+              <CardMedia className={classes.media} image={img} />
+              <ListItemText>
+                {name}
+              </ListItemText>
+              <ListItemText>
+                {price} kr
+              </ListItemText>
+              <Box m={3} p={3}>
+                <ButtonGroup>
+                  <Button aria-label="reduce" onClick={() => { setCount(Math.max(count - 1, 0)); }}>
+                    <RemoveIcon fontSize="small" />
+                  </Button>
+                  <Button aria-label="increase" onClick={() => { setCount(count + 1); }}>
+                    <AddIcon fontSize="small" />
+                  </Button>
+                </ButtonGroup>
+                <Badge color="secondary" badgeContent={count}>
+                </Badge>
+              </Box>
+              <ListItemSecondaryAction>
+                <IconButton edge="end" aria-label="delete">
+                  <DeleteIcon />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+          </List>
         </div>
+      </div>
     );
 }
 
