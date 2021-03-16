@@ -84,38 +84,29 @@ export default function CartItem(props: Props) {
 
     return (
         <div className={classes.root}>
-            <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
-                    <Typography variant="h6" className={classes.title}>
-                        Artiklar i kundvagnen
-                    </Typography>
-                    <div className={classes.demo}>
-                        <List>
-                            {generate(
-                                <ListItem>
-                                    <ListItemAvatar>
-                                        <Avatar>
-                                        image={img}
-                                            <FolderIcon />
-                                        </Avatar>
-                                    </ListItemAvatar>
-                                    <ListItemText>
-                                        {name}
+            <div className={classes.demo}>
+                <List>
+                    <ListItem>
+                        <ListItemAvatar>
+                            <Avatar>
+                                image={img}
+                                <FolderIcon />
+                            </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText>
+                            {name}
+                        </ListItemText>
+                        <ListItemText>
+                            {price} kr
                                     </ListItemText>
-                                    <ListItemText>
-                                        {price} kr
-                                    </ListItemText>
-                                    <ListItemSecondaryAction>
-                                        <IconButton edge="end" aria-label="delete">
-                                            <DeleteIcon />
-                                        </IconButton>
-                                    </ListItemSecondaryAction>
-                                </ListItem>,
-                            )}
-                        </List>
-                    </div>
-                </Grid>
-            </Grid>
+                        <ListItemSecondaryAction>
+                            <IconButton edge="end" aria-label="delete">
+                                <DeleteIcon />
+                            </IconButton>
+                        </ListItemSecondaryAction>
+                    </ListItem>
+                </List>
+            </div>
         </div>
     );
 }
