@@ -26,7 +26,28 @@ export default function FullWidthGrid() {
   const cart = useContext(CartContext)
 
   // const totalSum = () => {
-  //   console.log('TJENA')
+  // }
+
+  const totalPrice = () => {
+
+    let totalSum = 0;
+    
+    for (const product of cart.cart) {
+      totalSum += product.price      
+      // console.log(totalSum)
+      console.log(cart.cart[0])
+    } 
+    return totalSum;
+  }
+
+    
+
+  // obj.totalCount = function() {
+  //   var totalCount = 0;
+  //   for(var item in cart) {
+  //     totalCount += cart[item].count;
+  //   }
+  //   return totalCount;
   // }
 
   return (
@@ -45,7 +66,7 @@ export default function FullWidthGrid() {
                   ))}
                 </Box>
                 <Typography variant="h4">
-                  Summa: 
+                  Summa: {totalPrice}
                 </Typography>
                 <Box m={0} pt={0}>
                   <Grid container justify="space-evenly">
