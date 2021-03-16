@@ -39,9 +39,7 @@ export default function FullWidthGrid() {
     } 
     return totalSum;
   }
-
-    
-
+   
   // obj.totalCount = function() {
   //   var totalCount = 0;
   //   for(var item in cart) {
@@ -49,6 +47,7 @@ export default function FullWidthGrid() {
   //   }
   //   return totalCount;
   // }
+  
 
   return (
     <div className={classes.root}>

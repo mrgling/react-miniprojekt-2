@@ -38,8 +38,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1,
-      maxWidth: 752,
+      flexGrow: 1
+      // maxWidth: 752,
     },
     demo: {
       backgroundColor: theme.palette.background.paper,
