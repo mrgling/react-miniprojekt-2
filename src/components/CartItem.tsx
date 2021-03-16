@@ -83,24 +83,28 @@ export default function CartItem(props: Props) {
   const [count, setCount] = React.useState(1); 
 
     return (
-        <div className={classes.root}>            
-            <Grid container spacing={2}>                
+        <div className={classes.root}>
+            <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
                     <Typography variant="h6" className={classes.title}>
                         Artiklar i kundvagnen
-          </Typography>
+                    </Typography>
                     <div className={classes.demo}>
                         <List>
                             {generate(
                                 <ListItem>
                                     <ListItemAvatar>
                                         <Avatar>
+                                        image={img}
                                             <FolderIcon />
                                         </Avatar>
                                     </ListItemAvatar>
-                                    <ListItemText
-                                        primary="Single-line item"
-                                    />
+                                    <ListItemText>
+                                        {name}
+                                    </ListItemText>
+                                    <ListItemText>
+                                        {price} kr
+                                    </ListItemText>
                                     <ListItemSecondaryAction>
                                         <IconButton edge="end" aria-label="delete">
                                             <DeleteIcon />
