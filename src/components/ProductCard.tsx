@@ -32,7 +32,7 @@ export default function ProductCard(props: Props) {
   // const [isVisible, setIsVisible] = useState(true);
   // const [product, setProduct] = useState<Product>();
   const cart = useContext(CartContext)
-  console.log(cart)
+  // console.log(cart)
   const { name, img, price, url} = props.product;
  
 

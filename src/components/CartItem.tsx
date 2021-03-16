@@ -1,7 +1,7 @@
-import React, { CSSProperties, useContext } from 'react';
+import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { CartContext } from './contexts/CartContext';
+// import { CartContext } from './contexts/CartContext';
 import { Product } from './ProductList';
 
 import CardMedia from '@material-ui/core/CardMedia';
@@ -80,12 +80,12 @@ interface Props {
 
 export default function CartItem(props: Props) {
   const classes = useStyles();
-  const cart = useContext(CartContext)
+  // const cart = useContext(CartContext)
 
-  console.log(cart)
+  // console.log(cart)
   const { name, img, price, url} = props.product;
 
-  const [count, setCount] = React.useState(1); 
+  // const [count, setCount] = React.useState(1); 
 
     return (
         <div className={classes.root}>
@@ -157,10 +157,10 @@ export default function CartItem(props: Props) {
 //     );
 // }
 
-const itemStyle: CSSProperties = {
-    color: 'red',
-    display: 'flex',
-    background: 'CornflowerBlue',
-    alignItems: 'center',
-    justifyContent: 'center',
-}
+// const itemStyle: CSSProperties = {
+//     color: 'red',
+//     display: 'flex',
+//     background: 'CornflowerBlue',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+// }
