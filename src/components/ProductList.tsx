@@ -9,18 +9,18 @@ export interface Product {
 }
 export const productList: Product[] = [ 
     {
-        name:'Marsvinsrustning', 
-        url: 'rustning',
-        description: 'Exklusiv handgjord ringbrynja med matchande hjälm. En självklar accessoar till medeltidsveckan!',
-        price: 199999,
-        img: 'https://i.imgur.com/DRInboh.jpg'
+        name:'Soltält', 
+        url: 'soltalt',
+        description: 'Ett härligt tält med ananasmönster passar perfekt för att söka skydd från solen en varm sommardag. Plats för minst tre marsvin.',
+        price: 459,
+        img: 'https://i.imgur.com/7pIdBXDl.jpg'
     },
     {
-        name: 'Fluffig myskorg',
-        url: 'myskorg-fluff',
-        description: 'Vem vill inte sjunka ner i en rosa myskorg dekorerad med fluffiga enhörningar?',
-        price: 299,
-        img: 'https://cdn.shopify.com/s/files/1/1338/9237/products/guineapigwheekly-5_1024x.jpg?v=1602972185'
+        name: 'Hö',
+        url: 'ho',
+        description: 'Marsvinets bästa vän! Hö är en viktig del av marsvinets diet, och går dessutom utmärkt att gömma sig i och sova under. En bal motsvarar 120 liter prima ängshö.',
+        price: 99,
+        img: 'https://guineahub.com/wp-content/uploads/2020/06/best-hay-for-guinea-pigs-1024x573.jpg'
     },
     {
         name:'Kiwiformad myskorg', 
