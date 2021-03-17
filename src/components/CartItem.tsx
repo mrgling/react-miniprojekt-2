@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import { CartContext } from './contexts/CartContext';
 import { Product } from './ProductList';
 
@@ -83,23 +83,25 @@ export default function CartItem(props: Props) {
   // const cart = useContext(CartContext)
 
   // console.log(cart)
-  const { name, img, price} = props.product;
+  const { name, img, price, url} = props.product;
 
   const [count, setCount] = React.useState(1); 
+
+  const productUrl = `/produkt/${url}`;
 
     return (
       <div className={classes.root}>
         <div className={classes.demo}>
           <List>
             <ListItem>
-              <CardMedia className={classes.media} image={img} />
+              <CardMedia className={classes.media} image={img} component={Link} to={productUrl}/>
               <ListItemText>
                 {name}
               </ListItemText>
               <ListItemText>
                 {price} kr
               </ListItemText>
-              <Box m={3} p={3}>
+              <Box m={0} p={0}>
                 <ButtonGroup>
                   <Button aria-label="reduce" onClick={() => { setCount(Math.max(count - 1, 0)); }}>
                     <RemoveIcon fontSize="small" />

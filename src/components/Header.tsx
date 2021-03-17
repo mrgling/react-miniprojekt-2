@@ -22,7 +22,7 @@ function Header() {
                 {({ cart }) => {
                     return (
                         <div style={headerStyle}>
-                            <Typography variant="h1" style={headerItem}>
+                            <Typography variant="h1" color="primary">
                                 <Link style={linkStyle} to="/">
                                     MARSVINSTEMA
                                 </Link>
@@ -52,16 +52,16 @@ const headerStyle: CSSProperties = {
     justifyContent: 'space-between'
 }
 
-const headerItem: CSSProperties = {
-    fontSize: '1.75rem',    
-    margin: '0',
-    padding: '0',
-    display: 'flex',
-    color: 'white' 
-}
+// const headerItem: CSSProperties = {
+//     fontSize: '1.75rem',    
+//     margin: '0',
+//     padding: '0',
+//     display: 'flex',
+//     color: 'white' 
+// }
 
 const linkStyle: CSSProperties = {
-    textDecoration: 'none' 
+     textDecoration: 'none' 
 }
 
 export default Header;
