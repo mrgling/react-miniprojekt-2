@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Container, Grid, Paper, Typography } from '@material-ui/core';
+import { Box, Button, Card, CardActionArea, CardContent, CardMedia, Container, Typography } from '@material-ui/core';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { productList } from './ProductList';
 import { CartContext } from './contexts/CartContext';
@@ -9,20 +9,18 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
       justifyContent: 'center'
-    },
-    paper: {
-        padding: theme.spacing(6),
-        textAlign: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-        color: theme.palette.text.secondary,
-
     },
     media: {
-      height: 300,
-      maxWidth: 500,
-      justifyContent: 'center'
+      height: 300
+    },
+    buttonBox: {
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'space-around'
     },
   }),
 );
@@ -39,57 +37,56 @@ export default function ProductDetail() {
   // if (condition) { whentrue } else { whenfalse }
 
   return (
-    <Container maxWidth="md">   
-      <Box pt={5} pb={5}>   
+    <Container maxWidth="sm">   
+      <Box py={5}>   
         {!product ? (
-          <div>
-            "Hoppsan! Det verkar som att denna sida försvunnit."
+          <div className={classes.root}>
+            <Typography gutterBottom variant="h4">
+              Hoppsan! Det verkar som att denna sida har försvunnit.
+            </Typography>
+            <Link to="/">
+              <Button size="small" variant="contained" color="primary">
+              Gå till startsidan
+              </Button>
+            </Link>
           </div>
-      ) : (
-
-            // <Paper className={classes.paper}>
-              <Card className={classes.root}>
-                <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    alt={product.name}
-                    height= "300"
-                    image={product.img}
-                    title={product.name}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {product.name}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                      {product.description}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                      Pris: {product.price} kr
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Grid container justify="space-around">
-                      <Link to="/">
-                          <Button size="small" variant="contained" color="primary">
-                              Tillbaka
-                          </Button>
-                      </Link>
-                      <Button 
-                          size="small" 
-                          variant="contained" 
-                          color="primary" 
-                          onClick={() => cart.addToCart(product)}>
-                              Lägg i kundvagn
-                      </Button>
-                  </Grid>
-                </CardActions>
-              </Card>
-            // </Paper>
-
-          )}
-        </Box> 
-      </Container>
+        ) : (
+          <Card className={classes.root}>
+            <CardActionArea>
+              <CardMedia
+                className={classes.media}
+                image={product.img}
+                title={product.name}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h4">
+                  {product.name}
+                </Typography>
+                <Typography paragraph>
+                  {product.description}
+                </Typography>
+                <Typography variant="h6">
+                  Pris: {product.price} kr
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <Box py={2} className={classes.buttonBox}>
+              <Link to="/">
+                <Button size="small" variant="contained" color="primary">
+                  Tillbaka
+                </Button>
+              </Link>
+              <Button
+                size="small"
+                variant="contained"
+                color="primary"
+                onClick={() => cart.addToCart(product)}>
+                  Lägg i kundvagn
+              </Button>
+            </Box>
+          </Card>
+        )}
+      </Box> 
+    </Container>
   );
 }
