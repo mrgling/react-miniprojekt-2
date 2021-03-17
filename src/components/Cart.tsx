@@ -33,7 +33,7 @@ export default function Cart() {
           <Grid container spacing={1}>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Typography variant="h3">
+                <Typography variant="h4">
                   Kundvagn
                 </Typography>
                 <Box pt={0} pb={0} style={{ border: '1px solid black' }}>
@@ -41,7 +41,7 @@ export default function Cart() {
                     <CartItem product={product} key={index} />
                   ))}
                 </Box>
-                <Typography variant="h4">
+                <Typography variant="h4" >
                   Summa: {totalPrice} kr
                 </Typography>
                 <Box m={0} pt={0}>
