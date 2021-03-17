@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { CartContext } from './contexts/CartContext';
-import { Product } from './ProductList';
+import { CartContext, CartProduct, } from './contexts/CartContext';
 
 import CardMedia from '@material-ui/core/CardMedia';
 
@@ -66,7 +65,7 @@ const useStyles = makeStyles((theme: Theme) =>
 // });
 
 interface Props {
-    product: Product;
+    product: CartProduct;
 }
 
 // function generate(element: React.ReactElement) {
@@ -80,13 +79,17 @@ interface Props {
 
 export default function CartItem(props: Props) {
   const classes = useStyles();
-  const cart = useContext(CartContext)
+  const cart = useContext(CartContext);
 
-  const { name, img, price, url} = props.product;
+  const { name, img, price, url, quantity} = props.product;
 
   const [count, setCount] = React.useState(1); 
 
   const productUrl = `/produkt/${url}`;
+
+  const increaseQuantityInCart = () => {
+    cart.increaseQuantity(url)
+  }
 
     return (
       <div className={classes.root}>
@@ -105,11 +108,11 @@ export default function CartItem(props: Props) {
                   <Button aria-label="reduce" onClick={() => { setCount(Math.max(count - 1, 0)); }}>
                     <RemoveIcon fontSize="small" />
                   </Button>
-                  <Button aria-label="increase" onClick={() => { setCount(count + 1); }}>
+                  <Button aria-label="increase" onClick={ increaseQuantityInCart }>
                     <AddIcon fontSize="small" />
                   </Button>
                 </ButtonGroup>
-                <Badge color="secondary" badgeContent={count}>
+                <Badge color="secondary" badgeContent={quantity}>
                 </Badge>
               </Box>
               <ListItemSecondaryAction>
