@@ -5,13 +5,14 @@ interface State {
     cart: CartProduct[]
 }
 
-interface CartProduct extends Product {
+export interface CartProduct extends Product {
     quantity: number;
 }
 
 interface ContextValue extends State {
     addToCart: (product: Product) => void;
     removeFromCart: (product: Product) => void;
+    increaseQuantity: (product: string) => void;
     emptyCart: () => void;
 }
 
@@ -19,6 +20,7 @@ export const CartContext = createContext<ContextValue>({
     cart: [],
     addToCart: () => {},
     removeFromCart: () => {},
+    increaseQuantity: () => {},
     emptyCart: () => {}
 });
 
@@ -48,6 +50,17 @@ class CartProvider extends Component<{}, State> {
         this.setState({ cart: updatedCart });
     }
 
+    increaseQuantity = (product: string) => {
+        const cartItem = this.state.cart.find( item=> item.url === product);
+        if (cartItem) {
+            cartItem.quantity ++;
+            let updatedCart = this.state.cart.filter(item => item.url !== product);
+            updatedCart = [...updatedCart, cartItem];
+            this.setState({ cart: updatedCart }); 
+            
+        } 
+    }
+
     emptyCart = () => {
         this.setState({ cart: [] });
     }
@@ -58,6 +71,7 @@ class CartProvider extends Component<{}, State> {
                 cart: this.state.cart,
                 addToCart: this.addProductToCart,
                 removeFromCart: this.removeProductFromCart,
+                increaseQuantity: this.increaseQuantity,
                 emptyCart: this.emptyCart
 
             }}>
