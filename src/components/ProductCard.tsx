@@ -32,7 +32,6 @@ export default function ProductCard(props: Props) {
   // const [isVisible, setIsVisible] = useState(true);
   // const [product, setProduct] = useState<Product>();
   const cart = useContext(CartContext)
-  console.log(cart)
   const { name, img, price, url} = props.product;
  
 
@@ -42,7 +41,7 @@ export default function ProductCard(props: Props) {
         <CardMedia
           className={classes.media}
           image={img}
-          title={props.product.name}
+          title={name}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">

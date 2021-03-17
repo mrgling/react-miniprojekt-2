@@ -22,9 +22,9 @@ function Header() {
                 {({ cart }) => {
                     return (
                         <div style={headerStyle}>
-                            <Typography>
+                            <Typography variant="h1" style={headerItem}>
                                 <Link style={linkStyle} to="/">
-                                    <h1 style={headerItem}>MARSVINSTEMA</h1>
+                                    MARSVINSTEMA
                                 </Link>
                             </Typography>
                             <Link style={linkStyle} to="/kundvagn">
