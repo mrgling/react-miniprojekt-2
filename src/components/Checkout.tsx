@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+import Shipping from './Shipping';
 
 export function Copyright() {
   return (
@@ -63,15 +64,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const steps = ['Dina uppgifter', 'Fraktsätt', 'Betalsätt', 'Granska din beställning'];
 
 function getStepContent(step: number) {
   switch (step) {
     case 0:
       return <AddressForm />;
     case 1:
-      return <PaymentForm />;
+      return <Shipping />;
     case 2:
+        return <PaymentForm />;
+    case 3:
       return <Review />;
     default:
       throw new Error('Unknown step');
@@ -96,7 +99,7 @@ export default function Checkout() {
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h4" align="center">
-            Checkout
+            Kassa
           </Typography>
           <Stepper activeStep={activeStep} className={classes.stepper} orientation={'vertical'}>
             {steps.map((label) => (
@@ -109,10 +112,10 @@ export default function Checkout() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
+                  Tack för din order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order confirmation, and will
+                  Ditt ordernummer är #2001539. We have emailed your order confirmation, and will
                   send you an update when your order has shipped.
                 </Typography>
               </React.Fragment>
@@ -122,7 +125,7 @@ export default function Checkout() {
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} className={classes.button}>
-                      Back
+                      Tillbaka
                     </Button>
                   )}
                   <Button
@@ -131,7 +134,7 @@ export default function Checkout() {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Slutför köp' : 'Nästa'}
                   </Button>
                 </div>
               </React.Fragment>
