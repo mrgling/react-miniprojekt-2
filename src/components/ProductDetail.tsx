@@ -3,6 +3,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Box, Container, Grid, Paper } from '@material-ui/core';
 import { useRouteMatch } from 'react-router-dom';
 import { productList } from './ProductList';
+import ProductDetailCard from './ProductDetailCard';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -13,6 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
         padding: theme.spacing(6),
         textAlign: 'center',
         color: theme.palette.text.secondary,
+
       },
   }),
 );
@@ -40,7 +42,7 @@ export default function ProductDetail() {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Paper className={classes.paper}>
-                  <h1>Detail</h1>
+                  <ProductDetailCard product={product} />
                 </Paper>
               </Grid>
             </Grid>
