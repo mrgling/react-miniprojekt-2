@@ -33,11 +33,13 @@ export default function ProductCard(props: Props) {
   // const [product, setProduct] = useState<Product>();
   const cart = useContext(CartContext)
   const { name, img, price, url} = props.product;
+
+  const productUrl = `/produkt/${url}`;
  
 
   return (
     <Card className={classes.root}>
-      <CardActionArea component={Link} to={url}>
+      <CardActionArea component={Link} to={productUrl}>
         <CardMedia
           className={classes.media}
           image={img}

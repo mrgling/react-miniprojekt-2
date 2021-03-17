@@ -42,7 +42,7 @@ export default function Cart() {
                   ))}
                 </Box>
                 <Typography variant="h4">
-                  Summa: {totalPrice}
+                  Summa: {totalPrice} kr
                 </Typography>
                 <Box m={0} pt={0}>
                   <Grid container justify="space-evenly">

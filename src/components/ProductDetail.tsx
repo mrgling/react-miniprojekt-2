@@ -1,6 +1,8 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Box, Container, Grid, Paper } from '@material-ui/core';
+import { useRouteMatch } from 'react-router-dom';
+import { productList } from './ProductList';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -15,20 +17,34 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function FullWidthGrid() {
+//interface Props extends RouteComponentProps<{ name: string }> {}
+
+export default function ProductDetail() {
   const classes = useStyles();
+  const { params } = useRouteMatch<{ url: string }>();
+
+  const product = productList.find(p => p.url === params.url);
+
+  // condition ? whentrue : whenfalse
+  // if (condition) { whentrue } else { whenfalse }
 
   return (
     <div className={classes.root}>
       <Container maxWidth="md">
         <Box pt={5}>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <h1>Detail</h1>
-              </Paper>
+          {!product ? (
+            <div>
+              "Hoppsan! Det verkar som att denna sida försvunnit."
+            </div>
+          ) : (
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  <h1>Detail</h1>
+                </Paper>
+              </Grid>
             </Grid>
-          </Grid>
+          )}
         </Box>
       </Container>
     </div>
