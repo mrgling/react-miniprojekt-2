@@ -23,7 +23,7 @@ export const productList: Product[] = [
         img: 'https://guineahub.com/wp-content/uploads/2020/06/best-hay-for-guinea-pigs-1024x573.jpg'
     },
     {
-        name:'Kiwiformad myskorg', 
+        name:'Myskorg kiwi', 
         url: 'myskorg-kiwi',
         description: 'Stilfull myskorg i mjukaste fleece, formad som en kiwiskiva. FRUKTansvärt fin!',
         price: 399,
