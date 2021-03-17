@@ -8,12 +8,14 @@ interface State {
 interface ContextValue extends State {
     addToCart: (product: Product) => void;
     removeFromCart: (product: Product) => void;
+    emptyCart: () => void;
 }
 
 export const CartContext = createContext<ContextValue>({
     cart: [],
     addToCart: () => {},
-    removeFromCart: () => {}
+    removeFromCart: () => {},
+    emptyCart: () => {}
 });
 
 class CartProvider extends Component<{}, State> {
@@ -31,13 +33,18 @@ class CartProvider extends Component<{}, State> {
         this.setState({ cart: updatedCart });
     }
 
+    emptyCart = () => {
+        this.setState({ cart: [] });
+    }
 
     render() {
         return (
             <CartContext.Provider value={{
                 cart: this.state.cart,
                 addToCart: this.addProductToCart,
-                removeFromCart: this.removeProductFromCart
+                removeFromCart: this.removeProductFromCart,
+                emptyCart: this.emptyCart
+
             }}>
                 {this.props.children}
             </CartContext.Provider>
