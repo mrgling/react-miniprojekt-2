@@ -26,6 +26,15 @@ export default function Cart() {
   const {cart} = useContext(CartContext)
   const totalPrice = cart.reduce((total, { price = 0 }) => total + price, 0);
 
+  // const totalPrice = () => {
+  //   let total = 0;
+  //   cart.forEach(item => { 
+  //     const subtotal = item.price * item.quantity;
+  //     total += subtotal;
+  //     return total
+  //   });
+  // }  
+
   return (
     <div className={classes.root}>
       <Container maxWidth="md">
