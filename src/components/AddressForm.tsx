@@ -74,10 +74,30 @@ export default function AddressForm() {
             autoComplete="shipping country"
           />
         </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="phoneNumber"
+            name="phonenumber"
+            label="Telefonnummer"
+            fullWidth
+            autoComplete="phonenumber"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="eMail"
+            name="email"
+            label="E-post"
+            fullWidth
+            autoComplete="email"
+          />
+        </Grid>
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Använd denna adress för betalningsdetaljer"
+            label="Använd dessa uppgifter för betalningsdetaljer"
           />
         </Grid>
       </Grid>
