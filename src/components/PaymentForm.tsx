@@ -4,10 +4,30 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 export default function PaymentForm() {
+  const [value, setValue] = React.useState('bankkort');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue((event.target as HTMLInputElement).value);
+  };
   return (
+    
+    
     <React.Fragment>
+      <FormControl component="fieldset">
+      <FormLabel component="legend">Välj betalsätt</FormLabel>
+      <RadioGroup aria-label="payment" name="payment1" value={value} onChange={handleChange}>
+        <FormControlLabel value="bankkort" control={<Radio color="primary" />} label="Bankkort" />
+        <FormControlLabel value="swish" control={<Radio color="primary" />} label="Swish" />
+        <FormControlLabel value="faktura" control={<Radio color="primary" />} label="Faktura" />
+      </RadioGroup>
+
+    </FormControl>
       <Typography variant="h6" gutterBottom>
         Kortuppgifter
       </Typography>
