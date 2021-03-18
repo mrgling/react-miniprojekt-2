@@ -64,12 +64,12 @@ class CartProvider extends Component<{}, State> {
 
     decreaseQuantity = (product: string) => {
         const cartItem = this.state.cart.find( item=> item.url === product);
-        if (cartItem) {
+        if (cartItem && cartItem.quantity > 1) {
             cartItem.quantity --;
             this.setState({ cart: this.state.cart }); 
-          //  let updatedCart = this.state.cart.filter(item => item.url !== product);
-           // updatedCart = [...updatedCart, cartItem];
-           // this.setState({ cart: updatedCart }); 
+        } else {
+            const updatedCart = this.state.cart.filter(item => item.url !== product);
+            this.setState({ cart: updatedCart });
         } 
     }
 
