@@ -74,7 +74,8 @@ const headerStyle: CSSProperties = {
 
 const linkStyle: CSSProperties = {
      textDecoration: 'none',
-     color: 'white'
+     color: 'white',
+     fontFamily: 'Changa One'
 
 }
 
