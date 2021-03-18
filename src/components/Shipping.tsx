@@ -5,8 +5,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
-      export default function RadioButtonsGroup() {
-  const [value, setValue] = React.useState('female');
+  export default function RadioButtonsGroup() {
+  const [value, setValue] = React.useState('postnord');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
@@ -16,13 +16,16 @@ import FormLabel from '@material-ui/core/FormLabel';
    
       
     <FormControl component="fieldset">
-      <FormLabel component="legend">Gender</FormLabel>
-      <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-        <FormControlLabel value="female" control={<Radio />} label="Female" />
-        <FormControlLabel value="male" control={<Radio />} label="Male" />
-        <FormControlLabel value="other" control={<Radio />} label="Other" />
-        <FormControlLabel value="disabled" disabled control={<Radio />} label="(Disabled option)" />
+      <FormLabel component="legend">Välj fraksätt</FormLabel>
+      <RadioGroup aria-label="shipping" name="shipping1" value={value} onChange={handleChange}>
+        <FormControlLabel value="postnord" control={<Radio color="primary" />} label="Postnord" />
+        <span> Fraktkostnad: 200 kr Leveranstid: 1-2 vardagar</span>
+        <FormControlLabel value="dhl" control={<Radio color="primary" />} label="DHL" />
+        <span> Fraktkostnad: 129 kr Leveranstid: 3-4 vardagar</span>
+        <FormControlLabel value="ups" control={<Radio color="primary" />} label="UPS" />
+        <span> Fraktkostnad: 75 kr Leveranstid: 6-7 vardagar</span>
       </RadioGroup>
     </FormControl>
   );
 }
+
