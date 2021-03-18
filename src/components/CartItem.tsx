@@ -83,12 +83,14 @@ export default function CartItem(props: Props) {
 
   const { name, img, price, url, quantity} = props.product;
 
-  const [count, setCount] = React.useState(1); 
-
   const productUrl = `/produkt/${url}`;
 
   const increaseQuantityInCart = () => {
     cart.increaseQuantity(url)
+  }
+
+  const decreaseQuantityInCart = () => {
+    cart.decreaseQuantity(url)
   }
 
     return (
@@ -105,7 +107,7 @@ export default function CartItem(props: Props) {
               </ListItemText>
               <Box m={0} p={0}>
                 <ButtonGroup>
-                  <Button aria-label="reduce" onClick={() => { setCount(Math.max(count - 1, 0)); }}>
+                  <Button aria-label="reduce" onClick={ decreaseQuantityInCart }>
                     <RemoveIcon fontSize="small" />
                   </Button>
                   <Button aria-label="increase" onClick={ increaseQuantityInCart }>

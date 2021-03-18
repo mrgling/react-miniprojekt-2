@@ -24,16 +24,20 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function Cart() {
   const classes = useStyles();
   const {cart} = useContext(CartContext)
-  const totalPrice = cart.reduce((total, { price = 0 }) => total + price, 0);
+  //const totalPrice = cart.reduce((total, { price = 0 }) => total + price, 0);
 
-  // const totalPrice = () => {
-  //   let total = 0;
-  //   cart.forEach(item => { 
-  //     const subtotal = item.price * item.quantity;
-  //     total += subtotal;
-  //     return total
-  //   });
-  // }  
+  function priceFunc() {
+    let total = 0;
+    cart.forEach(item => { 
+      const subtotal = item.price * item.quantity;
+      total += subtotal;  
+    });
+    return total;
+  }  
+
+  const totalPrice = priceFunc();
+
+
 
   return (
     <div className={classes.root}>

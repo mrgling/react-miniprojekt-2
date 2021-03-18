@@ -13,6 +13,7 @@ interface ContextValue extends State {
     addToCart: (product: Product) => void;
     removeFromCart: (product: Product) => void;
     increaseQuantity: (product: string) => void;
+    decreaseQuantity: (product: string) => void;
     emptyCart: () => void;
 }
 
@@ -21,6 +22,7 @@ export const CartContext = createContext<ContextValue>({
     addToCart: () => {},
     removeFromCart: () => {},
     increaseQuantity: () => {},
+    decreaseQuantity: () => {},
     emptyCart: () => {}
 });
 
@@ -33,16 +35,15 @@ class CartProvider extends Component<{}, State> {
         const cartItem = this.state.cart.find( item=> item.url === product.url)
         if (cartItem) {
             cartItem.quantity ++;
-            let updatedCart = this.state.cart.filter(item => item.url !== product.url);
-            updatedCart = [...updatedCart, cartItem];
-            this.setState({ cart: updatedCart }); 
-            
+            this.setState({ cart: this.state.cart });
+            //let updatedCart = this.state.cart.filter(item => item.url !== product.url);
+            //updatedCart = [...updatedCart, cartItem];
+            //this.setState({ cart: updatedCart }); 
+
         } else {
             const updatedCart = [...this.state.cart, {...product, quantity: 1}];
-            this.setState({ cart: updatedCart });          
+            this.setState({ cart: updatedCart });                   
         }
-        console.log(this.state.cart)
-
     }
 
     removeProductFromCart = (product: Product) => {
@@ -54,10 +55,21 @@ class CartProvider extends Component<{}, State> {
         const cartItem = this.state.cart.find( item=> item.url === product);
         if (cartItem) {
             cartItem.quantity ++;
-            let updatedCart = this.state.cart.filter(item => item.url !== product);
-            updatedCart = [...updatedCart, cartItem];
-            this.setState({ cart: updatedCart }); 
-            
+            this.setState({ cart: this.state.cart }); 
+          //  let updatedCart = this.state.cart.filter(item => item.url !== product);
+           // updatedCart = [...updatedCart, cartItem];
+           // this.setState({ cart: updatedCart }); 
+        } 
+    }
+
+    decreaseQuantity = (product: string) => {
+        const cartItem = this.state.cart.find( item=> item.url === product);
+        if (cartItem) {
+            cartItem.quantity --;
+            this.setState({ cart: this.state.cart }); 
+          //  let updatedCart = this.state.cart.filter(item => item.url !== product);
+           // updatedCart = [...updatedCart, cartItem];
+           // this.setState({ cart: updatedCart }); 
         } 
     }
 
@@ -72,6 +84,7 @@ class CartProvider extends Component<{}, State> {
                 addToCart: this.addProductToCart,
                 removeFromCart: this.removeProductFromCart,
                 increaseQuantity: this.increaseQuantity,
+                decreaseQuantity: this.decreaseQuantity,
                 emptyCart: this.emptyCart
 
             }}>
