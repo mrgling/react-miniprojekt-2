@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
-import { Typography } from '@material-ui/core';
+import { createMuiTheme, ThemeProvider, Typography } from '@material-ui/core';
 import { CartContext } from './contexts/CartContext';
 
 const StyledBadge = withStyles((theme) => ({
@@ -16,17 +16,29 @@ const StyledBadge = withStyles((theme) => ({
     },
   }))(Badge);
 
+const fonttheme = createMuiTheme({
+    typography: {
+      fontFamily: [
+        '"Changa One"',
+        '"Roboto"',
+      ].join(','),
+    },
+});
+
 function Header() {
     return (
         <CartContext.Consumer>
                 {({ cart }) => {
                     return (
                         <div style={headerStyle}>
-                            <Typography variant="h1" color="primary">
+                            <ThemeProvider theme={fonttheme}>
+                            <Typography variant="h2" color="primary">
                                 <Link style={linkStyle} to="/">
                                     MARSVINSTEMA
                                 </Link>
                             </Typography>
+                            </ThemeProvider>
+
                             <Link style={linkStyle} to="/kundvagn">
                                 <IconButton aria-label="cart">
                                     <StyledBadge badgeContent={cart.length} color="secondary">
@@ -61,7 +73,9 @@ const headerStyle: CSSProperties = {
 // }
 
 const linkStyle: CSSProperties = {
-     textDecoration: 'none' 
+     textDecoration: 'none',
+     color: 'white'
+
 }
 
 export default Header;
