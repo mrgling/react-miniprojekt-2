@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import { Button } from '@material-ui/core';
 
 export default function AddressForm() {
   return (
@@ -99,6 +100,10 @@ export default function AddressForm() {
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
             label="Använd dessa uppgifter för betalningsdetaljer"
           />
+        </Grid>
+        <Grid item xs={12}>
+            {/* EN EGEN KNAPP I KOMPONENTEN ISTÄLLET */}
+          <Button>SUBMIT</Button>
         </Grid>
       </Grid>
     </React.Fragment>

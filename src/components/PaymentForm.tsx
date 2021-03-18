@@ -17,7 +17,9 @@ export default function PaymentForm() {
   };
   return (
     
-    
+    // Ett state med conditional rendering på radioknapparna här
+    // (formcontrol)
+
     <React.Fragment>
       <FormControl component="fieldset">
       <FormLabel component="legend">Välj betalsätt</FormLabel>

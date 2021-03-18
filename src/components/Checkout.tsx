@@ -66,6 +66,19 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ['Dina uppgifter', 'Fraktsätt', 'Betalsätt', 'Granska din beställning'];
 
+// skapa ett state som representerar ordern
+// i nästa steg ta emot statet
+
+// statet ska ligga i denna komponenten
+// 3 objekt som vi uppdaterar med setState
+
+// efter review printa ut mockade api
+// console logga detta
+
+// nästa/submit bör ligga i sina respektive komponenter för att setta statet
+
+
+
 function getStepContent(step: number) {
   switch (step) {
     case 0:
