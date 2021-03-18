@@ -97,13 +97,16 @@ export default function CartItem(props: Props) {
       <div className={classes.root}>
         <div className={classes.demo}>
           <List>
-            <ListItem>
+            <ListItem> 
               <CardMedia className={classes.media} image={img} component={Link} to={productUrl}/>
               <ListItemText>
                 {name}
               </ListItemText>
               <ListItemText>
-                {price} kr
+                {price} kr/st
+              </ListItemText>
+              <ListItemText>
+                Pris: {price} kr
               </ListItemText>
               <Box m={0} p={0}>
                 <ButtonGroup>
@@ -122,7 +125,7 @@ export default function CartItem(props: Props) {
                   <DeleteIcon />
                 </IconButton>
               </ListItemSecondaryAction>
-            </ListItem>
+           </ListItem>
           </List>
         </div>
       </div>
