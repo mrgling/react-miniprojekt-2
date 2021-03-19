@@ -8,6 +8,17 @@ import { Button } from '@material-ui/core';
 
 interface Props {
   handleNext: () => void;
+  handleAddressInfo: () => void;
+}
+
+export interface Address {
+  firstName: string
+  lastName: string
+  address: string
+  zip: number
+  city: string
+  phoneNumber: number
+  email: string
 }
 
 export default function AddressForm(props: Props) {
@@ -40,8 +51,8 @@ export default function AddressForm(props: Props) {
         <Grid item xs={12}>
           <TextField
             required
-            id="address1"
-            name="address1"
+            id="address"
+            name="address"
             label="Gatuadress"
             fullWidth
             autoComplete="shipping address-line1"
@@ -69,16 +80,6 @@ export default function AddressForm(props: Props) {
           />
         </Grid>
         
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="country"
-            name="country"
-            label="Land"
-            fullWidth
-            autoComplete="shipping country"
-          />
-        </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             required
