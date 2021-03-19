@@ -12,6 +12,7 @@ import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Shipping from './Shipping';
+import {Address} from './AddressForm'
 
 export function Copyright() {
   return (
@@ -83,7 +84,8 @@ const steps = ['Dina uppgifter', 'Fraktsätt', 'Betalsätt', 'Granska din bestä
 export default function Checkout() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const [addressInfo, setAddressInfo] = React.useState(0);
+  const [addressInfo, setAddressInfo] = React.useState('address');
+  
   
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -92,11 +94,15 @@ export default function Checkout() {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+  const handleAddressInfo = () => {
+    setAddressInfo('address')
+  }
   
   function getStepContent(step: number) {
     switch (step) {
       case 0:
-        return <AddressForm handleNext={handleNext} />;
+        return <AddressForm handleNext={handleNext} handleAddressInfo={handleAddressInfo} />;
       case 1:
         return <Shipping handleNext={handleNext} handleBack={handleBack} />;
       case 2:

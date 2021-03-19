@@ -91,6 +91,13 @@ export default function Review(props: Props) {
             >
               Tillbaka
             </Button>
+            <Button
+              onClick={props.handleBack}
+              variant='contained'
+              color='primary'
+            >
+              Slutför köp
+            </Button>
         </div>
       </Grid>
     </React.Fragment>
