@@ -6,7 +6,11 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Button } from '@material-ui/core';
 
-export default function AddressForm() {
+interface Props {
+  handleNext: () => void;
+}
+
+export default function AddressForm(props: Props) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -102,8 +106,15 @@ export default function AddressForm() {
           />
         </Grid>
         <Grid item xs={12}>
-            {/* EN EGEN KNAPP I KOMPONENTEN ISTÄLLET */}
-          <Button>SUBMIT</Button>
+        <div >
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={props.handleNext}
+          >
+            Nästa
+          </Button>
+        </div>
         </Grid>
       </Grid>
     </React.Fragment>
