@@ -8,8 +8,14 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import { Button } from '@material-ui/core';
 
-export default function PaymentForm() {
+interface Props {
+  handleNext: () => void;
+  handleBack: () => void;
+}
+
+export default function PaymentForm(props: Props) {
   const [value, setValue] = React.useState('bankkort');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,6 +71,22 @@ export default function PaymentForm() {
             label="Kom ihåg kortuppgifter till nästa gång"
           />
         </Grid>
+        <div >
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={props.handleNext}
+          >
+            Nästa
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={props.handleBack}
+          >
+            Tillbaka
+          </Button>
+        </div>
       </Grid>
     </React.Fragment>
   );

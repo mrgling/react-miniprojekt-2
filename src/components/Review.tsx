@@ -5,6 +5,11 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
+import { Button } from '@material-ui/core';
+
+interface Props {
+  handleBack: () => void;
+}
 
 const products = [
   { name: 'Product 1', desc: 'A nice thing', price: '$9.99' },
@@ -33,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Review() {
+export default function Review(props: Props) {
   const classes = useStyles();
 
   return (
@@ -80,7 +85,15 @@ export default function Review() {
             ))}
           </Grid>
         </Grid>
+        <div>
+          <Button
+              onClick={props.handleBack}
+            >
+              Tillbaka
+            </Button>
+        </div>
       </Grid>
     </React.Fragment>
   );
 }
+             

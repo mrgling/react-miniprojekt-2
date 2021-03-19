@@ -4,8 +4,14 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import { Button } from '@material-ui/core';
 
-  export default function RadioButtonsGroup() {
+interface Props {
+  handleNext: () => void;
+  handleBack: () => void;
+}
+
+  export default function Shipping(props: Props) {
   const [value, setValue] = React.useState('postnord');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +31,24 @@ import FormLabel from '@material-ui/core/FormLabel';
         <FormControlLabel value="ups" control={<Radio color="primary" />} label="UPS" />
         <span> Fraktkostnad: 75 kr Leveranstid: 6-7 vardagar</span>
       </RadioGroup>
+      <div >
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={props.handleNext}
+          >
+            Nästa
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={props.handleBack}
+          >
+            Tillbaka
+          </Button>
+        </div>
     </FormControl>
+    
   );
 }
 
