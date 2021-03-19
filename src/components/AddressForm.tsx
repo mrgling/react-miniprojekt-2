@@ -6,7 +6,22 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Button } from '@material-ui/core';
 
-export default function AddressForm() {
+interface Props {
+  handleNext: () => void;
+  handleAddressInfo: () => void;
+}
+
+export interface Address {
+  firstName: string
+  lastName: string
+  address: string
+  zip: number
+  city: string
+  phoneNumber: number
+  email: string
+}
+
+export default function AddressForm(props: Props) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -36,8 +51,8 @@ export default function AddressForm() {
         <Grid item xs={12}>
           <TextField
             required
-            id="address1"
-            name="address1"
+            id="address"
+            name="address"
             label="Gatuadress"
             fullWidth
             autoComplete="shipping address-line1"
@@ -68,16 +83,6 @@ export default function AddressForm() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="country"
-            name="country"
-            label="Land"
-            fullWidth
-            autoComplete="shipping country"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
             id="phoneNumber"
             name="phonenumber"
             label="Mobilnummer"
@@ -102,8 +107,15 @@ export default function AddressForm() {
           />
         </Grid>
         <Grid item xs={12}>
-            {/* EN EGEN KNAPP I KOMPONENTEN ISTÄLLET */}
-          <Button>SUBMIT</Button>
+        <div >
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={props.handleNext}
+          >
+            Nästa
+          </Button>
+        </div>
         </Grid>
       </Grid>
     </React.Fragment>

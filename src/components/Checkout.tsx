@@ -5,13 +5,14 @@ import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Shipping from './Shipping';
+import {Address} from './AddressForm'
 
 export function Copyright() {
   return (
@@ -79,33 +80,41 @@ const steps = ['Dina uppgifter', 'Fraktsätt', 'Betalsätt', 'Granska din bestä
 
 
 
-function getStepContent(step: number) {
-  switch (step) {
-    case 0:
-      return <AddressForm />;
-    case 1:
-      return <Shipping />;
-    case 2:
-        return <PaymentForm />;
-    case 3:
-      return <Review />;
-    default:
-      throw new Error('Unknown step');
-  }
-}
 
 export default function Checkout() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-
+  const [addressInfo, setAddressInfo] = React.useState('address');
+  
+  
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
-
+  
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
 
+  const handleAddressInfo = () => {
+    setAddressInfo('address')
+  }
+  
+  function getStepContent(step: number) {
+    switch (step) {
+      case 0:
+        return <AddressForm handleNext={handleNext} handleAddressInfo={handleAddressInfo} />;
+      case 1:
+        return <Shipping handleNext={handleNext} handleBack={handleBack} />;
+      case 2:
+          return <PaymentForm handleNext={handleNext} handleBack={handleBack} />;
+      case 3:
+        return <Review handleBack={handleBack} />;
+      default:
+        throw new Error('Unknown step');
+    }
+  }
+  
+  
   return (
     <React.Fragment>
       <CssBaseline />
@@ -135,7 +144,7 @@ export default function Checkout() {
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep)}
-                <div className={classes.buttons}>
+                {/* <div className={classes.buttons}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} className={classes.button}>
                       Tillbaka
@@ -149,7 +158,7 @@ export default function Checkout() {
                   >
                     {activeStep === steps.length - 1 ? 'Slutför köp' : 'Nästa'}
                   </Button>
-                </div>
+                </div> */}
               </React.Fragment>
             )}
           </React.Fragment>
