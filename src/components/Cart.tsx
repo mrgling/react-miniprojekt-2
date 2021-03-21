@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     paper: {
-        padding: theme.spacing(6),
+        padding: theme.spacing(3),
         textAlign: 'center',
         color: theme.palette.text.secondary,
         backgroundImage: 'linear-gradient(20deg, rgb(230, 230, 230), white)',
@@ -46,17 +46,19 @@ export default function Cart() {
           <Grid container spacing={1}>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Typography variant="h4">
-                  Kundvagn
+                <Box pb={2}>
+                  <Typography variant="h4">
+                    Kundvagn
                 </Typography>
-                <Box pt={0} pb={0} style={{ border: '1px solid black' }}>
+                </Box>
                   {cart.map((product, index) => (
                     <CartItem product={product} key={index} />
                   ))}
+                <Box pt={2} pb={1}>
+                  <Typography variant="h5" style={{fontWeight: 'bold' }}>
+                    Summa: {totalPrice} kr
+                  </Typography>
                 </Box>
-                <Typography variant="h4" >
-                  Summa: {totalPrice} kr
-                </Typography>
                 <Box m={0} pt={0}>
                   <Grid container justify="space-evenly">
                     <Box m={1}>
