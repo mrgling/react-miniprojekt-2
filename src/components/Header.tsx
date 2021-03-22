@@ -16,42 +16,42 @@ const StyledBadge = withStyles((theme) => ({
     },
   }))(Badge);
 
-const fonttheme = createMuiTheme({
-    typography: {
-      fontFamily: [
-        '"Changa One"',
-        '"Roboto"',
-      ].join(','),
-    },
-});
+const theme = createMuiTheme();
+
+theme.typography.h1 = {
+  fontSize: '2rem',
+  '@media (min-width:600px)': {
+    fontSize: '2.5rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '3.75rem',
+  },
+};
 
 function Header() {
     return (
         <CartContext.Consumer>
-                {({ cart }) => {
-                    return (
-                        <div style={headerStyle}>
-                            <ThemeProvider theme={fonttheme}>
-                            <Typography variant="h2" color="primary">
+            {({ cart }) => {
+                return (
+                    <div style={headerStyle}>
+                        <ThemeProvider theme={theme}>
+                            <Typography variant="h1">
                                 <Link style={linkStyle} to="/">
                                     MARSVINSTEMA
                                 </Link>
                             </Typography>
-                            </ThemeProvider>
-
-                            <Link style={linkStyle} to="/kundvagn">
-                                <IconButton aria-label="cart">
-                                    <StyledBadge badgeContent={cart.length} color="secondary">
-                                        <ShoppingCartIcon />
-                                    </StyledBadge>
-                                </IconButton>
-                            </Link>
-                        </div>
-                    )
-                }}
-            </CartContext.Consumer>
-
-        
+                        </ThemeProvider>
+                        <Link style={linkStyle} to="/kundvagn">
+                            <IconButton aria-label="cart">
+                                <StyledBadge badgeContent={cart.length} color="secondary">
+                                    <ShoppingCartIcon />
+                                </StyledBadge>
+                            </IconButton>
+                        </Link>
+                    </div>
+                )
+            }}
+        </CartContext.Consumer>        
     )
 }
 
@@ -59,24 +59,15 @@ const headerStyle: CSSProperties = {
     background: 'linear-gradient(90deg, rgba(7,0,129,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)',
     height: '7rem',
     display: 'flex',
-    padding: '0 2rem',
+    padding: '0 1rem',
     alignItems: 'center',
     justifyContent: 'space-between'
 }
-
-// const headerItem: CSSProperties = {
-//     fontSize: '1.75rem',    
-//     margin: '0',
-//     padding: '0',
-//     display: 'flex',
-//     color: 'white' 
-// }
 
 const linkStyle: CSSProperties = {
      textDecoration: 'none',
      color: 'white',
      fontFamily: 'Changa One'
-
 }
 
 export default Header;
