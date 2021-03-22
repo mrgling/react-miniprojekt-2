@@ -19,16 +19,16 @@ const StyledBadge = withStyles((theme) => ({
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      padding: theme.spacing(1),
-      [theme.breakpoints.down('sm')]: {
-        fontSize: '2rem',
+    header: {
+       padding: theme.spacing(1),
+      [theme.breakpoints.down('xs')]: {
+       fontSize: '2rem',
+      },
+      [theme.breakpoints.up('sm')]: {
+       fontSize: '3rem',
       },
       [theme.breakpoints.up('md')]: {
-        fontSize: '2.5rem',
-      },
-      [theme.breakpoints.up('lg')]: {
-        fontSize: '3.75rem',
+       fontSize: '4.5rem',
       },
     },
   }),
@@ -54,9 +54,9 @@ function Header() {
 
                 return (
                     <div style={headerStyle}>
-                        <div className={classes.root}>
-                            <Typography variant="h1">
-                                <Link style={linkStyle} to="/">
+                        <div>
+                            <Typography gutterBottom>
+                                <Link className={classes.header} style={linkStyle} to="/">
                                     MARSVINSTEMA
                                 </Link>
                             </Typography>
@@ -77,10 +77,11 @@ function Header() {
 
 const headerStyle: CSSProperties = {
     background: 'linear-gradient(90deg, rgba(7,0,129,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)',
-    height: '7rem',
+    height: '6rem',
     display: 'flex',
     padding: '0 1rem',
     alignItems: 'center',
+    textAlign: 'center',
     justifyContent: 'space-between'
 }
 
