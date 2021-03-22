@@ -15,9 +15,9 @@ export interface Customer {
   firstName?: string
   lastName?: string
   address?: string
-  zip?: number
+  zip?: any
   city?: string
-  phoneNumber?: number
+  phoneNumber?: any
   email?: string
 }
 
@@ -27,6 +27,7 @@ export default function CustomerForm(props: Props) {
   const handleNext = () => {
     //aksdasdaghs
     props.handleNext();
+    props.handleAddressInfo();
   }
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -34,8 +35,45 @@ export default function CustomerForm(props: Props) {
     // if (/[0-9][A-Ö]/.test(e.target.value)) {}
     setCustomer({ ...customer, firstName: e.target.value });
   };
-
+  
+  const handleLastNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    // validera
+    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    setCustomer({ ...customer, lastName: e.target.value });
+  };
+  
+  const handleAddressChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    // validera
+    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    setCustomer({ ...customer, address: e.target.value });
+  };
+  
+  const handleZipChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    // validera
+    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    setCustomer({ ...customer, zip: e.target.value });
+  };
+  
+  const handleCityChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    // validera
+    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    setCustomer({ ...customer, city: e.target.value });
+  };
+  
+  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    // validera
+    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    setCustomer({ ...customer, phoneNumber: e.target.value });
+  };
+  
+  const handleEmailChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    // validera
+    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    setCustomer({ ...customer, email: e.target.value });
+  };
+  
   console.log(customer);
+  
 
   return (
     <React.Fragment>
@@ -45,7 +83,7 @@ export default function CustomerForm(props: Props) {
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
-            value={"state.firstName"}
+            value={customer.firstName}
             onChange={handleFirstNameChange}
             required
             id="firstName"
@@ -59,6 +97,8 @@ export default function CustomerForm(props: Props) {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
+            value={customer.lastName}
+            onChange={handleLastNameChange}
             required
             id="lastName"
             name="lastName"
@@ -69,6 +109,8 @@ export default function CustomerForm(props: Props) {
         </Grid>
         <Grid item xs={12}>
           <TextField
+            value={customer.address}
+            onChange={handleAddressChange}
             required
             id="address"
             name="address"
@@ -80,6 +122,8 @@ export default function CustomerForm(props: Props) {
         
         <Grid item xs={12} sm={6}>
           <TextField
+            value={customer.zip}
+            onChange={handleZipChange}
             required
             id="zip"
             name="zip"
@@ -90,6 +134,8 @@ export default function CustomerForm(props: Props) {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
+            value={customer.city}
+            onChange={handleCityChange}
             required
             id="city"
             name="city"
@@ -101,6 +147,8 @@ export default function CustomerForm(props: Props) {
         
         <Grid item xs={12} sm={6}>
           <TextField
+            value={customer.phoneNumber}
+            onChange={handlePhoneNumberChange}
             required
             id="phoneNumber"
             name="phonenumber"
@@ -111,6 +159,8 @@ export default function CustomerForm(props: Props) {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
+            value={customer.email}
+            onChange={handleEmailChange}
             required
             id="email"
             name="email"
