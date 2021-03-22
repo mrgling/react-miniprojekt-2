@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -12,16 +12,31 @@ interface Props {
 }
 
 export interface Address {
-  firstName: string
-  lastName: string
-  address: string
-  zip: number
-  city: string
-  phoneNumber: number
-  email: string
+  firstName?: string
+  lastName?: string
+  address?: string
+  zip?: number
+  city?: string
+  phoneNumber?: number
+  email?: string
 }
 
 export default function AddressForm(props: Props) {
+  const [customer, setCustomer] = useState<Address>({})
+
+  const handleNext = () => {
+    //aksdasdaghs
+    props.handleNext();
+  }
+
+  const handleFirstNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    // validera
+    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    setCustomer({ ...customer, firstName: e.target.value });
+  };
+
+  console.log(customer);
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -30,12 +45,16 @@ export default function AddressForm(props: Props) {
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
+            value={"state.firstName"}
+            onChange={handleFirstNameChange}
             required
             id="firstName"
             name="firstName"
             label="Förnamn"
             fullWidth
             autoComplete="given-name"
+            // helperText={state.firstNameError}
+            // error={Boolean(state.firstNameError)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -111,7 +130,7 @@ export default function AddressForm(props: Props) {
           <Button
             variant="contained"
             color="primary"
-            onClick={props.handleNext}
+            onClick={handleNext}
           >
             Nästa
           </Button>
