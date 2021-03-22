@@ -11,7 +11,7 @@ interface Props {
   handleAddressInfo: () => void;
 }
 
-export interface Address {
+export interface Customer {
   firstName?: string
   lastName?: string
   address?: string
@@ -21,8 +21,8 @@ export interface Address {
   email?: string
 }
 
-export default function AddressForm(props: Props) {
-  const [customer, setCustomer] = useState<Address>({})
+export default function CustomerForm(props: Props) {
+  const [customer, setCustomer] = useState<Customer>({})
 
   const handleNext = () => {
     //aksdasdaghs

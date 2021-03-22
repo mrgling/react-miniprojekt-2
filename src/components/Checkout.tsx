@@ -8,11 +8,11 @@ import StepLabel from '@material-ui/core/StepLabel';
 // import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import AddressForm from './AddressForm';
+import CustomerForm from './CustomerForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Shipping from './Shipping';
-import {Address} from './AddressForm'
+import Customer from './CustomerForm'
 
 export function Copyright() {
   return (
@@ -102,7 +102,7 @@ export default function Checkout() {
   function getStepContent(step: number) {
     switch (step) {
       case 0:
-        return <AddressForm handleNext={handleNext} handleAddressInfo={handleAddressInfo} />;
+        return <CustomerForm handleNext={handleNext} handleAddressInfo={handleAddressInfo} />;
       case 1:
         return <Shipping handleNext={handleNext} handleBack={handleBack} />;
       case 2:
