@@ -27,6 +27,7 @@ export default function CustomerForm(props: Props) {
   const handleNext = () => {
     //aksdasdaghs
     props.handleNext();
+    props.handleAddressInfo();
   }
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
