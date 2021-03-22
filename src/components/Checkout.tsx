@@ -8,11 +8,10 @@ import StepLabel from '@material-ui/core/StepLabel';
 // import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import CustomerForm from './CustomerForm';
+import CustomerForm, { Customer } from './CustomerForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Shipping from './Shipping';
-import Customer from './CustomerForm'
 
 export function Copyright() {
   return (
@@ -85,7 +84,7 @@ export default function Checkout() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [addressInfo, setAddressInfo] = React.useState('address');
-  
+  const [customer, setCustomer] = React.useState<Customer>({})
   
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -102,7 +101,7 @@ export default function Checkout() {
   function getStepContent(step: number) {
     switch (step) {
       case 0:
-        return <CustomerForm handleNext={handleNext} handleAddressInfo={handleAddressInfo} />;
+        return <CustomerForm handleNext={handleNext} customer={customer} onCustomerChange={setCustomer} />;
       case 1:
         return <Shipping handleNext={handleNext} handleBack={handleBack} />;
       case 2:

@@ -8,68 +8,68 @@ import { Button } from '@material-ui/core';
 
 interface Props {
   handleNext: () => void;
-  handleAddressInfo: () => void;
+  customer: Customer;
+  onCustomerChange: (customer: Customer) => void;
 }
 
 export interface Customer {
   firstName?: string
   lastName?: string
   address?: string
-  zip?: any
+  zip?: string
   city?: string
-  phoneNumber?: any
+  phoneNumber?: string
   email?: string
 }
 
 export default function CustomerForm(props: Props) {
-  const [customer, setCustomer] = useState<Customer>({})
+  const { customer, onCustomerChange } = props
 
   const handleNext = () => {
-    //aksdasdaghs
+    // kolla så att det inte finns några fel, om inte gå vidare
     props.handleNext();
-    props.handleAddressInfo();
   }
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     // validera
     // if (/[0-9][A-Ö]/.test(e.target.value)) {}
-    setCustomer({ ...customer, firstName: e.target.value });
+    onCustomerChange({ ...customer, firstName: e.target.value });
   };
   
   const handleLastNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     // validera
     // if (/[0-9][A-Ö]/.test(e.target.value)) {}
-    setCustomer({ ...customer, lastName: e.target.value });
+    onCustomerChange({ ...customer, lastName: e.target.value });
   };
   
   const handleAddressChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     // validera
     // if (/[0-9][A-Ö]/.test(e.target.value)) {}
-    setCustomer({ ...customer, address: e.target.value });
+    onCustomerChange({ ...customer, address: e.target.value });
   };
   
   const handleZipChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     // validera
     // if (/[0-9][A-Ö]/.test(e.target.value)) {}
-    setCustomer({ ...customer, zip: e.target.value });
+    onCustomerChange({ ...customer, zip: e.target.value });
   };
   
   const handleCityChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     // validera
     // if (/[0-9][A-Ö]/.test(e.target.value)) {}
-    setCustomer({ ...customer, city: e.target.value });
+    onCustomerChange({ ...customer, city: e.target.value });
   };
   
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     // validera
     // if (/[0-9][A-Ö]/.test(e.target.value)) {}
-    setCustomer({ ...customer, phoneNumber: e.target.value });
+    onCustomerChange({ ...customer, phoneNumber: e.target.value });
   };
   
   const handleEmailChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     // validera
     // if (/[0-9][A-Ö]/.test(e.target.value)) {}
-    setCustomer({ ...customer, email: e.target.value });
+    onCustomerChange({ ...customer, email: e.target.value });
   };
   
   console.log(customer);
