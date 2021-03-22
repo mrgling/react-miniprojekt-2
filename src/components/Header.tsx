@@ -4,8 +4,9 @@ import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
-import { createMuiTheme, ThemeProvider, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { CartContext, CartProduct } from './contexts/CartContext';
+import { Theme, makeStyles, createStyles } from '@material-ui/core/styles';
 
 const StyledBadge = withStyles((theme) => ({
     badge: {
@@ -16,19 +17,26 @@ const StyledBadge = withStyles((theme) => ({
     },
   }))(Badge);
 
-const fonttheme = createMuiTheme();
-
-fonttheme.typography.h1 = {
-  fontSize: '2rem',
-  [fonttheme.breakpoints.up('sm')]: {
-    fontSize: '2.5rem',
-  },
-  [fonttheme.breakpoints.up('md')]: {
-    fontSize: '3.75rem',
-  },
-};
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      padding: theme.spacing(1),
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '2rem',
+      },
+      [theme.breakpoints.up('md')]: {
+        fontSize: '2.5rem',
+      },
+      [theme.breakpoints.up('lg')]: {
+        fontSize: '3.75rem',
+      },
+    },
+  }),
+);
 
 function Header() { 
+
+    const classes = useStyles();
 
     return (
         <CartContext.Consumer>
@@ -46,13 +54,13 @@ function Header() {
 
                 return (
                     <div style={headerStyle}>
-                        <ThemeProvider theme={fonttheme}>
+                        <div className={classes.root}>
                             <Typography variant="h1">
                                 <Link style={linkStyle} to="/">
                                     MARSVINSTEMA
                                 </Link>
                             </Typography>
-                        </ThemeProvider>
+                        </div>
                         <Link style={linkStyle} to="/kundvagn">
                             <IconButton aria-label="cart">
                                 <StyledBadge badgeContent={cartLength} color="secondary">
