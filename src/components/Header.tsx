@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider, Typography } from '@material-ui/core';
-import { CartContext } from './contexts/CartContext';
+import { CartContext, CartProduct } from './contexts/CartContext';
 
 const StyledBadge = withStyles((theme) => ({
     badge: {
@@ -28,10 +28,22 @@ fonttheme.typography.h1 = {
   },
 };
 
-function Header() {
+function Header() { 
+
     return (
         <CartContext.Consumer>
             {({ cart }) => {
+
+                const getCartLength = (cartCount: CartProduct[]) => {
+                    let length = 0;
+                    cartCount.forEach((CartProduct) => {
+                        length += CartProduct.quantity
+                    })
+                    return length;                    
+                }
+                
+                let cartLength = getCartLength(cart)
+
                 return (
                     <div style={headerStyle}>
                         <ThemeProvider theme={fonttheme}>
@@ -43,7 +55,7 @@ function Header() {
                         </ThemeProvider>
                         <Link style={linkStyle} to="/kundvagn">
                             <IconButton aria-label="cart">
-                                <StyledBadge badgeContent={cart.length} color="secondary">
+                                <StyledBadge badgeContent={cartLength} color="secondary">
                                     <ShoppingCartIcon />
                                 </StyledBadge>
                             </IconButton>
