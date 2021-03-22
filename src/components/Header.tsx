@@ -16,14 +16,14 @@ const StyledBadge = withStyles((theme) => ({
     },
   }))(Badge);
 
-const theme = createMuiTheme();
+const fonttheme = createMuiTheme();
 
-theme.typography.h1 = {
+fonttheme.typography.h1 = {
   fontSize: '2rem',
-  '@media (min-width:600px)': {
+  [fonttheme.breakpoints.up('sm')]: {
     fontSize: '2.5rem',
   },
-  [theme.breakpoints.up('md')]: {
+  [fonttheme.breakpoints.up('md')]: {
     fontSize: '3.75rem',
   },
 };
@@ -34,7 +34,7 @@ function Header() {
             {({ cart }) => {
                 return (
                     <div style={headerStyle}>
-                        <ThemeProvider theme={theme}>
+                        <ThemeProvider theme={fonttheme}>
                             <Typography variant="h1">
                                 <Link style={linkStyle} to="/">
                                     MARSVINSTEMA
