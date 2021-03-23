@@ -10,6 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import { Button } from '@material-ui/core';
 import { Customer } from './CustomerForm';
+import { CardPayment, SwishPayment } from './PaymentChoice';
 
 interface Props {
   handleNext: () => void;
@@ -29,6 +30,14 @@ export default function PaymentForm(props: Props) {
 
   const { customer } = props
 
+  let paymentInfo;
+
+  if (paymentOption==="bankkort") { 
+    paymentInfo = <CardPayment/>
+  }
+  else {
+    paymentInfo = <SwishPayment customer={customer} />
+  }
   return (
     
     // Ett state med conditional rendering på radioknapparna här
@@ -45,47 +54,8 @@ export default function PaymentForm(props: Props) {
 
     </FormControl>
 
-    {/* if (paymentOption) {
-      
-    } */}
-
-      <Typography variant="h6" gutterBottom>
-        Kortuppgifter
-      </Typography>
+      {paymentInfo}
       <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <TextField required id="cardName" label="Namn på kort" fullWidth autoComplete="cc-name" />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardNumber"
-            label="Kortnummer"
-            fullWidth
-            autoComplete="cc-number"
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField required id="expDate" label="Utgångsdatum" fullWidth autoComplete="cc-exp" />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cvv"
-            label="CVV"
-            helperText="Skriv in din tresiffriga säkerhetskod "
-            fullWidth
-            autoComplete="cc-csc"
-          />
-        </Grid>
-        <Grid item xs={12} md={12}>
-        <Typography variant="h6" gutterBottom>
-        Swish
-      </Typography>
-          <Typography>
-            Mobilnummer {customer.phoneNumber}
-          </Typography>
-        </Grid>
         <Grid item xs={12} md={6}>
         <div >
           <Button
