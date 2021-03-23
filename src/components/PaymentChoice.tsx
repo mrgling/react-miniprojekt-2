@@ -67,3 +67,25 @@ export function SwishPayment(props:Props) {
         </>
     )
 }
+
+export function InvoicePayment(props:Props) {
+    return(
+        <>
+            <Grid item xs={12} md={12}>
+                <Typography variant="h6" gutterBottom>
+                Fakturaadress
+                </Typography>
+                <Typography>
+                    {props.customer.firstName} {props.customer.lastName}
+                </Typography>
+                <Typography>
+                    {props.customer.address} 
+                </Typography>
+                <Typography>
+                    {props.customer.zip} {props.customer.city}
+                </Typography>
+
+            </Grid>
+        </>
+    )
+}

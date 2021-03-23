@@ -10,7 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import { Button } from '@material-ui/core';
 import { Customer } from './CustomerForm';
-import { CardPayment, SwishPayment } from './PaymentChoice';
+import { CardPayment, InvoicePayment, SwishPayment } from './PaymentChoice';
 
 interface Props {
   handleNext: () => void;
@@ -35,8 +35,11 @@ export default function PaymentForm(props: Props) {
   if (paymentOption==="bankkort") { 
     paymentInfo = <CardPayment/>
   }
-  else {
+  else if (paymentOption==="swish"){
     paymentInfo = <SwishPayment customer={customer} />
+  }
+  else {
+    paymentInfo = <InvoicePayment customer={customer} />
   }
   return (
     
