@@ -11,7 +11,28 @@ import FormLabel from '@material-ui/core/FormLabel';
 import { Button } from '@material-ui/core';
 import { Customer } from './CustomerForm';
 
-export function CardPayment() {
+export interface CardInfo {
+    name?: string
+    cardNumber?: string
+    expireDate?: string
+    cvv?: string
+}
+interface Props {
+    customer: Customer
+    cardInfo: CardInfo
+    onCardInfoChange: (cardInfo: CardInfo) => void;
+}
+
+export function CardPayment(props:Props) {
+    const {cardInfo, onCardInfoChange} = props
+
+
+
+    const handleNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        // validera
+        // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+        onCardInfoChange({ ...cardInfo, name: e.target.value });
+      };
     return(
         <>
 
@@ -20,7 +41,14 @@ export function CardPayment() {
             </Typography>
             <Grid container spacing={3}>
                 <Grid item xs={12} md={6}>
-                    <TextField required id="cardName" label="Namn på kort" fullWidth autoComplete="cc-name" />
+                    <TextField 
+                        value={cardInfo.name}
+                        onChange={handleNameChange}
+                        required 
+                        id="cardName" 
+                        label="Namn på kort" 
+                        fullWidth 
+                        autoComplete="cc-name" />
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField
@@ -50,9 +78,6 @@ export function CardPayment() {
        
 }
 
-interface Props {
-    customer: Customer
-}
 export function SwishPayment(props:Props) {
     return(
         <>
