@@ -13,6 +13,7 @@ import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Shipping from './Shipping';
 import { CardInfo } from './PaymentChoice';
+import { Box, TextField } from '@material-ui/core';
 
 export function Copyright() {
   return (
@@ -97,7 +98,6 @@ export default function Checkout() {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-
   
   function getStepContent(step: number) {
     switch (step) {
@@ -118,6 +118,13 @@ export default function Checkout() {
   console.log(paymentOption);
   console.log(cardInfo);
 
+  function orderID() {
+    let x = Math.floor((Math.random() * 10000) + 1);
+    return x;
+  }  
+
+  const orderNumber = orderID();
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -137,11 +144,13 @@ export default function Checkout() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Tack för din order.
+                  Tack för din order!
                 </Typography>
                 <Typography variant="subtitle1">
-                  Ditt ordernummer är #2001539. We have emailed your order confirmation, and will
-                  send you an update when your order has shipped.
+                  <Typography>
+                  Ditt ordernummer är #{orderNumber}
+                  </Typography>
+                  Vi har skickat ett email med din orderbekräftelse och kommer att skicka en uppdatering när ordern är på väg.
                 </Typography>
               </React.Fragment>
             ) : (

@@ -4,7 +4,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import { Button } from '@material-ui/core';
+import { Box, Button, Grid, Typography } from '@material-ui/core';
 
 interface Props {
   handleNext: () => void;
@@ -24,33 +24,34 @@ export default function Shipping(props: Props) {
   return (   
       
     <FormControl component="fieldset">
-      <FormLabel component="legend">Välj fraksätt</FormLabel>
+      <FormLabel component="legend">Välj fraktsätt</FormLabel>
       <RadioGroup aria-label="shipping" name="shipping1" value={shippingOption} onChange={handleShippingChange}>
         <FormControlLabel value="postnord" control={<Radio color="primary" />} label="Postnord" />
-        <span> Fraktkostnad: 49 kr Leveranstid: 5 dagar</span>
+          <Typography style={{ fontWeight: 600 }}>
+            Fraktkostnad: 49 kr
+          </Typography>
+          <span>Leveranstid: 5 dagar</span>
         <FormControlLabel value="ups" control={<Radio color="primary" />} label="UPS" />
-        <span> Fraktkostnad: 89 kr Leveranstid: 2 dagar</span>
+          <Typography style={{ fontWeight: 600 }}>
+            Fraktkostnad: 89 kr
+          </Typography>
+          <span>Leveranstid: 2 dagar</span>
         <FormControlLabel value="dhl" control={<Radio color="primary" />} label="DHL" />
-        <span> Fraktkostnad: 149 kr Leveranstid: 1 dag</span>
+        <Typography style={{ fontWeight: 600 }}>
+            Fraktkostnad: 149 kr
+          </Typography>
+          <span>Leveranstid: 1 dag</span>
       </RadioGroup>
-      <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={props.handleBack}
-          >
+      <Grid container justify="space-evenly">
+        <Box m={2}>
+          <Button color="primary" onClick={props.handleBack}>
             Tillbaka
           </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={props.handleNext}
-          >
+          <Button variant="contained" color="primary" onClick={props.handleNext}>
             Nästa
           </Button>
-        </div>
+        </Box>
+      </Grid>
     </FormControl>    
     );
   }
-  
-

@@ -5,7 +5,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
-import { Button } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 
 interface Props {
   handleBack: () => void;
@@ -86,20 +86,16 @@ export default function Review(props: Props) {
             ))}
           </Grid>
         </Grid>
-        <div>
-          <Button
-              onClick={props.handleBack}
-            >
+        <Grid container justify="space-evenly">
+          <Box m={2}>
+            <Button color="primary" onClick={props.handleBack}>
               Tillbaka
-            </Button>
-            <Button
-              onClick={props.handleNext}
-              variant='contained'
-              color='primary'
-            >
+          </Button>
+            <Button variant="contained" color="primary" onClick={props.handleNext}>
               Slutför köp
-            </Button>
-        </div>
+          </Button>
+          </Box>
+        </Grid>
       </Grid>
     </React.Fragment>
   );

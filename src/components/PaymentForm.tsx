@@ -8,7 +8,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import { Button } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import { Customer } from './CustomerForm';
 import { CardInfo, CardPayment, InvoicePayment, SwishPayment } from './PaymentChoice';
 
@@ -61,31 +61,22 @@ export default function PaymentForm(props: Props) {
 
       {paymentInfo}
       <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-        <div >
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={props.handleBack}
-          >
-            Tillbaka
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={props.handleNext}
-          >
-            Nästa
-          </Button>
-        </div>
-
-        </Grid>
         {/* <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveCard" value="yes" />}
             label="Kom ihåg kortuppgifter till nästa gång"
           />
         </Grid> */}
+      </Grid>
+      <Grid container justify="space-evenly">
+        <Box m={2}>
+          <Button color="primary" onClick={props.handleBack}>
+            Tillbaka
+          </Button>
+          <Button variant="contained" color="primary" onClick={props.handleNext}>
+            Nästa
+          </Button>
+        </Box>
       </Grid>
     </React.Fragment>
   );

@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import Checkbox from '@material-ui/core/Checkbox';
-import { Button } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 
 interface Props {
   handleNext: () => void;
@@ -107,7 +107,7 @@ export default function CustomerForm(props: Props) {
             autoComplete="family-name"
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={6}>
           <TextField
             value={customer.address}
             onChange={handleAddressChange}
@@ -175,16 +175,12 @@ export default function CustomerForm(props: Props) {
             label="Använd dessa uppgifter för betalningsdetaljer"
           />
         </Grid> */}
-        <Grid item xs={12}>
-        <div >
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleNext}
-          >
-            Nästa
+        <Grid container justify="space-evenly">
+          <Box m={2}>
+            <Button variant="contained" color="primary" onClick={handleNext}>
+              Nästa
           </Button>
-        </div>
+          </Box>
         </Grid>
       </Grid>
     </React.Fragment>
