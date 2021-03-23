@@ -85,6 +85,7 @@ export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [addressInfo, setAddressInfo] = React.useState('address');
   const [shippingOption, setShippingOption] = React.useState('postnord');
+  const [paymentOption, setPaymentOption] = React.useState('bankkort');
   const [customer, setCustomer] = React.useState<Customer>({  firstName: '', lastName: '', address: '', zip: '',  city: '', phoneNumber: '', email: ''})
   // const [shippingInfo, setShippingInfo] = React.useState<ShippingInfo>({  agent: '', shippingPrice: '', shippingDate: ''})
   
@@ -107,7 +108,7 @@ export default function Checkout() {
       case 1:
         return <Shipping handleNext={handleNext} handleBack={handleBack} shippingOption={shippingOption} onShippingChange={setShippingOption}/>;
       case 2:
-          return <PaymentForm handleNext={handleNext} handleBack={handleBack} />;
+          return <PaymentForm handleNext={handleNext} handleBack={handleBack} paymentOption={paymentOption} customer={customer} onPaymentOptionChange={setPaymentOption}/>;
       case 3:
         return <Review handleNext={handleNext} handleBack={handleBack} />;
       default:
@@ -116,7 +117,8 @@ export default function Checkout() {
   }
   
   console.log(shippingOption);
-  
+  console.log(paymentOption);
+
   return (
     <React.Fragment>
       <CssBaseline />

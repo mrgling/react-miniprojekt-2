@@ -3,24 +3,32 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+// import Checkbox from '@material-ui/core/Checkbox';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import { Button } from '@material-ui/core';
+import { Customer } from './CustomerForm';
 
 interface Props {
   handleNext: () => void;
   handleBack: () => void;
+  paymentOption: string;
+  onPaymentOptionChange: (paymentOption: string) => void;
+  customer: Customer;
 }
 
 export default function PaymentForm(props: Props) {
-  const [value, setValue] = React.useState('bankkort');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
+  const { paymentOption, onPaymentOptionChange } = props
+
+  const handlePaymentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onPaymentOptionChange(event.target.value);
   };
+
+  const { customer } = props
+
   return (
     
     // Ett state med conditional rendering på radioknapparna här
@@ -29,13 +37,18 @@ export default function PaymentForm(props: Props) {
     <React.Fragment>
       <FormControl component="fieldset">
       <FormLabel component="legend">Välj betalsätt</FormLabel>
-      <RadioGroup aria-label="payment" name="payment1" value={value} onChange={handleChange}>
+      <RadioGroup aria-label="payment" name="payment1" value={paymentOption} onChange={handlePaymentChange}>
         <FormControlLabel value="bankkort" control={<Radio color="primary" />} label="Bankkort" />
         <FormControlLabel value="swish" control={<Radio color="primary" />} label="Swish" />
         <FormControlLabel value="faktura" control={<Radio color="primary" />} label="Faktura" />
       </RadioGroup>
 
     </FormControl>
+
+    {/* if (paymentOption) {
+      
+    } */}
+
       <Typography variant="h6" gutterBottom>
         Kortuppgifter
       </Typography>
@@ -65,12 +78,15 @@ export default function PaymentForm(props: Props) {
             autoComplete="cc-csc"
           />
         </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-            label="Kom ihåg kortuppgifter till nästa gång"
-          />
+        <Grid item xs={12} md={12}>
+        <Typography variant="h6" gutterBottom>
+        Swish
+      </Typography>
+          <Typography>
+            Mobilnummer {customer.phoneNumber}
+          </Typography>
         </Grid>
+        <Grid item xs={12} md={6}>
         <div >
           <Button
             variant="contained"
@@ -87,6 +103,14 @@ export default function PaymentForm(props: Props) {
             Nästa
           </Button>
         </div>
+
+        </Grid>
+        {/* <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
+            label="Kom ihåg kortuppgifter till nästa gång"
+          />
+        </Grid> */}
       </Grid>
     </React.Fragment>
   );

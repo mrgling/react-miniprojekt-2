@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+// import Checkbox from '@material-ui/core/Checkbox';
 import { Button } from '@material-ui/core';
 
 interface Props {
@@ -169,12 +169,12 @@ export default function CustomerForm(props: Props) {
             autoComplete="email"
           />
         </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
             label="Använd dessa uppgifter för betalningsdetaljer"
           />
-        </Grid>
+        </Grid> */}
         <Grid item xs={12}>
         <div >
           <Button

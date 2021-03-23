@@ -33,7 +33,7 @@ export default function Shipping(props: Props) {
         <FormControlLabel value="dhl" control={<Radio color="primary" />} label="DHL" />
         <span> Fraktkostnad: 149 kr Leveranstid: 1 dag</span>
       </RadioGroup>
-      <div >
+      <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
           <Button
             variant="contained"
             color="primary"
@@ -49,8 +49,7 @@ export default function Shipping(props: Props) {
             Nästa
           </Button>
         </div>
-    </FormControl>
-    
+    </FormControl>    
     );
   }
   
