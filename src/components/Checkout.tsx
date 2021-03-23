@@ -12,6 +12,7 @@ import CustomerForm, { Customer } from './CustomerForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Shipping from './Shipping';
+import { CardInfo } from './PaymentChoice';
 
 export function Copyright() {
   return (
@@ -83,7 +84,7 @@ const steps = ['Dina uppgifter', 'Fraktsätt', 'Betalsätt', 'Granska din bestä
 export default function Checkout() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const [addressInfo, setAddressInfo] = React.useState('address');
+  const [cardInfo, setCardInfo] = React.useState<CardInfo>( { name: '', cardNumber: '', expireDate: '', cvv: '' } );
   const [shippingOption, setShippingOption] = React.useState('postnord');
   const [paymentOption, setPaymentOption] = React.useState('bankkort');
   const [customer, setCustomer] = React.useState<Customer>({  firstName: '', lastName: '', address: '', zip: '',  city: '', phoneNumber: '', email: ''})
@@ -97,9 +98,6 @@ export default function Checkout() {
     setActiveStep(activeStep - 1);
   };
 
-  const handleAddressInfo = () => {
-    setAddressInfo('address')
-  }
   
   function getStepContent(step: number) {
     switch (step) {
@@ -108,7 +106,7 @@ export default function Checkout() {
       case 1:
         return <Shipping handleNext={handleNext} handleBack={handleBack} shippingOption={shippingOption} onShippingChange={setShippingOption}/>;
       case 2:
-          return <PaymentForm handleNext={handleNext} handleBack={handleBack} paymentOption={paymentOption} customer={customer} onPaymentOptionChange={setPaymentOption}/>;
+          return <PaymentForm handleNext={handleNext} handleBack={handleBack} paymentOption={paymentOption} customer={customer} onPaymentOptionChange={setPaymentOption} cardInfo={cardInfo} onCardInfoChange={setCardInfo} />;
       case 3:
         return <Review handleNext={handleNext} handleBack={handleBack} />;
       default:
@@ -118,6 +116,7 @@ export default function Checkout() {
   
   console.log(shippingOption);
   console.log(paymentOption);
+  console.log(cardInfo);
 
   return (
     <React.Fragment>

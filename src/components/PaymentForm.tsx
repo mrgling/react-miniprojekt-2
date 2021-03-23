@@ -10,6 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import { Button } from '@material-ui/core';
 import { Customer } from './CustomerForm';
+import { CardInfo, CardPayment, InvoicePayment, SwishPayment } from './PaymentChoice';
 
 interface Props {
   handleNext: () => void;
@@ -17,6 +18,8 @@ interface Props {
   paymentOption: string;
   onPaymentOptionChange: (paymentOption: string) => void;
   customer: Customer;
+  cardInfo: CardInfo;
+  onCardInfoChange: (cardInfo: CardInfo) => void;
 }
 
 export default function PaymentForm(props: Props) {
@@ -27,8 +30,19 @@ export default function PaymentForm(props: Props) {
     onPaymentOptionChange(event.target.value);
   };
 
-  const { customer } = props
+  const { customer, cardInfo, onCardInfoChange } = props
 
+  let paymentInfo;
+
+  if (paymentOption==="bankkort") { 
+    paymentInfo = <CardPayment customer={customer} cardInfo={cardInfo} onCardInfoChange={onCardInfoChange}/>
+  }
+  else if (paymentOption==="swish"){
+    paymentInfo = <SwishPayment customer={customer} cardInfo={cardInfo} onCardInfoChange={onCardInfoChange}/>
+  }
+  else {
+    paymentInfo = <InvoicePayment customer={customer} cardInfo={cardInfo} onCardInfoChange={onCardInfoChange}/>
+  }
   return (
     
     // Ett state med conditional rendering på radioknapparna här
@@ -45,47 +59,8 @@ export default function PaymentForm(props: Props) {
 
     </FormControl>
 
-    {/* if (paymentOption) {
-      
-    } */}
-
-      <Typography variant="h6" gutterBottom>
-        Kortuppgifter
-      </Typography>
+      {paymentInfo}
       <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <TextField required id="cardName" label="Namn på kort" fullWidth autoComplete="cc-name" />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardNumber"
-            label="Kortnummer"
-            fullWidth
-            autoComplete="cc-number"
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField required id="expDate" label="Utgångsdatum" fullWidth autoComplete="cc-exp" />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cvv"
-            label="CVV"
-            helperText="Skriv in din tresiffriga säkerhetskod "
-            fullWidth
-            autoComplete="cc-csc"
-          />
-        </Grid>
-        <Grid item xs={12} md={12}>
-        <Typography variant="h6" gutterBottom>
-        Swish
-      </Typography>
-          <Typography>
-            Mobilnummer {customer.phoneNumber}
-          </Typography>
-        </Grid>
         <Grid item xs={12} md={6}>
         <div >
           <Button
