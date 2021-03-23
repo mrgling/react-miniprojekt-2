@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import CustomerForm, { Customer } from './CustomerForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
-import Shipping from './Shipping';
+import Shipping, { ShippingInfo } from './Shipping';
 
 export function Copyright() {
   return (
@@ -84,7 +84,8 @@ export default function Checkout() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [addressInfo, setAddressInfo] = React.useState('address');
-  const [customer, setCustomer] = React.useState<Customer>({})
+  const [customer, setCustomer] = React.useState<Customer>({  firstName: '', lastName: '', address: '', zip: '',  city: '', phoneNumber: '', email: ''})
+  const [shippingInfo, setShippingInfo] = React.useState<ShippingInfo>({  agent: '', shippingPrice: '', shippingDate: ''})
   
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -103,7 +104,7 @@ export default function Checkout() {
       case 0:
         return <CustomerForm handleNext={handleNext} customer={customer} onCustomerChange={setCustomer} />;
       case 1:
-        return <Shipping handleNext={handleNext} handleBack={handleBack} />;
+        return <Shipping handleNext={handleNext} handleBack={handleBack} shippingInfo={shippingInfo} onShippingChange={setShippingInfo}/>;
       case 2:
           return <PaymentForm handleNext={handleNext} handleBack={handleBack} />;
       case 3:
