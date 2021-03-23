@@ -75,16 +75,16 @@ export default function PaymentForm(props: Props) {
           <Button
             variant="contained"
             color="primary"
-            onClick={props.handleNext}
+            onClick={props.handleBack}
           >
-            Nästa
+            Tillbaka
           </Button>
           <Button
             variant="contained"
             color="primary"
-            onClick={props.handleBack}
+            onClick={props.handleNext}
           >
-            Tillbaka
+            Nästa
           </Button>
         </div>
       </Grid>

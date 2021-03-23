@@ -9,6 +9,7 @@ import { Button } from '@material-ui/core';
 
 interface Props {
   handleBack: () => void;
+  handleNext: () => void;
 }
 
 const products = [
@@ -92,7 +93,7 @@ export default function Review(props: Props) {
               Tillbaka
             </Button>
             <Button
-              onClick={props.handleBack}
+              onClick={props.handleNext}
               variant='contained'
               color='primary'
             >

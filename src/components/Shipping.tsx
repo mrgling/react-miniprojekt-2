@@ -9,51 +9,44 @@ import { Button } from '@material-ui/core';
 interface Props {
   handleNext: () => void;
   handleBack: () => void;
-  shippingInfo: ShippingInfo;
-  onShippingChange: (shippingInfo: ShippingInfo) => void;
-}
-
-export interface ShippingInfo {
-  agent: string;
-  shippingPrice: string;
-  shippingDate: string;
+  shippingOption: string
+  onShippingChange: (shippingInfo: string) => void;
 }
 
 export default function Shipping(props: Props) {
-  const [value, setValue] = React.useState('postnord');
+
+  const { shippingOption, onShippingChange } = props
   
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
-    console.log(event.target.value);
+  const handleShippingChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onShippingChange(event.target.value);
   };
 
-  return (
-   
+  return (   
       
     <FormControl component="fieldset">
       <FormLabel component="legend">Välj fraksätt</FormLabel>
-      <RadioGroup aria-label="shipping" name="shipping1" value={value} onChange={handleChange}>
+      <RadioGroup aria-label="shipping" name="shipping1" value={shippingOption} onChange={handleShippingChange}>
         <FormControlLabel value="postnord" control={<Radio color="primary" />} label="Postnord" />
-        <span> Fraktkostnad: 49 kr Leveranstid: 5 vardagar</span>
+        <span> Fraktkostnad: 49 kr Leveranstid: 5 dagar</span>
         <FormControlLabel value="ups" control={<Radio color="primary" />} label="UPS" />
-        <span> Fraktkostnad: 89 kr Leveranstid: 2 vardagar</span>
+        <span> Fraktkostnad: 89 kr Leveranstid: 2 dagar</span>
         <FormControlLabel value="dhl" control={<Radio color="primary" />} label="DHL" />
-        <span> Fraktkostnad: 149 kr Leveranstid: 1 vardagar</span>
+        <span> Fraktkostnad: 149 kr Leveranstid: 1 dag</span>
       </RadioGroup>
       <div >
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={props.handleNext}
-          >
-            Nästa
-          </Button>
           <Button
             variant="contained"
             color="primary"
             onClick={props.handleBack}
           >
             Tillbaka
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={props.handleNext}
+          >
+            Nästa
           </Button>
         </div>
     </FormControl>
