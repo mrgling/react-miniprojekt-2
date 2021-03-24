@@ -22,7 +22,7 @@ export default function Shipping(props: Props) {
   };
 
   return (   
-      
+    <React.Fragment>
     <FormControl component="fieldset">
       <FormLabel component="legend">Välj fraktsätt</FormLabel>
       <RadioGroup aria-label="shipping" name="shipping1" value={shippingOption} onChange={handleShippingChange}>
@@ -42,6 +42,8 @@ export default function Shipping(props: Props) {
           </Typography>
           <span>Leveranstid: 1 dag</span>
       </RadioGroup>
+    </FormControl>    
+
       <Grid container justify="space-evenly">
         <Box m={2}>
           <Button color="primary" onClick={props.handleBack}>
@@ -52,6 +54,6 @@ export default function Shipping(props: Props) {
           </Button>
         </Box>
       </Grid>
-    </FormControl>    
+      </React.Fragment>
     );
   }
