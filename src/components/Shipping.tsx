@@ -22,17 +22,17 @@ export default function Shipping(props: Props) {
   };
 
 
-  function today() {
-    let tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const dd = String(tomorrow.getDate()).padStart(2, '0');
-    const mm = String(tomorrow.getMonth() + 1).padStart(2, '0'); 
-    const yyyy = tomorrow.getFullYear();
+  function calculateDeliveryDate(days: number) {
+    let today = new Date();
+    today.setDate(today.getDate() + (days));
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); 
+    const yyyy = today.getFullYear();
     let day = yyyy + '-' + mm + '-' + dd;
     return day;
   }
 
-  const dateToday = today();
+  //const deliveryDate = calculateDeliveryDate();
   
   return (   
     <React.Fragment>
@@ -43,17 +43,17 @@ export default function Shipping(props: Props) {
           <Typography style={{ fontWeight: 600 }}>
             Fraktkostnad: 49 kr
           </Typography>
-          <span>Leveranstid: {dateToday} 5 dagar</span>
+          <span>Leveransdatum: {calculateDeliveryDate(5)} (5 dagar)</span>
         <FormControlLabel value="ups" control={<Radio color="primary" />} label="UPS" />
           <Typography style={{ fontWeight: 600 }}>
             Fraktkostnad: 89 kr
           </Typography>
-          <span>Leveranstid: 2 dagar</span>
+          <span>Leveransdatum: {calculateDeliveryDate(2)} (2 dagar)</span>
         <FormControlLabel value="dhl" control={<Radio color="primary" />} label="DHL" />
         <Typography style={{ fontWeight: 600 }}>
             Fraktkostnad: 149 kr
           </Typography>
-          <span>Leveranstid: 1 dag</span>
+          <span>Leveransdatum: {calculateDeliveryDate(1)} (1 dag)</span>
       </RadioGroup>
     </FormControl>    
 
