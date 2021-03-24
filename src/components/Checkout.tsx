@@ -12,6 +12,7 @@ import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Shipping from './Shipping';
 import { CardInfo } from './PaymentChoice';
+import { Order, sendOrderToApi } from '../mockedApi';
 
 
 export function Copyright() {
@@ -90,8 +91,16 @@ export default function Checkout() {
   const [customer, setCustomer] = React.useState<Customer>({  firstName: '', lastName: '', address: '', zip: '',  city: '', phoneNumber: '', email: ''})
   // const [shippingInfo, setShippingInfo] = React.useState<ShippingInfo>({  agent: '', shippingPrice: '', shippingDate: ''})
   
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
+  const handleNext = async () => {
+    if (activeStep === 3) {
+      const order: Order = {}
+      setIsLoading(true)
+      await sendOrderToApi(order);
+      setIsLoading(false)
+      setActiveStep(activeStep + 1);
+    } else {
+      setActiveStep(activeStep + 1);
+    }
   };
   
   const handleBack = () => {
