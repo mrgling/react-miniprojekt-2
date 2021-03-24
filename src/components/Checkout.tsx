@@ -92,11 +92,18 @@ export default function Checkout() {
   const [customer, setCustomer] = React.useState<Customer>({  firstName: '', lastName: '', address: '', zip: '',  city: '', phoneNumber: '', email: ''})
   const [isLoading, setIsLoading] = React.useState(false);
   // const [shippingInfo, setShippingInfo] = React.useState<ShippingInfo>({  agent: '', shippingPrice: '', shippingDate: ''})
-  const {emptyCart} = useContext(CartContext)
+  const {cart, emptyCart} = useContext(CartContext)
 
   const handleNext = async () => {
     if (activeStep === 3) {
-      const order: Order = {}
+      const order: Order = {
+        orderNumber: orderNumber,
+        customer: {customer},
+        shippingOption: {shippingOption},
+        paymentOption: {paymentOption},
+        cardInfo: {cardInfo},
+        cart: {cart}
+      }
       setIsLoading(true)
       await sendOrderToApi(order);
       setIsLoading(false)
@@ -125,10 +132,6 @@ export default function Checkout() {
         throw new Error('Unknown step');
     }
   }
-  
-  console.log(shippingOption);
-  console.log(paymentOption);
-  console.log(cardInfo);
 
   function orderID() {
     let x = Math.floor((Math.random() * 10000) + 1);
