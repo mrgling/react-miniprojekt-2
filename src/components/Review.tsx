@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
@@ -6,10 +6,15 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import { Box, Button } from '@material-ui/core';
+import { CartContext } from './contexts/CartContext';
+import { Customer } from './CustomerForm';
 
 interface Props {
   handleBack: () => void;
   handleNext: () => void;
+  customer: Customer;
+  paymentOption: string;
+  shippingOption: string;
 }
 
 const products = [
@@ -42,18 +47,51 @@ const useStyles = makeStyles((theme) => ({
 export default function Review(props: Props) {
   const classes = useStyles();
 
+  const {cart} = useContext(CartContext)
+  //const totalPrice = cart.reduce((total, { price = 0 }) => total + price, 0);
+
+  function priceFunc() {
+    let total = 0;
+    cart.forEach(item => { 
+      const subtotal = item.price * item.quantity;
+      total += subtotal;  
+    });
+    return total;
+  }  
+
+  const totalPrice = priceFunc();
+
+  function calculateShippingPrice() {
+    let price;
+    if(props.shippingOption==='postnord') {
+       price = 49;
+    }
+    else if(props.shippingOption==='dhl') {
+        price = 149;
+    }
+    else {
+        price = 89;
+    }
+    return price;
+  }
+  const shippingPrice = calculateShippingPrice();
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Order summary
       </Typography>
       <List disablePadding>
-        {products.map((product) => (
+        {cart.map((product) => (
           <ListItem className={classes.listItem} key={product.name}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+            <ListItemText primary={product.name} />
+            <Typography variant="body2">{product.quantity} st à {product.price} kr</Typography>
           </ListItem>
         ))}
+        <ListItem className={classes.listItem} >
+            <ListItemText primary="Fraktkostnad:" />
+            <Typography variant="body2">{shippingPrice} kr</Typography>
+          </ListItem>
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
