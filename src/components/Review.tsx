@@ -119,12 +119,6 @@ export default function Review(props: Props) {
             </Button>
             </>
             )}
-
-          
-          
-          
-
-         
           </Box>
         </Grid>
       </Grid>
