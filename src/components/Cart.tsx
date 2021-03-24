@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function Cart() {
   const classes = useStyles();
   const {cart} = useContext(CartContext)
-  //const totalPrice = cart.reduce((total, { price = 0 }) => total + price, 0);
 
   function priceFunc() {
     let total = 0;
@@ -36,9 +35,7 @@ export default function Cart() {
   }  
 
   const totalPrice = priceFunc();
-
-
-
+  
   return (
     <div className={classes.root}>
       <Container maxWidth="md">

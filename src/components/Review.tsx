@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import { Box, Button } from '@material-ui/core';
 import { CartContext } from './contexts/CartContext';
 import { Customer } from './CustomerForm';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 interface Props {
   handleBack: () => void;
@@ -15,6 +16,7 @@ interface Props {
   customer: Customer;
   paymentOption: string;
   shippingOption: string;
+  isLoading: boolean;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -31,9 +33,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Review(props: Props) {
   const classes = useStyles();
-  const {customer, paymentOption} = props;
+  const {customer, paymentOption, isLoading} = props;
   const {cart} = useContext(CartContext)
-  //const totalPrice = cart.reduce((total, { price = 0 }) => total + price, 0);
 
   function calculateShippingPrice() {
     let price;
@@ -106,12 +107,18 @@ export default function Review(props: Props) {
         </Grid>
         <Grid container justify="space-evenly">
           <Box m={2}>
+          {isLoading ? (
+             <CircularProgress /> 
+            ) : (
+            <>
             <Button color="primary" onClick={props.handleBack}>
               Tillbaka
-          </Button>
+            </Button>
             <Button variant="contained" color="primary" onClick={props.handleNext}>
               Slutför köp
-          </Button>
+            </Button>
+            </>
+            )}
           </Box>
         </Grid>
       </Grid>
