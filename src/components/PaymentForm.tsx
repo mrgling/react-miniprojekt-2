@@ -1,9 +1,6 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Checkbox from '@material-ui/core/Checkbox';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
@@ -34,10 +31,10 @@ export default function PaymentForm(props: Props) {
 
   let paymentInfo;
 
-  if (paymentOption==="bankkort") { 
+  if (paymentOption==="Bankkort") { 
     paymentInfo = <CardPayment customer={customer} cardInfo={cardInfo} onCardInfoChange={onCardInfoChange}/>
   }
-  else if (paymentOption==="swish"){
+  else if (paymentOption==="Swish"){
     paymentInfo = <SwishPayment customer={customer} cardInfo={cardInfo} onCardInfoChange={onCardInfoChange}/>
   }
   else {
@@ -52,9 +49,9 @@ export default function PaymentForm(props: Props) {
       <FormControl component="fieldset">
       <FormLabel component="legend">Välj betalsätt</FormLabel>
       <RadioGroup aria-label="payment" name="payment1" value={paymentOption} onChange={handlePaymentChange}>
-        <FormControlLabel value="bankkort" control={<Radio color="primary" />} label="Bankkort" />
-        <FormControlLabel value="swish" control={<Radio color="primary" />} label="Swish" />
-        <FormControlLabel value="faktura" control={<Radio color="primary" />} label="Faktura" />
+        <FormControlLabel value="Bankkort" control={<Radio color="primary" />} label="Bankkort" />
+        <FormControlLabel value="Swish" control={<Radio color="primary" />} label="Swish" />
+        <FormControlLabel value="Faktura" control={<Radio color="primary" />} label="Faktura" />
       </RadioGroup>
 
     </FormControl>
