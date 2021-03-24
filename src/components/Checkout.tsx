@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
@@ -13,6 +13,7 @@ import Review from './Review';
 import Shipping from './Shipping';
 import { CardInfo } from './PaymentChoice';
 import { Order, sendOrderToApi } from '../mockedApi';
+import { CartContext } from './contexts/CartContext';
 
 
 export function Copyright() {
@@ -87,16 +88,19 @@ export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [cardInfo, setCardInfo] = React.useState<CardInfo>( { name: '', cardNumber: '', expireDate: '', cvv: '' } );
   const [shippingOption, setShippingOption] = React.useState('postnord');
-  const [paymentOption, setPaymentOption] = React.useState('bankkort');
+  const [paymentOption, setPaymentOption] = React.useState('Bankkort');
   const [customer, setCustomer] = React.useState<Customer>({  firstName: '', lastName: '', address: '', zip: '',  city: '', phoneNumber: '', email: ''})
+  const [isLoading, setIsLoading] = React.useState(false);
   // const [shippingInfo, setShippingInfo] = React.useState<ShippingInfo>({  agent: '', shippingPrice: '', shippingDate: ''})
-  
+  const {emptyCart} = useContext(CartContext)
+
   const handleNext = async () => {
     if (activeStep === 3) {
       const order: Order = {}
       setIsLoading(true)
       await sendOrderToApi(order);
       setIsLoading(false)
+      emptyCart();
       setActiveStep(activeStep + 1);
     } else {
       setActiveStep(activeStep + 1);
@@ -116,7 +120,7 @@ export default function Checkout() {
       case 2:
           return <PaymentForm handleNext={handleNext} handleBack={handleBack} paymentOption={paymentOption} customer={customer} onPaymentOptionChange={setPaymentOption} cardInfo={cardInfo} onCardInfoChange={setCardInfo} />;
       case 3:
-        return <Review handleNext={handleNext} handleBack={handleBack} paymentOption={paymentOption} shippingOption={shippingOption} customer={customer}  />;
+        return <Review handleNext={handleNext} handleBack={handleBack} paymentOption={paymentOption} shippingOption={shippingOption} customer={customer} isLoading={isLoading} />;
       default:
         throw new Error('Unknown step');
     }
