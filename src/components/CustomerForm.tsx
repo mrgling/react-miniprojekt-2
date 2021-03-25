@@ -23,18 +23,54 @@ export interface Customer {
 export default function CustomerForm(props: Props) {
   const { customer, onCustomerChange } = props
 
-  const [firstNameError, setFirstNameError] = useState<boolean>(true);
-  const [lastNameError, setLastNameError] = useState<boolean>(true);
-  const [addressError, setAddressError] = useState<boolean>(true);
-  const [zipError, setZipError] = useState<boolean>(true);
-  const [cityError, setCityError] = useState<boolean>(true);
-  const [phoneNumberError, setPhoneNumberError] = useState<boolean>(true);
-  const [emailError, setEmailError] = useState<boolean>(true);
+  const [firstNameError, setFirstNameError] = useState<boolean>(false);
+  const [lastNameError, setLastNameError] = useState<boolean>(false);
+  const [addressError, setAddressError] = useState<boolean>(false);
+  const [zipError, setZipError] = useState<boolean>(false);
+  const [cityError, setCityError] = useState<boolean>(false);
+  const [phoneNumberError, setPhoneNumberError] = useState<boolean>(false);
+  const [emailError, setEmailError] = useState<boolean>(false);
+
+  // const [validationCheck, setValidationCheck] = useState<boolean>(false);
+  
+  function checkValidation() {
+    if (customer.firstName?.length === 0) { 
+      setFirstNameError(true)
+    }
+    if (customer.lastName?.length === 0) { 
+        setLastNameError(true)
+    }  	
+    if (customer.address?.length === 0) { 
+      setAddressError(true)
+    }  	
+    if (customer.zip?.length === 0) { 
+    setZipError(true)
+    }
+    if (customer.city?.length === 0) { 
+      setCityError(true)
+    }
+    if (customer.phoneNumber?.length === 0) { 
+      setPhoneNumberError(true)
+    }  	  	  	
+    if (customer.email?.length === 0) { 
+      setEmailError(true)
+    }
+  };
 
   const handleNext = () => {
     // kolla så att det inte finns några fel, om inte gå vidare
-    // userValidation
-    props.handleNext();
+
+    checkValidation(); 
+    
+    if (firstNameError === false && lastNameError === false && addressError === false && zipError === false && cityError === false && phoneNumberError === false && emailError === false) { 
+      // setValidationCheck(true);
+      props.handleNext();
+    }  	
+    else {
+      // setValidationCheck(false);
+    }
+    // if (validationCheck === true) {
+    // }
   }
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -123,7 +159,7 @@ export default function CustomerForm(props: Props) {
             label="Förnamn"
             fullWidth
             autoComplete="given-name"
-            // helperText={firstNameErrorText}
+            helperText="Fyll i ditt namn"
             error={firstNameError}
           />
         </Grid>
