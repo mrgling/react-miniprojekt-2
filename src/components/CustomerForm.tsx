@@ -147,7 +147,7 @@ export default function CustomerForm(props: Props) {
             label="Förnamn"
             fullWidth
             autoComplete="given-name"
-            helperText={firstNameError && "Fyll i ditt namn"}
+            helperText={firstNameError && "Fyll i ditt förnamn"}
             error={firstNameError}
           />
         </Grid>
@@ -161,7 +161,7 @@ export default function CustomerForm(props: Props) {
             label="Efternamn"
             fullWidth
             autoComplete="family-name"
-            // helperText={firstNameErrorText}
+            helperText={lastNameError && "Fyll i ditt efternamn"}
             error={lastNameError}
           />
         </Grid>
@@ -175,7 +175,7 @@ export default function CustomerForm(props: Props) {
             label="Gatuadress"
             fullWidth
             autoComplete="shipping address-line1"
-            // helperText={firstNameErrorText}
+            helperText={addressError && "Fyll i din adress"}
             error={addressError}
           />
         </Grid>
@@ -190,7 +190,7 @@ export default function CustomerForm(props: Props) {
             label="Postnummer"
             fullWidth
             autoComplete="shipping postal-code"
-            // helperText={firstNameErrorText}
+            helperText={zipError && "Fyll i ditt postnummer"}
             error={zipError}
           />
         </Grid>
@@ -204,7 +204,7 @@ export default function CustomerForm(props: Props) {
             label="Ort"
             fullWidth
             autoComplete="shipping address-level2"
-            // helperText={firstNameErrorText}
+            helperText={cityError && "Fyll i din postort"}
             error={cityError}
           />
         </Grid>
@@ -219,7 +219,7 @@ export default function CustomerForm(props: Props) {
             label="Mobilnummer"
             fullWidth
             autoComplete="tel"
-            // helperText={firstNameErrorText}
+            helperText={phoneNumberError && "Ange ett korrekt mobilnummer"}
             error={phoneNumberError}
           />
         </Grid>
@@ -233,7 +233,7 @@ export default function CustomerForm(props: Props) {
             label="E-post"
             fullWidth
             autoComplete="email"
-            // helperText={firstNameErrorText}
+            helperText={emailError && "Ange en korrekt e-postadress"}
             error={emailError}
           />
         </Grid>
