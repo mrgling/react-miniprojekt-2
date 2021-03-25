@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Box, Container } from '@material-ui/core';
-import  { productList } from './ProductList'
+import  { productList } from '../ProductList'
 import ProductCard from './ProductCard';
 import { Copyright } from './Checkout';
 

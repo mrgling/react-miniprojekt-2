@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Box, Button, Card, CardActionArea, CardContent, CardMedia, Container, Typography } from '@material-ui/core';
 import { Link, useRouteMatch } from 'react-router-dom';
-import { productList } from './ProductList';
+import { productList } from '../ProductList';
 import { CartContext } from './contexts/CartContext';
 
 const useStyles = makeStyles((theme: Theme) =>
