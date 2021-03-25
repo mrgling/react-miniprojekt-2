@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -18,14 +18,57 @@ interface Props {
 
 export function CardPayment(props:Props) {
     const {cardInfo, onCardInfoChange} = props
-
-
+    const [nameError, setNameError] = useState<boolean>(false);
+    const [cardNumberError, setCardNumberError] = useState<boolean>(false);
+    const [expireDateError, setExpireDateError] = useState<boolean>(false);
+    const [cvvError, setCvvError] = useState<boolean>(false);
 
     const handleNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        // validera
-        // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+        if (/[a-ö][A-Ö]/.test(e.target.value)) {  
+            setNameError(false);
+           }
+         else {
+           setNameError(true);
+         }
+
         onCardInfoChange({ ...cardInfo, name: e.target.value });
       };
+
+    const handleCardNumberChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        if (/^[0-9]{16}$/.test(e.target.value)) {  
+            setCardNumberError(false);
+           }
+         else {
+           setCardNumberError(true);
+         }
+
+        onCardInfoChange({ ...cardInfo, cardNumber: e.target.value });
+      };
+
+    const handleExpireDateChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        if (/^[0-9]{4}$/.test(e.target.value)) {  
+            setExpireDateError(false);
+           }
+         else {
+           setExpireDateError(true);
+         }
+
+        onCardInfoChange({ ...cardInfo, expireDate: e.target.value });
+      };
+
+    const handleCvvChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        if (/^[0-9]{3}$/.test(e.target.value)) {  
+            setCvvError(false);
+           }
+         else {
+           setCvvError(true);
+         }
+
+        onCardInfoChange({ ...cardInfo, cvv: e.target.value });
+      };
+
+      
+
     return(
         <>
 
@@ -41,28 +84,48 @@ export function CardPayment(props:Props) {
                         id="cardName" 
                         label="Namn på kort" 
                         fullWidth 
-                        autoComplete="cc-name" />
+                        autoComplete="cc-name" 
+                        helperText={nameError && "Fyll i kortinnehavarens namn"}
+                        error={nameError}
+                    />
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField
+                        value={cardInfo.cardNumber}
+                        onChange={handleCardNumberChange}
                         required
                         id="cardNumber"
                         label="Kortnummer"
                         fullWidth
                         autoComplete="cc-number"
+                        helperText={cardNumberError && "Fyll i kortnummer"}
+                        error={cardNumberError}
                     />
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <TextField required id="expDate" label="Utgångsdatum" fullWidth autoComplete="cc-exp" />
+                    <TextField 
+                        value={cardInfo.expireDate}
+                        onChange={handleExpireDateChange}
+                        required 
+                        id="expDate" 
+                        label="Utgångsdatum" 
+                        fullWidth 
+                        autoComplete="cc-exp" 
+                        helperText={expireDateError && "Fyll i kortets utgångsdatum"}
+                        error={expireDateError}
+                    />
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField
+                        value={cardInfo.cvv}
+                        onChange={handleCvvChange}
                         required
                         id="cvv"
                         label="CVV"
-                        helperText="Skriv in din tresiffriga säkerhetskod "
                         fullWidth
                         autoComplete="cc-csc"
+                        helperText={cvvError && "Fyll i din tresiffriga säkerhetskod"}
+                        error={cvvError}
                     />
                 </Grid>
             </Grid>
