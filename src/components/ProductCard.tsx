@@ -8,7 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Product } from './ProductList';
+import { Product } from '../ProductList';
 import { Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { CartContext } from './contexts/CartContext';

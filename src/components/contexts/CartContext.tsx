@@ -1,5 +1,5 @@
 import { Component, createContext } from 'react';
-import { Product } from '../ProductList';
+import { Product } from '../../ProductList';
 
 interface State {
     cart: CartProduct[]
