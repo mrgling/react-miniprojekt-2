@@ -65,8 +65,6 @@ export default function Review(props: Props) {
   }  
   const totalPrice = priceFunc();
 
-
-
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -115,14 +113,14 @@ export default function Review(props: Props) {
           <Grid container>
             <Typography gutterBottom>{paymentOption}</Typography>
           </Grid>
-          {cardInfo?(
+          {paymentOption==="Bankkort" &&
             <Grid item>
               <Typography gutterBottom variant="body2">Namn: {cardInfo.name}</Typography>
               <Typography gutterBottom variant="body2">Kortnummer: {cardInfo.cardNumber!.substring(0,4)} XXXX XXXX XXXX</Typography>
               <Typography gutterBottom variant="body2">Utgångsdatum: {cardInfo.expireDate}</Typography>
               <Typography gutterBottom variant="body2">Säkerhetskod: XXX</Typography>
             </Grid>
-          ):(<></>)}
+          }
         </Grid>
         <Grid container justify="space-evenly">
           <Box m={2}>
