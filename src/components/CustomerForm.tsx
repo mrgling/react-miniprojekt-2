@@ -24,6 +24,12 @@ export default function CustomerForm(props: Props) {
   const { customer, onCustomerChange } = props
 
   const [firstNameError, setFirstNameError] = useState<boolean>(true);
+  const [lastNameError, setLastNameError] = useState<boolean>(true);
+  const [addressError, setAddressError] = useState<boolean>(true);
+  const [zipError, setZipError] = useState<boolean>(true);
+  const [cityError, setCityError] = useState<boolean>(true);
+  const [phoneNumberError, setPhoneNumberError] = useState<boolean>(true);
+  const [emailError, setEmailError] = useState<boolean>(true);
 
   const handleNext = () => {
     // kolla så att det inte finns några fel, om inte gå vidare
@@ -32,7 +38,6 @@ export default function CustomerForm(props: Props) {
   }
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    // validera
      if (/[a-ö][A-Ö]/.test(e.target.value)) {  
        setFirstNameError(false);
       }
@@ -43,43 +48,64 @@ export default function CustomerForm(props: Props) {
   };
   
   const handleLastNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    // validera
-    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    if (/[a-ö][A-Ö]/.test(e.target.value)) {  
+      setLastNameError(false);
+     }
+    else {
+     setLastNameError(true);
+   }
     onCustomerChange({ ...customer, lastName: e.target.value });
   };
   
   const handleAddressChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    // validera
-    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    if (/^.{3,}$/.test(e.target.value)) {  
+      setAddressError(false);
+     }
+    else {
+     setAddressError(true);
+   }
     onCustomerChange({ ...customer, address: e.target.value });
   };
   
   const handleZipChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    // validera
-    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    if (/^.{5,6}$/.test(e.target.value)) {  
+      setZipError(false);
+     }
+    else {
+     setZipError(true);
+   }
     onCustomerChange({ ...customer, zip: e.target.value });
   };
   
   const handleCityChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    // validera
-    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    if (/[a-ö][A-Ö]/.test(e.target.value)) {  
+      setCityError(false);
+     }
+    else {
+     setCityError(true);
+   }
     onCustomerChange({ ...customer, city: e.target.value });
   };
   
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    // validera
-    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    if (/^07([0-9][ -]*){7}[0-9]$/.test(e.target.value)) {  
+      setPhoneNumberError(false);
+     }
+    else {
+     setPhoneNumberError(true);
+   }
     onCustomerChange({ ...customer, phoneNumber: e.target.value });
   };
   
   const handleEmailChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    // validera
-    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    if (/^\S+@\S+\.\S+$/.test(e.target.value)) {  
+      setEmailError(false);
+     }
+    else {
+     setEmailError(true);
+   }
     onCustomerChange({ ...customer, email: e.target.value });
   };
-  
-  console.log(customer);
-  
 
   return (
     <React.Fragment>
@@ -111,6 +137,8 @@ export default function CustomerForm(props: Props) {
             label="Efternamn"
             fullWidth
             autoComplete="family-name"
+            // helperText={firstNameErrorText}
+            error={lastNameError}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -123,6 +151,8 @@ export default function CustomerForm(props: Props) {
             label="Gatuadress"
             fullWidth
             autoComplete="shipping address-line1"
+            // helperText={firstNameErrorText}
+            error={addressError}
           />
         </Grid>
         
@@ -136,6 +166,8 @@ export default function CustomerForm(props: Props) {
             label="Postnummer"
             fullWidth
             autoComplete="shipping postal-code"
+            // helperText={firstNameErrorText}
+            error={zipError}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -148,6 +180,8 @@ export default function CustomerForm(props: Props) {
             label="Ort"
             fullWidth
             autoComplete="shipping address-level2"
+            // helperText={firstNameErrorText}
+            error={cityError}
           />
         </Grid>
         
@@ -161,6 +195,8 @@ export default function CustomerForm(props: Props) {
             label="Mobilnummer"
             fullWidth
             autoComplete="tel"
+            // helperText={firstNameErrorText}
+            error={phoneNumberError}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -173,6 +209,8 @@ export default function CustomerForm(props: Props) {
             label="E-post"
             fullWidth
             autoComplete="email"
+            // helperText={firstNameErrorText}
+            error={emailError}
           />
         </Grid>
         {/* <Grid item xs={12}>
