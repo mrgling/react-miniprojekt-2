@@ -9,6 +9,7 @@ import { Box, Button } from '@material-ui/core';
 import { CartContext } from './contexts/CartContext';
 import { Customer } from './CustomerForm';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { CardInfo } from './CardPayment';
 
 interface Props {
   handleBack: () => void;
@@ -17,6 +18,7 @@ interface Props {
   paymentOption: string;
   shippingOption: string;
   isLoading: boolean;
+  cardInfo: CardInfo;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -34,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Review(props: Props) {
   const classes = useStyles();
-  const {customer, paymentOption, isLoading} = props;
+  const {customer, paymentOption, isLoading, cardInfo} = props;
   const {cart} = useContext(CartContext)
 
   function calculateShippingPrice() {
@@ -62,8 +64,6 @@ export default function Review(props: Props) {
     return total;
   }  
   const totalPrice = priceFunc();
-
-
 
   return (
     <React.Fragment>
@@ -111,8 +111,16 @@ export default function Review(props: Props) {
             Betalsätt
           </Typography>
           <Grid container>
-              {paymentOption}
+            <Typography gutterBottom>{paymentOption}</Typography>
           </Grid>
+          {paymentOption==="Bankkort" &&
+            <Grid item>
+              <Typography gutterBottom variant="body2">Namn: {cardInfo.name}</Typography>
+              <Typography gutterBottom variant="body2">Kortnummer: {cardInfo.cardNumber!.substring(0,4)} XXXX XXXX XXXX</Typography>
+              <Typography gutterBottom variant="body2">Utgångsdatum: {cardInfo.expireDate}</Typography>
+              <Typography gutterBottom variant="body2">Säkerhetskod: XXX</Typography>
+            </Grid>
+          }
         </Grid>
         <Grid container justify="space-evenly">
           <Box m={2}>

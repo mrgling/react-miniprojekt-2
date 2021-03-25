@@ -11,7 +11,7 @@ import CustomerForm, { Customer } from './CustomerForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Shipping from './Shipping';
-import { CardInfo } from './PaymentChoice';
+import { CardInfo } from './CardPayment';
 import { Order, sendOrderToApi } from '../mockedApi';
 import { CartContext } from './contexts/CartContext';
 
@@ -114,7 +114,7 @@ export default function Checkout() {
       case 2:
           return <PaymentForm handleNext={handleNext} handleBack={handleBack} paymentOption={paymentOption} customer={customer} onPaymentOptionChange={setPaymentOption} cardInfo={cardInfo} onCardInfoChange={setCardInfo} />;
       case 3:
-        return <Review handleNext={handleNext} handleBack={handleBack} paymentOption={paymentOption} shippingOption={shippingOption} customer={customer} isLoading={isLoading} />;
+        return <Review handleNext={handleNext} handleBack={handleBack} paymentOption={paymentOption} shippingOption={shippingOption} customer={customer} isLoading={isLoading} cardInfo={cardInfo}/>;
       default:
         throw new Error('Unknown step');
     }

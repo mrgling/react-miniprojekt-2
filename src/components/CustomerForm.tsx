@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -23,55 +23,113 @@ export interface Customer {
 export default function CustomerForm(props: Props) {
   const { customer, onCustomerChange } = props
 
+  const [firstNameError, setFirstNameError] = useState<boolean>(false);
+  const [lastNameError, setLastNameError] = useState<boolean>(false);
+  const [addressError, setAddressError] = useState<boolean>(false);
+  const [zipError, setZipError] = useState<boolean>(false);
+  const [cityError, setCityError] = useState<boolean>(false);
+  const [phoneNumberError, setPhoneNumberError] = useState<boolean>(false);
+  const [emailError, setEmailError] = useState<boolean>(false);
+  
+  function isAllRequiredFieldsOk() {
+    return (
+      customer.firstName
+      && customer.lastName
+      && customer.address
+      && customer.zip
+      && customer.city
+      && customer.phoneNumber
+      && customer.email
+    )
+  }
+
+  function isFormValid() {
+    return (
+      isAllRequiredFieldsOk()
+      && !firstNameError
+      && !lastNameError
+      && !addressError
+      && !zipError
+      && !cityError
+      && !phoneNumberError
+      && !emailError
+    )
+  }
+
   const handleNext = () => {
     // kolla så att det inte finns några fel, om inte gå vidare
     props.handleNext();
   }
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    // validera
-    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
-    onCustomerChange({ ...customer, firstName: e.target.value });
+     if (/[a-ö][A-Ö]/.test(e.target.value)) {  
+       setFirstNameError(false);
+      }
+    else {
+      setFirstNameError(true);
+    }
+      onCustomerChange({ ...customer, firstName: e.target.value });
   };
   
   const handleLastNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    // validera
-    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    if (/[a-ö][A-Ö]/.test(e.target.value)) {  
+      setLastNameError(false);
+     }
+    else {
+     setLastNameError(true);
+   }
     onCustomerChange({ ...customer, lastName: e.target.value });
   };
   
   const handleAddressChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    // validera
-    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    if (/^.{3,}$/.test(e.target.value)) {  
+      setAddressError(false);
+     }
+    else {
+     setAddressError(true);
+   }
     onCustomerChange({ ...customer, address: e.target.value });
   };
   
   const handleZipChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    // validera
-    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    if (/^.{5,6}$/.test(e.target.value)) {  
+      setZipError(false);
+     }
+    else {
+     setZipError(true);
+   }
     onCustomerChange({ ...customer, zip: e.target.value });
   };
   
   const handleCityChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    // validera
-    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    if (/[a-ö][A-Ö]/.test(e.target.value)) {  
+      setCityError(false);
+     }
+    else {
+     setCityError(true);
+   }
     onCustomerChange({ ...customer, city: e.target.value });
   };
   
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    // validera
-    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    if (/^07([0-9][ -]*){7}[0-9]$/.test(e.target.value)) {  
+      setPhoneNumberError(false);
+     }
+    else {
+     setPhoneNumberError(true);
+   }
     onCustomerChange({ ...customer, phoneNumber: e.target.value });
   };
   
   const handleEmailChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    // validera
-    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
+    if (/^\S+@\S+\.\S+$/.test(e.target.value)) {  
+      setEmailError(false);
+     }
+    else {
+     setEmailError(true);
+   }
     onCustomerChange({ ...customer, email: e.target.value });
   };
-  
-  console.log(customer);
-  
 
   return (
     <React.Fragment>
@@ -89,8 +147,8 @@ export default function CustomerForm(props: Props) {
             label="Förnamn"
             fullWidth
             autoComplete="given-name"
-            // helperText={state.firstNameError}
-            // error={Boolean(state.firstNameError)}
+            helperText={firstNameError && "Fyll i ditt förnamn"}
+            error={firstNameError}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -103,6 +161,8 @@ export default function CustomerForm(props: Props) {
             label="Efternamn"
             fullWidth
             autoComplete="family-name"
+            helperText={lastNameError && "Fyll i ditt efternamn"}
+            error={lastNameError}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -115,6 +175,8 @@ export default function CustomerForm(props: Props) {
             label="Gatuadress"
             fullWidth
             autoComplete="shipping address-line1"
+            helperText={addressError && "Fyll i din adress"}
+            error={addressError}
           />
         </Grid>
         
@@ -128,6 +190,8 @@ export default function CustomerForm(props: Props) {
             label="Postnummer"
             fullWidth
             autoComplete="shipping postal-code"
+            helperText={zipError && "Fyll i ditt postnummer"}
+            error={zipError}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -140,6 +204,8 @@ export default function CustomerForm(props: Props) {
             label="Ort"
             fullWidth
             autoComplete="shipping address-level2"
+            helperText={cityError && "Fyll i din postort"}
+            error={cityError}
           />
         </Grid>
         
@@ -153,6 +219,8 @@ export default function CustomerForm(props: Props) {
             label="Mobilnummer"
             fullWidth
             autoComplete="tel"
+            helperText={phoneNumberError && "Ange ett korrekt mobilnummer"}
+            error={phoneNumberError}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -165,6 +233,8 @@ export default function CustomerForm(props: Props) {
             label="E-post"
             fullWidth
             autoComplete="email"
+            helperText={emailError && "Ange en korrekt e-postadress"}
+            error={emailError}
           />
         </Grid>
         {/* <Grid item xs={12}>
@@ -175,7 +245,7 @@ export default function CustomerForm(props: Props) {
         </Grid> */}
         <Grid container justify="space-evenly">
           <Box m={2}>
-            <Button variant="contained" color="primary" onClick={handleNext}>
+            <Button disabled={!isFormValid()} variant="contained" color="primary" onClick={handleNext}>
               Nästa
           </Button>
           </Box>

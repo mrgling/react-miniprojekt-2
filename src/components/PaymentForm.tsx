@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
@@ -6,8 +6,9 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import { Box, Button } from '@material-ui/core';
+import { InvoicePayment, SwishPayment } from './PaymentChoice';
+import CardPayment, { CardInfo } from './CardPayment'
 import { Customer } from './CustomerForm';
-import { CardInfo, CardPayment, InvoicePayment, SwishPayment } from './PaymentChoice';
 
 interface Props {
   handleNext: () => void;
@@ -19,8 +20,31 @@ interface Props {
   onCardInfoChange: (cardInfo: CardInfo) => void;
 }
 
-export default function PaymentForm(props: Props) {
 
+export default function PaymentForm(props: Props) {
+  const [nameError, setNameError] = useState<boolean>(false);
+  const [cardNumberError, setCardNumberError] = useState<boolean>(false);
+  const [expireDateError, setExpireDateError] = useState<boolean>(false);
+  const [cvvError, setCvvError] = useState<boolean>(false);
+
+  function isAllRequiredFieldsOk() {
+    return (
+      cardInfo.name
+      && cardInfo.cardNumber
+      && cardInfo.expireDate
+      && cardInfo.cvv
+    )
+  }
+  
+  function isFormValid() {
+    return (
+      isAllRequiredFieldsOk()
+      && !nameError
+      && !cardNumberError
+      && !expireDateError
+      && !cvvError
+    )
+  }
   const { paymentOption, onPaymentOptionChange } = props
 
   const handlePaymentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,19 +56,28 @@ export default function PaymentForm(props: Props) {
   let paymentInfo;
 
   if (paymentOption==="Bankkort") { 
-    paymentInfo = <CardPayment customer={customer} cardInfo={cardInfo} onCardInfoChange={onCardInfoChange}/>
+    paymentInfo = <CardPayment 
+      customer={customer} 
+      cardInfo={cardInfo} 
+      onCardInfoChange={onCardInfoChange}
+      nameError={nameError}
+      setNameError={setNameError}
+      cardNumberError= {cardNumberError}
+      setCardNumberError={setCardNumberError}
+      expireDateError= {expireDateError}
+      setExpireDateError={setExpireDateError}
+      cvvError= {cvvError}
+      setCvvError={setCvvError}
+
+      />
   }
   else if (paymentOption==="Swish"){
-    paymentInfo = <SwishPayment customer={customer} cardInfo={cardInfo} onCardInfoChange={onCardInfoChange}/>
+    paymentInfo = <SwishPayment customer={customer} />
   }
   else {
-    paymentInfo = <InvoicePayment customer={customer} cardInfo={cardInfo} onCardInfoChange={onCardInfoChange}/>
+    paymentInfo = <InvoicePayment customer={customer} />
   }
   return (
-    
-    // Ett state med conditional rendering på radioknapparna här
-    // (formcontrol)
-
     <React.Fragment>
       <FormControl component="fieldset">
       <FormLabel component="legend">Välj betalsätt</FormLabel>
@@ -57,20 +90,13 @@ export default function PaymentForm(props: Props) {
     </FormControl>
 
       {paymentInfo}
-      <Grid container spacing={3}>
-        {/* <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-            label="Kom ihåg kortuppgifter till nästa gång"
-          />
-        </Grid> */}
-      </Grid>
+
       <Grid container justify="space-evenly">
         <Box m={2}>
           <Button color="primary" onClick={props.handleBack}>
             Tillbaka
           </Button>
-          <Button variant="contained" color="primary" onClick={props.handleNext}>
+          <Button disabled={paymentOption==="Bankkort" && !isFormValid()} variant="contained" color="primary" onClick={props.handleNext}>
             Nästa
           </Button>
         </Box>
@@ -78,3 +104,4 @@ export default function PaymentForm(props: Props) {
     </React.Fragment>
   );
 }
+
