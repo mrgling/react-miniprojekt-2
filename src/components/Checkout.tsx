@@ -11,7 +11,7 @@ import CustomerForm, { Customer } from './CustomerForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Shipping from './Shipping';
-import { CardInfo } from './PaymentChoice';
+import { CardInfo } from './CardPayment';
 import { Order, sendOrderToApi } from '../mockedApi';
 import { CartContext } from './contexts/CartContext';
 
