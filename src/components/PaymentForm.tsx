@@ -96,7 +96,7 @@ export default function PaymentForm(props: Props) {
           <Button color="primary" onClick={props.handleBack}>
             Tillbaka
           </Button>
-          <Button disabled={!isFormValid()} variant="contained" color="primary" onClick={props.handleNext}>
+          <Button disabled={paymentOption==="Bankkort" && !isFormValid()} variant="contained" color="primary" onClick={props.handleNext}>
             Nästa
           </Button>
         </Box>
