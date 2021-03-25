@@ -69,7 +69,7 @@ export default function PaymentForm(props: Props) {
             Swish
           </Typography>
           <Typography>
-            Mobilnummer {props.customer.phoneNumber}
+            Mobilnummer {customer.phoneNumber}
           </Typography>
         </Grid>
       }
