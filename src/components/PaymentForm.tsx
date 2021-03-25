@@ -5,8 +5,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import { Box, Button } from '@material-ui/core';
-import { InvoicePayment, SwishPayment } from './PaymentChoice';
+import { Box, Button, Typography } from '@material-ui/core';
 import CardPayment, { CardInfo } from './CardPayment'
 import { Customer } from './CustomerForm';
 
@@ -53,30 +52,6 @@ export default function PaymentForm(props: Props) {
 
   const { customer, cardInfo, onCardInfoChange } = props
 
-  let paymentInfo;
-
-  if (paymentOption==="Bankkort") { 
-    paymentInfo = <CardPayment 
-      customer={customer} 
-      cardInfo={cardInfo} 
-      onCardInfoChange={onCardInfoChange}
-      nameError={nameError}
-      setNameError={setNameError}
-      cardNumberError= {cardNumberError}
-      setCardNumberError={setCardNumberError}
-      expireDateError= {expireDateError}
-      setExpireDateError={setExpireDateError}
-      cvvError= {cvvError}
-      setCvvError={setCvvError}
-
-      />
-  }
-  else if (paymentOption==="Swish"){
-    paymentInfo = <SwishPayment customer={customer} />
-  }
-  else {
-    paymentInfo = <InvoicePayment customer={customer} />
-  }
   return (
     <React.Fragment>
       <FormControl component="fieldset">
@@ -88,8 +63,49 @@ export default function PaymentForm(props: Props) {
       </RadioGroup>
 
     </FormControl>
+      {paymentOption==="Swish" &&
+        <Grid item xs={12} md={12}>
+          <Typography variant="h6" gutterBottom>
+            Swish
+          </Typography>
+          <Typography>
+            Mobilnummer {props.customer.phoneNumber}
+          </Typography>
+        </Grid>
+      }
 
-      {paymentInfo}
+      {paymentOption==="Faktura" &&
+        <Grid item xs={12} md={12}>
+          <Typography variant="h6" gutterBottom>
+            Fakturaadress
+          </Typography>
+          <Typography>
+              {customer.firstName} {customer.lastName}
+          </Typography>
+          <Typography>
+              {customer.address} 
+          </Typography>
+          <Typography>
+              {customer.zip} {customer.city}
+          </Typography>
+        </Grid>
+      }
+
+      {paymentOption==="Bankkort" &&   
+        <CardPayment 
+          customer={customer} 
+          cardInfo={cardInfo} 
+          onCardInfoChange={onCardInfoChange}
+          nameError={nameError}
+          setNameError={setNameError}
+          cardNumberError= {cardNumberError}
+          setCardNumberError={setCardNumberError}
+          expireDateError= {expireDateError}
+          setExpireDateError={setExpireDateError}
+          cvvError= {cvvError}
+          setCvvError={setCvvError}
+        />
+      }
 
       <Grid container justify="space-evenly">
         <Box m={2}>
