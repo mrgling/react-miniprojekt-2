@@ -90,7 +90,7 @@ export default function Review(props: Props) {
         <ListItem className={classes.listItem}>
           <ListItemText />
           <Typography variant="body2">
-            <i>(varav moms {totalPrice * 0.2} kr)</i>
+            <i>(varav moms {Math.round(totalPrice * 0.2)} kr)</i>
           </Typography>
         </ListItem>
       </List>
