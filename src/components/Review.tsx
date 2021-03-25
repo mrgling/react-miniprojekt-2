@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   total: {
     fontWeight: 700,
+    padding: theme.spacing(1, 0),
   },
   title: {
     marginTop: theme.spacing(2),
@@ -62,6 +63,8 @@ export default function Review(props: Props) {
   }  
   const totalPrice = priceFunc();
 
+
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -71,17 +74,23 @@ export default function Review(props: Props) {
         {cart.map((product) => (
           <ListItem className={classes.listItem} key={product.name}>
             <ListItemText primary={product.name} />
-            <Typography variant="body2">{product.quantity} st à {product.price} kr</Typography>
+            <Typography variant="body1">{product.quantity} st à {product.price} kr</Typography>
           </ListItem>
         ))}
         <ListItem className={classes.listItem} >
-            <ListItemText primary="Fraktkostnad:" />
-            <Typography variant="body2">{shippingPrice} kr</Typography>
+            <ListItemText primary="Fraktkostnad" />
+            <Typography variant="body1">{shippingPrice} kr</Typography>
           </ListItem>
-        <ListItem className={classes.listItem}>
-          <ListItemText primary="Total" />
-          <Typography variant="subtitle1" className={classes.total}>
+        <ListItem className={classes.total}>
+          <ListItemText primary="Att betala:" />
+          <Typography variant="h6" className={classes.total}>
             {totalPrice} kr
+          </Typography>
+        </ListItem>
+        <ListItem className={classes.listItem}>
+          <ListItemText />
+          <Typography variant="body2">
+            <i>(varav moms {Math.round(totalPrice * 0.2)} kr)</i>
           </Typography>
         </ListItem>
       </List>
