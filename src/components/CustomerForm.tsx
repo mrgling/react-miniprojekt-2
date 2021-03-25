@@ -30,47 +30,35 @@ export default function CustomerForm(props: Props) {
   const [cityError, setCityError] = useState<boolean>(false);
   const [phoneNumberError, setPhoneNumberError] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<boolean>(false);
-
-  // const [validationCheck, setValidationCheck] = useState<boolean>(false);
   
-  function checkValidation() {
-    if (customer.firstName?.length === 0) { 
-      setFirstNameError(true)
-    }
-    if (customer.lastName?.length === 0) { 
-        setLastNameError(true)
-    }  	
-    if (customer.address?.length === 0) { 
-      setAddressError(true)
-    }  	
-    if (customer.zip?.length === 0) { 
-    setZipError(true)
-    }
-    if (customer.city?.length === 0) { 
-      setCityError(true)
-    }
-    if (customer.phoneNumber?.length === 0) { 
-      setPhoneNumberError(true)
-    }  	  	  	
-    if (customer.email?.length === 0) { 
-      setEmailError(true)
-    }
-  };
+  function isAllRequiredFieldsOk() {
+    return (
+      customer.firstName
+      && customer.lastName
+      && customer.address
+      && customer.zip
+      && customer.city
+      && customer.phoneNumber
+      && customer.email
+    )
+  }
+
+  function isFormValid() {
+    return (
+      isAllRequiredFieldsOk()
+      && !firstNameError
+      && !lastNameError
+      && !addressError
+      && !zipError
+      && !cityError
+      && !phoneNumberError
+      && !emailError
+    )
+  }
 
   const handleNext = () => {
     // kolla så att det inte finns några fel, om inte gå vidare
-
-    checkValidation(); 
-    
-    if (firstNameError === false && lastNameError === false && addressError === false && zipError === false && cityError === false && phoneNumberError === false && emailError === false) { 
-      // setValidationCheck(true);
-      props.handleNext();
-    }  	
-    else {
-      // setValidationCheck(false);
-    }
-    // if (validationCheck === true) {
-    // }
+    props.handleNext();
   }
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -159,7 +147,7 @@ export default function CustomerForm(props: Props) {
             label="Förnamn"
             fullWidth
             autoComplete="given-name"
-            helperText="Fyll i ditt namn"
+            helperText={firstNameError && "Fyll i ditt namn"}
             error={firstNameError}
           />
         </Grid>
@@ -257,7 +245,7 @@ export default function CustomerForm(props: Props) {
         </Grid> */}
         <Grid container justify="space-evenly">
           <Box m={2}>
-            <Button variant="contained" color="primary" onClick={handleNext}>
+            <Button disabled={!isFormValid()} variant="contained" color="primary" onClick={handleNext}>
               Nästa
           </Button>
           </Box>
