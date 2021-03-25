@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -23,15 +23,23 @@ export interface Customer {
 export default function CustomerForm(props: Props) {
   const { customer, onCustomerChange } = props
 
+  const [firstNameError, setFirstNameError] = useState<boolean>(true);
+
   const handleNext = () => {
     // kolla så att det inte finns några fel, om inte gå vidare
+    // userValidation
     props.handleNext();
   }
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     // validera
-    // if (/[0-9][A-Ö]/.test(e.target.value)) {}
-    onCustomerChange({ ...customer, firstName: e.target.value });
+     if (/[a-ö][A-Ö]/.test(e.target.value)) {  
+       setFirstNameError(false);
+      }
+    else {
+      setFirstNameError(true);
+    }
+      onCustomerChange({ ...customer, firstName: e.target.value });
   };
   
   const handleLastNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -89,8 +97,8 @@ export default function CustomerForm(props: Props) {
             label="Förnamn"
             fullWidth
             autoComplete="given-name"
-            // helperText={state.firstNameError}
-            // error={Boolean(state.firstNameError)}
+            // helperText={firstNameErrorText}
+            error={firstNameError}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
