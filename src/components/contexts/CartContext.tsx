@@ -26,9 +26,16 @@ export const CartContext = createContext<ContextValue>({
     emptyCart: () => {}
 });
 
+function getCart() {
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      return JSON.parse(cart) as CartProduct[];
+    }
+    return [];
+  }
 class CartProvider extends Component<{}, State> {
     state: State = {
-        cart: []
+        cart: getCart()
     }
 
     addProductToCart = (product: Product) => {
@@ -36,19 +43,19 @@ class CartProvider extends Component<{}, State> {
         if (cartItem) {
             cartItem.quantity ++;
             this.setState({ cart: this.state.cart });
-            //let updatedCart = this.state.cart.filter(item => item.url !== product.url);
-            //updatedCart = [...updatedCart, cartItem];
-            //this.setState({ cart: updatedCart }); 
+            this.updateCartInLocalStorage(this.state.cart)
 
         } else {
             const updatedCart = [...this.state.cart, {...product, quantity: 1}];
-            this.setState({ cart: updatedCart });                   
+            this.setState({ cart: updatedCart });  
+            this.updateCartInLocalStorage(updatedCart)                 
         }
     }
 
     removeProductFromCart = (product: Product) => {
         const updatedCart = this.state.cart.filter(item => item.url !== product.url);
         this.setState({ cart: updatedCart });
+        this.updateCartInLocalStorage(updatedCart)
     }
 
     increaseQuantity = (product: string) => {
@@ -56,9 +63,7 @@ class CartProvider extends Component<{}, State> {
         if (cartItem) {
             cartItem.quantity ++;
             this.setState({ cart: this.state.cart }); 
-          //  let updatedCart = this.state.cart.filter(item => item.url !== product);
-           // updatedCart = [...updatedCart, cartItem];
-           // this.setState({ cart: updatedCart }); 
+            this.updateCartInLocalStorage(this.state.cart)
         } 
     }
 
@@ -67,14 +72,21 @@ class CartProvider extends Component<{}, State> {
         if (cartItem && cartItem.quantity > 1) {
             cartItem.quantity --;
             this.setState({ cart: this.state.cart }); 
+            this.updateCartInLocalStorage(this.state.cart)
         } else {
             const updatedCart = this.state.cart.filter(item => item.url !== product);
             this.setState({ cart: updatedCart });
+            this.updateCartInLocalStorage(updatedCart);
         } 
     }
 
     emptyCart = () => {
         this.setState({ cart: [] });
+        localStorage.removeItem('cart');
+    }
+
+    updateCartInLocalStorage(cart: CartProduct[]) {
+        localStorage.setItem('cart', JSON.stringify(cart))
     }
 
     render() {
