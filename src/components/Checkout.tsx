@@ -71,6 +71,7 @@ const steps = ['Dina uppgifter', 'Fraktsätt', 'Betalsätt', 'Granska din bestä
 export default function Checkout() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [orderNumber, setOrderNumber] = React.useState(0);
   const [cardInfo, setCardInfo] = React.useState<CardInfo>( { name: '', cardNumber: '', expireDate: '', cvv: '' } );
   const [shippingOption, setShippingOption] = React.useState('postnord');
   const [paymentOption, setPaymentOption] = React.useState('Bankkort');
@@ -81,8 +82,9 @@ export default function Checkout() {
 
   const handleNext = async () => {
     if (activeStep === 3) {
+      const orderId = createFakeOrderID(); 
       const order: Order = {
-        orderNumber: orderNumber,
+        orderNumber: orderId,
         customer: {customer},
         shippingOption: {shippingOption},
         paymentOption: {paymentOption},
@@ -91,6 +93,7 @@ export default function Checkout() {
       }
       setIsLoading(true)
       await sendOrderToApi(order);
+      setOrderNumber(orderId)
       setIsLoading(false)
       emptyCart();
       setActiveStep(activeStep + 1);
@@ -118,12 +121,10 @@ export default function Checkout() {
     }
   }
 
-  function orderID() {
+  function createFakeOrderID() {
     let x = Math.floor((Math.random() * 10000) + 1);
     return x;
-  }  
-
-  const orderNumber = orderID();
+  }
 
   return (
     <React.Fragment>
