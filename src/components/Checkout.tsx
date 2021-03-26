@@ -53,9 +53,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   stepper: {
-    padding: theme.spacing(3, 0, 5),
-    justifyContent: 'center',
-    alignItems: 'center',    
+    padding: theme.spacing(3, 0, 5), 
   },
   buttons: {
     display: 'flex',
@@ -135,6 +133,8 @@ export default function Checkout() {
           <Typography component="h1" variant="h4" align="center">
             Kassa
           </Typography>
+          <div style={{display:'flex' ,justifyContent:'center'}}>
+          <div style={{minWidth: '12rem', paddingLeft: '1.7rem'}}>
           <Stepper activeStep={activeStep} className={classes.stepper} orientation={'vertical'}>
             {steps.map((label) => (
               <Step key={label}>
@@ -142,6 +142,10 @@ export default function Checkout() {
               </Step>
             ))}
           </Stepper>
+
+          </div>
+
+          </div>
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
