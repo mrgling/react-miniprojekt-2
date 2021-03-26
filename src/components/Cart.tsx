@@ -4,7 +4,7 @@ import { Box, Button, Container, Grid, Paper, Typography } from '@material-ui/co
 import { Link } from 'react-router-dom';
 import { CartContext } from './contexts/CartContext';
 import CartItem from './CartItem';
-import { Copyright } from './Checkout';
+import { Footer } from './Footer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -48,11 +48,11 @@ export default function Cart() {
                     Kundvagn
                 </Typography>
                 </Box>
-                  {cart.map((product, index) => (
-                    <CartItem product={product} key={index} />
-                  ))}
-                <Box pt={2} pb={1}>
-                  <Typography variant="h5" style={{fontWeight: 'bold' }}>
+                {cart.map((product, index) => (
+                  <CartItem product={product} key={index} />
+                ))}
+                <Box pt={3} pb={2}>
+                  <Typography variant="h5" style={{ fontWeight: 'bold' }}>
                     Summa: {totalPrice} kr
                   </Typography>
                 </Box>
@@ -74,9 +74,7 @@ export default function Cart() {
             </Grid>
           </Grid>
         </Box>
-        <Box pt={2} pb={2}>
-          <Copyright />
-        </Box>
+        <Footer />
       </Container>
     </div>
   );

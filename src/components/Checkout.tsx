@@ -14,6 +14,7 @@ import Shipping from './Shipping';
 import { CardInfo } from './CardPayment';
 import { Order, sendOrderToApi } from '../mockedApi';
 import { CartContext } from './contexts/CartContext';
+import { Footer } from './Footer';
 
 
 export function Copyright() {
@@ -167,7 +168,7 @@ export default function Checkout() {
             )}
           </React.Fragment>
         </Paper>
-        <Copyright />
+        <Footer />
       </main>
     </React.Fragment>
 
