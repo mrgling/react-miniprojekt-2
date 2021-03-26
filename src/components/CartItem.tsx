@@ -3,13 +3,10 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { CartContext, CartProduct, } from './contexts/CartContext';
 import CardMedia from '@material-ui/core/CardMedia';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
-import { Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import Badge from '@material-ui/core/Badge';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import AddIcon from '@material-ui/icons/Add';
@@ -18,10 +15,8 @@ import RemoveIcon from '@material-ui/icons/Remove';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1
-    },
-    demo: {
-      backgroundColor: theme.palette.background.paper,
+      flexGrow: 1,
+      backgroundColor: 'transparent',
     },
     title: {
       margin: theme.spacing(4, 0, 2),
@@ -29,8 +24,21 @@ const useStyles = makeStyles((theme: Theme) =>
     media: {
         height: 50,
         width: 50,
-        marginRight: '1rem'
-      },
+        marginRight: '1rem',
+        borderRadius: '3rem'
+    },
+    deleteIcon: {
+      margin: '0'
+    },
+    iconButton: {
+      margin: '0',
+      padding: '0'
+    },
+    container: {
+      borderBottom: '0.1rem solid lightgrey',
+      paddingTop: '1rem',
+      paddingBottom: '1rem'
+    }
   }),
 );
 interface Props {
@@ -64,37 +72,38 @@ export default function CartItem(props: Props) {
 
     return (
       <div className={classes.root}>
-        <div className={classes.demo}>
-          <List>
-            <ListItem>
-              <CardMedia className={classes.media} image={img} component={Link} to={productUrl} />
-              <ListItemText>
-                {name}
-              </ListItemText>
-              <ListItemText>
-                {price} kr/st
-              </ListItemText>
-              <ListItemText>
-                <Typography style={{ fontWeight: 'bold' }}>
-                  {totItemPrice} kr
-                </Typography>
-              </ListItemText>
-              <ButtonGroup>
-                <Button aria-label="reduce" onClick={decreaseQuantityInCart}>
-                  <RemoveIcon fontSize="small" />
-                </Button>
-                <Button aria-label="increase" onClick={increaseQuantityInCart}>
-                  <AddIcon fontSize="small" />
-                </Button>
-              </ButtonGroup>
-              <Badge color="secondary" badgeContent={quantity}>
-              </Badge>
-              <IconButton edge="end" aria-label="delete" onClick={() => cart.removeFromCart(props.product)}>
-                <DeleteIcon />
-              </IconButton>
-            </ListItem>
-          </List>
-        </div>
-      </div>
-    );
+        <Grid container spacing={2} className={classes.container}>
+
+        <Grid item xs={3} sm={1}>
+          <CardMedia className={classes.media} image={img} component={Link} to={productUrl} />
+        </Grid>
+        <Grid item xs={6} sm={4}>
+          <Typography variant="body1">{name}</Typography>
+        </Grid>
+        <Grid item xs={3} sm={2}>
+          <Typography style={{ fontWeight: 'bold' }}> {totItemPrice} kr </Typography>
+        </Grid>
+        <Grid item xs={4} sm={2}>
+          <Typography variant="body1">{price} kr/st</Typography>
+        </Grid>
+        <Grid item xs={6} sm={2}>
+          <ButtonGroup>
+            <Button aria-label="reduce" onClick={decreaseQuantityInCart}>
+              <RemoveIcon fontSize="small" />
+            </Button>
+            <Button aria-label="increase" onClick={increaseQuantityInCart}>
+              <AddIcon fontSize="small" />
+            </Button>
+          </ButtonGroup>
+          <Badge color="secondary" badgeContent={quantity}>
+          </Badge>
+        </Grid>
+        <Grid item xs={2} sm={1}>
+          <IconButton className={classes.iconButton} edge="end" aria-label="delete" onClick={() => cart.removeFromCart(props.product)}>
+            <DeleteIcon className={classes.deleteIcon} />
+          </IconButton>
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
