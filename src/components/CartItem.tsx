@@ -37,7 +37,14 @@ const useStyles = makeStyles((theme: Theme) =>
     container: {
       borderBottom: '0.1rem solid lightgrey',
       paddingTop: '1rem',
-      paddingBottom: '1rem'
+      paddingBottom: '1rem',
+      
+    },
+    gridItem: {
+      display: 'flex',
+      justifyContent: 'flex-start',
+      alignItems: 'center'
+
     }
   }),
 );
@@ -74,19 +81,19 @@ export default function CartItem(props: Props) {
       <div className={classes.root}>
         <Grid container spacing={2} className={classes.container}>
 
-        <Grid item xs={3} sm={1}>
+        <Grid item xs={3} sm={2} className={classes.gridItem}>
           <CardMedia className={classes.media} image={img} component={Link} to={productUrl} />
         </Grid>
-        <Grid item xs={6} sm={4}>
+        <Grid item xs={6} sm={3} className={classes.gridItem}>
           <Typography variant="body1">{name}</Typography>
         </Grid>
-        <Grid item xs={3} sm={2}>
+        <Grid item xs={3} sm={2} className={classes.gridItem}>
           <Typography style={{ fontWeight: 'bold' }}> {totItemPrice} kr </Typography>
         </Grid>
-        <Grid item xs={4} sm={2}>
+        <Grid item xs={4} sm={2} className={classes.gridItem}>
           <Typography variant="body1">{price} kr/st</Typography>
         </Grid>
-        <Grid item xs={6} sm={2}>
+        <Grid item xs={6} sm={2} className={classes.gridItem}>
           <ButtonGroup>
             <Button aria-label="reduce" onClick={decreaseQuantityInCart}>
               <RemoveIcon fontSize="small" />
@@ -98,7 +105,7 @@ export default function CartItem(props: Props) {
           <Badge color="secondary" badgeContent={quantity}>
           </Badge>
         </Grid>
-        <Grid item xs={2} sm={1}>
+        <Grid item xs={2} sm={1} className={classes.gridItem}>
           <IconButton className={classes.iconButton} edge="end" aria-label="delete" onClick={() => cart.removeFromCart(props.product)}>
             <DeleteIcon className={classes.deleteIcon} />
           </IconButton>
