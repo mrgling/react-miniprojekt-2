@@ -123,23 +123,27 @@ export default function Review(props: Props) {
           }
         </Grid>
         <Grid container justify="space-evenly">
-          <Box m={2}>
+          
           {isLoading ? (
              <CircularProgress /> 
             ) : (
             <>
-            <Button color="primary" onClick={props.handleBack}>
-              Tillbaka
-            </Button>
-            <Button variant="contained" color="primary" onClick={props.handleNext}>
-              Slutför köp
-            </Button>
+            <Box m={1}>
+              <Button color="primary" onClick={props.handleBack}>
+                Tillbaka
+              </Button>
+            </Box>
+            <Box m={1}>
+              <Button variant="contained" color="primary" onClick={props.handleNext}>
+                Slutför köp
+              </Button>
+            </Box>
             </>
             )}
-          </Box>
         </Grid>
       </Grid>
     </React.Fragment>
+          
   );
 }
              

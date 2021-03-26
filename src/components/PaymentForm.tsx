@@ -108,14 +108,16 @@ export default function PaymentForm(props: Props) {
       }
 
       <Grid container justify="space-evenly">
-        <Box m={2}>
+        <Box m={1}>
           <Button color="primary" onClick={props.handleBack}>
             Tillbaka
           </Button>
-          <Button disabled={paymentOption==="Bankkort" && !isFormValid()} variant="contained" color="primary" onClick={props.handleNext}>
-            Nästa
-          </Button>
-        </Box>
+          </Box>
+          <Box m={1}>
+            <Button disabled={paymentOption==="Bankkort" && !isFormValid()} variant="contained" color="primary" onClick={props.handleNext}>
+              Nästa
+            </Button>
+          </Box>
       </Grid>
     </React.Fragment>
   );

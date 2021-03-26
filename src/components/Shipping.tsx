@@ -54,10 +54,12 @@ export default function Shipping(props: Props) {
           </RadioGroup>
         </FormControl>
         <Grid container justify="space-evenly">
-          <Box m={2}>
+          <Box m={1}>
             <Button color="primary" onClick={props.handleBack}>
               Tillbaka
             </Button>
+          </Box>
+          <Box m={1}>
             <Button variant="contained" color="primary" onClick={props.handleNext}>
               Nästa
             </Button>
@@ -66,3 +68,4 @@ export default function Shipping(props: Props) {
       </React.Fragment>
     );
   }
+          

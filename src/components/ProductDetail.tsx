@@ -71,9 +71,11 @@ export default function ProductDetail() {
               </CardContent>
             </CardActionArea>
             <Box py={2} className={classes.buttonBox}>
-              <Link to="/">
-                <Button size="small" variant="contained" color="primary">
-                  Tillbaka
+              <Link style={{textDecoration:'none'}} to="/">
+                <Button  
+                  size="small" 
+                  color="primary">
+                    Tillbaka
                 </Button>
               </Link>
               <Button
