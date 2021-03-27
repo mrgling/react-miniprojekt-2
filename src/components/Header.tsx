@@ -54,13 +54,14 @@ function Header() {
 
                 return (
                     <div style={headerStyle}>
-                        <div>
+                        <div style={{marginLeft: '1rem'}}>
                             <Typography gutterBottom>
                                 <Link className={classes.header} style={linkStyle} to="/">
                                     MARSVINSTEMA
                                 </Link>
                             </Typography>
                         </div>
+                        <div style={{marginRight: '1rem'}}>
                         <Link style={linkStyle} to="/kundvagn">
                             <IconButton aria-label="cart">
                                 <StyledBadge badgeContent={cartLength} color="secondary">
@@ -68,6 +69,7 @@ function Header() {
                                 </StyledBadge>
                             </IconButton>
                         </Link>
+                        </div>
                     </div>
                 )
             }}
@@ -79,7 +81,6 @@ const headerStyle: CSSProperties = {
     background: 'linear-gradient(90deg, rgba(7,0,129,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)',
     height: '6rem',
     display: 'flex',
-    margin: '0 1rem',
     alignItems: 'center',
     textAlign: 'center',
     justifyContent: 'space-between'
