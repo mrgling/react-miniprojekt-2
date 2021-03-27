@@ -2,7 +2,7 @@ import React from 'react';
 // import ReactDOM from 'react-dom';
 import CRUDTable,{  Fields,  Field,  CreateForm,  UpdateForm,  DeleteForm,} from 'react-crud-table';
 // Component's Base CSS
-import './index.css';
+import './crud.css';
 
 export default function Crud() {
 
