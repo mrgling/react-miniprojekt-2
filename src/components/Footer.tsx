@@ -14,7 +14,7 @@ export function Footer() {
         </Box>
         <Typography variant="subtitle2" color="textSecondary" align="center">
           {'Copyright © '}
-          <Link style={linkStyle} to="https://material-ui.com/">
+          <Link style={linkStyle} to="/">
             {' Marsvinstema '}
           </Link>
           {new Date().getFullYear()}

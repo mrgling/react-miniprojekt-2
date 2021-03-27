@@ -37,8 +37,8 @@ export default function ProductDetail() {
   // if (condition) { whentrue } else { whenfalse }
 
   return (
-    <Container maxWidth="sm">   
-      <Box py={5}>   
+    <Container maxWidth="sm">
+      <Box py={5}>
         {!product ? (
           <div className={classes.root}>
             <Typography gutterBottom variant="h4">
@@ -46,7 +46,7 @@ export default function ProductDetail() {
             </Typography>
             <Link to="/">
               <Button size="small" variant="contained" color="primary">
-              Gå till startsidan
+                Gå till startsidan
               </Button>
             </Link>
           </div>
@@ -71,11 +71,11 @@ export default function ProductDetail() {
               </CardContent>
             </CardActionArea>
             <Box py={2} className={classes.buttonBox}>
-              <Link style={{textDecoration:'none'}} to="/">
-                <Button  
-                  size="small" 
+              <Link style={{ textDecoration: 'none' }} to="/">
+                <Button
+                  size="small"
                   color="primary">
-                    Tillbaka
+                  Tillbaka
                 </Button>
               </Link>
               <Button
@@ -83,12 +83,12 @@ export default function ProductDetail() {
                 variant="contained"
                 color="primary"
                 onClick={() => cart.addToCart(product)}>
-                  Lägg i kundvagn
+                Lägg i kundvagn
               </Button>
             </Box>
           </Card>
         )}
-      </Box> 
+      </Box>
     </Container>
   );
 }

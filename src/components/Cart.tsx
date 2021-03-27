@@ -4,7 +4,6 @@ import { Box, Button, Container, Grid, Paper, Typography } from '@material-ui/co
 import { Link } from 'react-router-dom';
 import { CartContext } from './contexts/CartContext';
 import CartItem from './CartItem';
-import { Footer } from './Footer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -74,7 +73,6 @@ export default function Cart() {
             </Grid>
           </Grid>
         </Box>
-        <Footer />
       </Container>
     </div>
   );
