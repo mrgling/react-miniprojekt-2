@@ -63,6 +63,7 @@ export default function Crud() {
             const task = productList.find(t => t.id === data.id);
             task.name = data.name;
             task.description = data.description;
+            task.url = data.url;
             return Promise.resolve(task);
         },
         delete: (data) => {
@@ -73,7 +74,7 @@ export default function Crud() {
     };
     
     const styles = {
-        container: { margin: 'auto', width: 'fit-content' },
+        container: { margin: 'auto', width: 'auto' },
     };
     
     return(        
@@ -97,10 +98,25 @@ export default function Crud() {
                   placeholder="name"
                   />
                 <Field
-                  name="description"
-                  label="Description"
-                  render={DescriptionRenderer}
-                />
+                  name="url"
+                  label="url"
+                  placeholder="url"
+                  />
+                <Field
+                    name="description"
+                    label="Description"
+                    render={DescriptionRenderer}
+                  />
+                <Field
+                  name="price"
+                  label="price"
+                  placeholder="price"
+                  />
+                <Field
+                  name="img"
+                  label="img"
+                  placeholder="img"
+                  />
               </Fields>
               <CreateForm
                 title="Task Creation"
@@ -138,9 +154,21 @@ export default function Crud() {
                   if (!values.name) {
                     errors.name = 'Please, provide task\'s title';
                   }
+
+                  if (!values.url) {
+                    errors.url = 'Please, provide task\'s url';
+                  }
         
                   if (!values.description) {
                     errors.description = 'Please, provide task\'s description';
+                  }
+
+                  if (!values.price) {
+                    errors.url = 'Please, provide task\'s price';
+                  }
+
+                  if (!values.img) {
+                    errors.url = 'Please, provide task\'s img';
                   }
         
                   return errors;
