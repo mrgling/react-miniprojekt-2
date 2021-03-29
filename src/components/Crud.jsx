@@ -3,24 +3,23 @@ import React from 'react';
 import CRUDTable,{  Fields,  Field,  CreateForm,  UpdateForm,  DeleteForm,} from 'react-crud-table';
 // Component's Base CSS
 import './crud.css';
+import  { mockedProducts } from '../ProductList'
 
 export default function Crud() {
 
+  function getProductList() {
+    const productListFromLS = localStorage.getItem('productList');
+    if (productListFromLS) {
+      return JSON.parse(productListFromLS)
+    }
+    localStorage.setItem('productList', JSON.stringify(mockedProducts));
+    return mockedProducts;
+  }
+
+  let productList = getProductList();
+
     
     const DescriptionRenderer = ({ field }) => <textarea {...field} />;
-    
-    let tasks = [
-        {
-            id: 1,
-            title: 'Create an example',
-            description: 'Create an example of how to use the component',
-        },
-        {
-            id: 2,
-            title: 'Improve',
-            description: 'Improve the component!',
-        },
-    ];
     
     const SORTERS = {
         NUMBER_ASCENDING: mapper => (a, b) => mapper(a) - mapper(b),
@@ -45,30 +44,30 @@ export default function Crud() {
     };
     
     
-    let count = tasks.length;
+    let count = productList.length;
     const service = {
         fetchItems: (payload) => {
-            let result = Array.from(tasks);
+            let result = Array.from(productList);
             result = result.sort(getSorter(payload.sort));
             return Promise.resolve(result);
         },
         create: (task) => {
             count += 1;
-            tasks.push({
+            productList.push({
                 ...task,
                 id: count,
             });
             return Promise.resolve(task);
         },
         update: (data) => {
-            const task = tasks.find(t => t.id === data.id);
+            const task = productList.find(t => t.id === data.id);
             task.title = data.title;
             task.description = data.description;
             return Promise.resolve(task);
         },
         delete: (data) => {
-            const task = tasks.find(t => t.id === data.id);
-            tasks = tasks.filter(t => t.id !== task.id);
+            const task = productList.find(t => t.id === data.id);
+            productList = productList.filter(t => t.id !== task.id);
             return Promise.resolve(task);
         },
     };
