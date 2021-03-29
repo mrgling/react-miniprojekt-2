@@ -3,24 +3,23 @@ import React from 'react';
 import CRUDTable,{  Fields,  Field,  CreateForm,  UpdateForm,  DeleteForm,} from 'react-crud-table';
 // Component's Base CSS
 import './crud.css';
+import  { mockedProducts } from '../ProductList'
 
 export default function Crud() {
 
+  function getProductList() {
+    const productListFromLS = localStorage.getItem('productList');
+    if (productListFromLS) {
+      return JSON.parse(productListFromLS)
+    }
+    localStorage.setItem('productList', JSON.stringify(mockedProducts));
+    return mockedProducts;
+  }
+
+  let productList = getProductList();
+
     
     const DescriptionRenderer = ({ field }) => <textarea {...field} />;
-    
-    let tasks = [
-        {
-            id: 1,
-            title: 'Create an example',
-            description: 'Create an example of how to use the component',
-        },
-        {
-            id: 2,
-            title: 'Improve',
-            description: 'Improve the component!',
-        },
-    ];
     
     const SORTERS = {
         NUMBER_ASCENDING: mapper => (a, b) => mapper(a) - mapper(b),
@@ -45,36 +44,37 @@ export default function Crud() {
     };
     
     
-    let count = tasks.length;
+    let count = productList.length;
     const service = {
         fetchItems: (payload) => {
-            let result = Array.from(tasks);
+            let result = Array.from(productList);
             result = result.sort(getSorter(payload.sort));
             return Promise.resolve(result);
         },
         create: (task) => {
             count += 1;
-            tasks.push({
+            productList.push({
                 ...task,
                 id: count,
             });
             return Promise.resolve(task);
         },
         update: (data) => {
-            const task = tasks.find(t => t.id === data.id);
-            task.title = data.title;
+            const task = productList.find(t => t.id === data.id);
+            task.name = data.name;
             task.description = data.description;
+            task.url = data.url;
             return Promise.resolve(task);
         },
         delete: (data) => {
-            const task = tasks.find(t => t.id === data.id);
-            tasks = tasks.filter(t => t.id !== task.id);
+            const task = productList.find(t => t.id === data.id);
+            productList = productList.filter(t => t.id !== task.id);
             return Promise.resolve(task);
         },
     };
     
     const styles = {
-        container: { margin: 'auto', width: 'fit-content' },
+        container: { margin: 'auto', width: 'auto' },
     };
     
     return(        
@@ -93,15 +93,30 @@ export default function Crud() {
                   readOnly
                   />
                 <Field
-                  name="title"
-                  label="Title"
-                  placeholder="Title"
+                  name="name"
+                  label="name"
+                  placeholder="name"
                   />
                 <Field
-                  name="description"
-                  label="Description"
-                  render={DescriptionRenderer}
-                />
+                  name="url"
+                  label="url"
+                  placeholder="url"
+                  />
+                <Field
+                    name="description"
+                    label="Description"
+                    render={DescriptionRenderer}
+                  />
+                <Field
+                  name="price"
+                  label="price"
+                  placeholder="price"
+                  />
+                <Field
+                  name="img"
+                  label="img"
+                  placeholder="img"
+                  />
               </Fields>
               <CreateForm
                 title="Task Creation"
@@ -111,8 +126,8 @@ export default function Crud() {
                 submitText="Create"
                 validate={(values) => {
                   const errors = {};
-                  if (!values.title) {
-                    errors.title = 'Please, provide task\'s title';
+                  if (!values.name) {
+                    errors.name = 'Please, provide task\'s title';
                   }
         
                   if (!values.description) {
@@ -136,12 +151,24 @@ export default function Crud() {
                     errors.id = 'Please, provide id';
                   }
         
-                  if (!values.title) {
-                    errors.title = 'Please, provide task\'s title';
+                  if (!values.name) {
+                    errors.name = 'Please, provide task\'s title';
+                  }
+
+                  if (!values.url) {
+                    errors.url = 'Please, provide task\'s url';
                   }
         
                   if (!values.description) {
                     errors.description = 'Please, provide task\'s description';
+                  }
+
+                  if (!values.price) {
+                    errors.url = 'Please, provide task\'s price';
+                  }
+
+                  if (!values.img) {
+                    errors.url = 'Please, provide task\'s img';
                   }
         
                   return errors;
