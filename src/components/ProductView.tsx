@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Box, Container } from '@material-ui/core';
-import  { productList } from '../ProductList'
+import  { mockedProducts, Product } from '../ProductList'
 import ProductCard from './ProductCard';
 import { Copyright } from './Checkout';
 
@@ -20,8 +20,19 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function FullWidthGrid() {
+export default function ProductView() {
   const classes = useStyles();
+  
+  function getProductList() {
+    const productListFromLS = localStorage.getItem('productList');
+    if (productListFromLS) {
+      return JSON.parse(productListFromLS) as Product[]
+    }
+    localStorage.setItem('productList', JSON.stringify(mockedProducts));
+    return mockedProducts;
+  }
+
+  const productList = getProductList();
 
   return (
     <div className={classes.root}>
