@@ -6,7 +6,6 @@ import  { productList } from '../ProductList'
 import ProductCard from './ProductCard';
 import { Footer } from './Footer';
 
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function FullWidthGrid() {
+export default function ProductView() {
   const classes = useStyles();
 
   return (
