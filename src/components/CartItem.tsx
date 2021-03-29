@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
     media: {
         height: 50,
         width: 50,
-        marginRight: '1rem',
+       // marginRight: '1rem',
         borderRadius: '3rem'
     },
     deleteIcon: {
@@ -44,8 +44,8 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'flex-start',
       alignItems: 'center'
-
     }
+    
   }),
 );
 interface Props {
