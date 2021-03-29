@@ -61,7 +61,7 @@ export default function Crud() {
         },
         update: (data) => {
             const task = productList.find(t => t.id === data.id);
-            task.title = data.title;
+            task.name = data.name;
             task.description = data.description;
             return Promise.resolve(task);
         },
@@ -92,9 +92,9 @@ export default function Crud() {
                   readOnly
                   />
                 <Field
-                  name="title"
-                  label="Title"
-                  placeholder="Title"
+                  name="name"
+                  label="name"
+                  placeholder="name"
                   />
                 <Field
                   name="description"
@@ -110,8 +110,8 @@ export default function Crud() {
                 submitText="Create"
                 validate={(values) => {
                   const errors = {};
-                  if (!values.title) {
-                    errors.title = 'Please, provide task\'s title';
+                  if (!values.name) {
+                    errors.name = 'Please, provide task\'s title';
                   }
         
                   if (!values.description) {
@@ -135,8 +135,8 @@ export default function Crud() {
                     errors.id = 'Please, provide id';
                   }
         
-                  if (!values.title) {
-                    errors.title = 'Please, provide task\'s title';
+                  if (!values.name) {
+                    errors.name = 'Please, provide task\'s title';
                   }
         
                   if (!values.description) {
