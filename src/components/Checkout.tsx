@@ -5,7 +5,6 @@ import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import CustomerForm, { Customer } from './CustomerForm';
 import PaymentForm from './PaymentForm';
@@ -14,19 +13,6 @@ import Shipping from './Shipping';
 import { CardInfo } from './CardPayment';
 import { Order, sendOrderToApi } from '../mockedApi';
 import { CartContext } from './contexts/CartContext';
-
-
-export function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Marsvinstema
-      </Link>{' '}
-      {new Date().getFullYear()}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -77,7 +63,6 @@ export default function Checkout() {
   const [paymentOption, setPaymentOption] = React.useState('Bankkort');
   const [customer, setCustomer] = React.useState<Customer>({  firstName: '', lastName: '', address: '', zip: '',  city: '', phoneNumber: '', email: ''})
   const [isLoading, setIsLoading] = React.useState(false);
-  // const [shippingInfo, setShippingInfo] = React.useState<ShippingInfo>({  agent: '', shippingPrice: '', shippingDate: ''})
   const {cart, emptyCart} = useContext(CartContext)
 
   const handleNext = async () => {
@@ -167,7 +152,6 @@ export default function Checkout() {
             )}
           </React.Fragment>
         </Paper>
-        <Copyright />
       </main>
     </React.Fragment>
 
