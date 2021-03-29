@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Box, Button, Card, CardActionArea, CardContent, CardMedia, Container, Typography } from '@material-ui/core';
 import { Link, useRouteMatch } from 'react-router-dom';
-import { productList } from '../ProductList';
 import { CartContext } from './contexts/CartContext';
+import { Product } from '../ProductList';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -28,10 +28,11 @@ const useStyles = makeStyles((theme: Theme) =>
 //interface Props extends RouteComponentProps<{ name: string }> {}
 
 export default function ProductDetail() {
+  const productList = JSON.parse(localStorage.getItem('productList')!);
   const classes = useStyles();
   const { params } = useRouteMatch<{ url: string }>();
   const cart = useContext(CartContext);
-  const product = productList.find(p => p.url === params.url);
+  const product = productList.find((p: Product) => p.url === params.url);
 
   // condition ? whentrue : whenfalse
   // if (condition) { whentrue } else { whenfalse }

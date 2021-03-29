@@ -24,7 +24,7 @@ export default function Cart() {
   const classes = useStyles();
   const {cart} = useContext(CartContext)
 
-  function priceFunc() {
+  function getTotalPrice() {
     let total = 0;
     cart.forEach(item => { 
       const subtotal = item.price * item.quantity;
@@ -33,7 +33,7 @@ export default function Cart() {
     return total;
   }  
 
-  const totalPrice = priceFunc();
+  const totalPrice = getTotalPrice();
   
   return (
     <div className={classes.root}>

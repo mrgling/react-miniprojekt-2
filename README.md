@@ -1,6 +1,6 @@
 ## Miniprojekt 2 - Webbshop med designsystem
 
-# Marsvinstema?
+# Marsvinstema
 
 **React + Material-UI**
 
@@ -19,4 +19,5 @@ Tony Martinsson
 
 * `npm start`   
 
-[https://github.com/mrgling/react-miniprojekt-2](https://github.com/mrgling/react-miniprojekt-2)
+## Demo
+[https://github.com/mrgling/react-miniprojekt-2](Netlify)
