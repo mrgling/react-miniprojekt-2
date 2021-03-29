@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
 interface Props {
     product: Product;
     removeFromProductList: (product:Product) => void;
-    openProductModal: (product:Product) => void;
+    openEditProductModal: (product:Product) => void;
 }
 
 export default function CrudItem(props: Props) {
@@ -80,7 +80,7 @@ export default function CrudItem(props: Props) {
           <Typography variant="body1">{price} kr</Typography>
         </Grid>
         <Grid item xs={12} sm={1} className={classes.icons}>
-          <IconButton className={classes.iconButton} edge="end" aria-label="edit" onClick={() => props.openProductModal(props.product)}>
+          <IconButton className={classes.iconButton} edge="end" aria-label="edit" onClick={() => props.openEditProductModal(props.product)}>
             <EditIcon className={classes.deleteIcon} />
           </IconButton>
           <IconButton className={classes.iconButton} edge="end" aria-label="delete" onClick={() => props.removeFromProductList(props.product)}>

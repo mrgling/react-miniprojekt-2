@@ -39,6 +39,7 @@ export default function Crud2() {
   const [price, setPrice] = React.useState('')
   const [img, setImg] = React.useState('')
   const [productList, setProductList] = React.useState(getProductList())
+  const [isFieldDisabled, setIsFieldDisabled] = React.useState(true)
   
   function getProductList() {
     const productListFromLS = localStorage.getItem('productList');
@@ -52,14 +53,14 @@ export default function Crud2() {
   function removeFromProductList(product:Product) {
     const updatedProductList = productList.filter(item => item.url !== product.url);
     setProductList(updatedProductList);
-    updateProductListInLocalStorage();
+    updateProductListInLocalStorage(updatedProductList);
   }
 
-  function updateProductListInLocalStorage() {
-    localStorage.setItem('productList', JSON.stringify(productList))
+  function updateProductListInLocalStorage(newProductList:Product[]) {
+    localStorage.setItem('productList', JSON.stringify(newProductList))
   }
 
-  function openProductModal(product:Product) {
+  function openEditProductModal(product:Product) {
     setUrl(product.url)
     setName(product.name)
     setDescription(product.description)
@@ -68,21 +69,40 @@ export default function Crud2() {
     setOpen(true);
   }
 
+  function openAddProductModal() {
+    setUrl('')
+    setName('')
+    setDescription('')
+    setPrice('')
+    setImg('')
+    setIsFieldDisabled(false)
+    setOpen(true);
+  }
+
   const handleClose = () => {
     setOpen(false);
   };
 
   const handleSubmit = () => {
-    let editedProduct = productList.find(item=> item.url === url);
-
-    editedProduct!.name = name;
-    editedProduct!.description = description;
-    editedProduct!.price = parseInt(price);
-    editedProduct!.img = img;
-    setProductList(productList)
-    updateProductListInLocalStorage();
-
+    if(isFieldDisabled) {
+      let editedProduct = productList.find(item=> item.url === url);  
+      if(editedProduct) {
+        editedProduct.name = name;
+        editedProduct.description = description;
+        editedProduct.price = parseInt(price);
+        editedProduct.img = img;
+        setProductList(productList)
+        updateProductListInLocalStorage(productList)
+      }
+    }
+    else {
+      let updatedProductList = [...productList, {url: url, name: name, description: description, price: parseInt(price), img: img }];
+      setProductList(updatedProductList)
+      setIsFieldDisabled(true)  
+      updateProductListInLocalStorage(updatedProductList);
+    }
     setOpen(false);  
+    console.log(productList)
   }
 
   const handleUrlInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -116,7 +136,7 @@ export default function Crud2() {
                 </Link>
               </Grid>
               <Grid item xs={12} sm={6} className={classes.paper}>
-                <Button variant="contained" color="primary">Lägg till en produkt <AddCircleIcon/></Button>
+                <Button variant="contained" color="primary" onClick={openAddProductModal}>Lägg till en produkt <AddCircleIcon/></Button>
               </Grid>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="edit-product">Ändra produkt</DialogTitle>
@@ -133,7 +153,7 @@ export default function Crud2() {
             type="text"
             onChange={handleUrlInput}
             fullWidth
-            disabled
+            disabled={isFieldDisabled}
           />
           <TextField
             autoFocus
@@ -218,7 +238,7 @@ export default function Crud2() {
       </Hidden>
             {productList.map((product, index) => (
               <Grid item xs={12} key={index}>
-                  <CrudItem product={product} removeFromProductList={removeFromProductList} openProductModal={openProductModal}/>
+                  <CrudItem product={product} removeFromProductList={removeFromProductList} openEditProductModal={openEditProductModal}/>
               </Grid>
             ))}
             <Grid item xs={12}>
