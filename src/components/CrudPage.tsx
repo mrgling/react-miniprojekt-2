@@ -136,7 +136,7 @@ export default function Crud2() {
   }
 
   const handleUrlInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    if (/[a-z0-9]/.test(e.target.value)) {  
+    if (/^[a-z0-9-]+$/.test(e.target.value)) {  
       setUrlError(false);
      }
     else {
@@ -163,7 +163,7 @@ export default function Crud2() {
     setDescription(e.target.value)
   };
   const handlePriceInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    if (/[0-9]/.test(e.target.value)) {  
+    if (/^[0-9]{1,15}$/.test(e.target.value)) {  
       setPriceError(false);
     }
     else {

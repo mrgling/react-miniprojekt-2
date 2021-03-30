@@ -92,7 +92,7 @@ export default function CustomerForm(props: Props) {
   };
   
   const handleZipChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    if (/^.{5,6}$/.test(e.target.value)) {  
+    if (/^[0-9]{3}\s?[0-9]{2}$/.test(e.target.value)) {  
       setZipError(false);
      }
     else {
