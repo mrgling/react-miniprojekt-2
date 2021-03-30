@@ -119,7 +119,7 @@ export default function CardPayment(props:Props) {
                         label="Utgångsdatum" 
                         fullWidth 
                         autoComplete="cc-exp" 
-                        helperText={expireDateError && "Fyll i kortets utgångsdatum"}
+                        helperText={expireDateError && "Fyll i kortets utgångsdatum (ÅÅMM)"}
                         error={expireDateError}
                     />
                 </Grid>
