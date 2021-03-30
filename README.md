@@ -6,9 +6,9 @@
 [https://material-ui.com/](Material-UI)
 
 *Marsvinstema är en webbshopp för marsvinstillbehör.  
-Man kan också köpa korv (som ej är gjord av marsvin)*
+Man kan också köpa korv (som ej är gjord av marsvin).*
 
-*För att administrera produkter tryck på kugghjulet längst ned på startsidan*
+För att administrera produkter tryck på kugghjulet längst ned på startsidan.
 
 *Gruppmedlemmar*  
 Jonas Glingert  
