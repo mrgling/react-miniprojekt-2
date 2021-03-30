@@ -8,7 +8,8 @@
 *Marsvinstema är en webbshopp för marsvinstillbehör.  
 Man kan också köpa korv (som ej är gjord av marsvin).*
 
-För att administrera produkter tryck på kugghjulet längst ned på startsidan.
+För att administrera produkter tryck på kugghjulet längst ned på startsidan.  
+Presentation finns som PDF i mappen "documents".
 
 *Gruppmedlemmar*  
 Jonas Glingert  
