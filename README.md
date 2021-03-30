@@ -6,12 +6,14 @@
 
 [https://material-ui.com/](Material-UI)
 
-*JavaScript - fördjupning, 30 yhp*
+*Marsvinstema är en webbshopp för marsvinstillbehör. Man kan också köpa korv (som ej är gjord av marsvin)*
 
 *Gruppmedlemmar*  
 Jonas Glingert  
 Lisa Pääjärvi  
 Tony Martinsson
+
+*JavaScript - fördjupning, 30 yhp*
 
 ## Installation
 
