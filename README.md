@@ -25,4 +25,4 @@ Tony Martinsson
 * `npm start`   
 
 ## Demo
-[Netlify](Netlify)
+[https://marsvinstema.netlify.app/](https://marsvinstema.netlify.app/)
