@@ -20,7 +20,7 @@ export const mockedProducts: Product[] = [
         url: 'ho',
         description: 'Marsvinets bästa vän! Hö är en viktig del av marsvinets diet, och går dessutom utmärkt att gömma sig i och sova under. En bal motsvarar 120 liter prima ängshö.',
         price: 99,
-        img: 'https://guineahub.com/wp-content/uploads/2020/06/best-hay-for-guinea-pigs-1024x573.jpg'
+        img: 'https://i.imgur.com/x24LGfa.jpg'
     },
     {
         name:'Myskorg kiwi', 
