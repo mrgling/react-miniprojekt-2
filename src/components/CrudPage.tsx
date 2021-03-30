@@ -132,7 +132,6 @@ export default function Crud2() {
       updateProductListInLocalStorage(updatedProductList);
     }
     setOpen(false);  
-    console.log(productList)
   }
 
   const handleUrlInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
