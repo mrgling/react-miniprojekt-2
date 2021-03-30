@@ -139,7 +139,7 @@ export default function Crud2() {
     if (/[a-z0-9]/.test(e.target.value)) {  
       setUrlError(false);
      }
-   else {
+    else {
      setUrlError(true);
    }
       setUrl(e.target.value)
@@ -156,19 +156,19 @@ export default function Crud2() {
   const handleDescriptionInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (/^.{3,}$/.test(e.target.value)) {  
       setDescriptionError(false);
-     }
+    }
     else {
      setDescriptionError(true);
-   }
+    }
     setDescription(e.target.value)
   };
   const handlePriceInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (/[0-9]/.test(e.target.value)) {  
       setPriceError(false);
-     }
+    }
     else {
      setPriceError(true);
-   }
+    }
     setPrice(e.target.value)
   };
   const handleImgInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -202,7 +202,7 @@ export default function Crud2() {
         <DialogTitle id="edit-product">Ändra / lägg till produkt</DialogTitle>
         <DialogContent>
           <TextField
-            // autoFocus
+            autoFocus
             margin="dense"
             id="url"
             label="ProduktID"
