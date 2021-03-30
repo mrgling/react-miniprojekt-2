@@ -2,14 +2,19 @@
 
 # Marsvinstema
 
-**React + Material-UI**
+**React + Material-UI**  
+[https://material-ui.com/](Material-UI)
 
-*JavaScript - fördjupning, 30 yhp*
+*Marsvinstema är en webbshopp för marsvinstillbehör.  
+Man kan också köpa korv (som ej är gjord av marsvin)*
 
 *Gruppmedlemmar*  
 Jonas Glingert  
 Lisa Pääjärvi  
 Tony Martinsson
+
+*JavaScript - fördjupning, 30 yhp*  
+[https://github.com/mrgling/react-miniprojekt-2](https://github.com/mrgling/react-miniprojekt-2)
 
 ## Installation
 
@@ -20,4 +25,4 @@ Tony Martinsson
 * `npm start`   
 
 ## Demo
-[https://github.com/mrgling/react-miniprojekt-2](Netlify)
+[Netlify](Netlify)
