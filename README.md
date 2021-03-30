@@ -8,14 +8,13 @@
 *Marsvinstema är en webbshopp för marsvinstillbehör.  
 Man kan också köpa korv (som ej är gjord av marsvin)*
 
-[https://github.com/mrgling/react-miniprojekt-2](https://github.com/mrgling/react-miniprojekt-2)
-
 *Gruppmedlemmar*  
 Jonas Glingert  
 Lisa Pääjärvi  
 Tony Martinsson
 
 *JavaScript - fördjupning, 30 yhp*
+[https://github.com/mrgling/react-miniprojekt-2](https://github.com/mrgling/react-miniprojekt-2)
 
 ## Installation
 
