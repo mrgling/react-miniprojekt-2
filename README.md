@@ -10,7 +10,7 @@ Man kan också köpa korv (som ej är gjord av marsvin).*
 
 För att administrera produkter tryck på kugghjulet längst ned på startsidan.
 
-[https://github.com/mrgling/react-miniprojekt-2/blob/master/documents/presentation.pdf](Presentation)
+[Presentation (PDF)](https://github.com/mrgling/react-miniprojekt-2/blob/master/documents/presentation.pdf)
 
 *Gruppmedlemmar*  
 Jonas Glingert  
