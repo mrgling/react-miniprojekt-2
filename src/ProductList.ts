@@ -6,11 +6,9 @@ export interface Product {
     description: string
     price: number
     img: string
-    id: number
 }
 export const mockedProducts: Product[] = [ 
     {
-        id:1,
         name:'Soltält', 
         url: 'soltalt',
         description: 'Ett härligt tält med ananasmönster passar perfekt för att söka skydd från solen en varm sommardag. Plats för minst tre marsvin.',
@@ -18,7 +16,6 @@ export const mockedProducts: Product[] = [
         img: 'https://i.imgur.com/7pIdBXDl.jpg'
     },
     {
-        id:2,
         name: 'Hö',
         url: 'ho',
         description: 'Marsvinets bästa vän! Hö är en viktig del av marsvinets diet, och går dessutom utmärkt att gömma sig i och sova under. En bal motsvarar 120 liter prima ängshö.',
@@ -26,7 +23,6 @@ export const mockedProducts: Product[] = [
         img: 'https://guineahub.com/wp-content/uploads/2020/06/best-hay-for-guinea-pigs-1024x573.jpg'
     },
     {
-        id:3,
         name:'Myskorg kiwi', 
         url: 'myskorg-kiwi',
         description: 'Stilfull myskorg i mjukaste fleece, formad som en kiwiskiva. FRUKTansvärt fin!',
@@ -34,7 +30,6 @@ export const mockedProducts: Product[] = [
         img: 'https://i.etsystatic.com/7165241/r/il/178e41/579811693/il_794xN.579811693_ne72.jpg'},
     
     {
-        id:4,
         name: 'Lektunnel',
         url: 'tunnel',
         description: 'En flexibel tunnel att springa runt i.',
@@ -42,7 +37,6 @@ export const mockedProducts: Product[] = [
         img: 'https://www.omlet.us/images/originals/Guinea-pig-tunnel-playpen-run.jpg'
     },
     {
-        id:5,
         name:'Marsvinsrustning', 
         url: 'rustning',
         description: 'Exklusiv handgjord ringbrynja med matchande hjälm. En självklar accessoar till medeltidsveckan!',
@@ -50,7 +44,6 @@ export const mockedProducts: Product[] = [
         img: 'https://i.imgur.com/DRInboh.jpg'},
     
     {
-        id:6,
         name: 'Fluffig myskorg',
         url: 'myskorg',
         description: 'Vem vill inte sjunka ner i en rosa myskorg dekorerad med fluffiga enhörningar?',
@@ -58,7 +51,6 @@ export const mockedProducts: Product[] = [
         img: 'https://cdn.shopify.com/s/files/1/1338/9237/products/guineapigwheekly-5_1024x.jpg?v=1602972185'
     },
     {
-        id:7,
         name:'Tomteluva', 
         url: 'tomteluva',
         description: 'Nu är det kallt ute och risk för snuva. Låt ditt marsvin värma sig med denna luva',
@@ -66,7 +58,6 @@ export const mockedProducts: Product[] = [
         img: 'https://ae01.alicdn.com/kf/HTB1YMrFcn0ATuJjSZFEq6yp2FXar.jpg_q50.jpg'},
     
     {
-        id:8,
         name: 'Korv',
         url: 'korv',
         description: 'OBS ej gjord av marsvin!',
