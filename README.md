@@ -2,10 +2,10 @@
 
 # Marsvinstema
 
-**React + Material-UI**
+**React + Material-UI**  
 [https://material-ui.com/](Material-UI)
 
-*Marsvinstema är en webbshopp för marsvinstillbehör. Man kan också köpa korv (som ej är gjord av marsvin)*
+*Marsvinstema är en webbshopp för marsvinstillbehör.  Man kan också köpa korv (som ej är gjord av marsvin)*
 
 [https://github.com/mrgling/react-miniprojekt-2](https://github.com/mrgling/react-miniprojekt-2)
 
