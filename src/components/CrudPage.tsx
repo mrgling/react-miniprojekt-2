@@ -43,6 +43,32 @@ export default function Crud2() {
   const [img, setImg] = React.useState('')
   const [productList, setProductList] = React.useState(getProductList())
   const [isFieldDisabled, setIsFieldDisabled] = React.useState(true)
+  const [urlError, setUrlError] = React.useState<boolean>(false);
+  const [nameError, setNameError] = React.useState<boolean>(false);
+  const [descriptionError, setDescriptionError] = React.useState<boolean>(false);
+  const [priceError, setPriceError] = React.useState<boolean>(false);
+  const [imgError, setImgError] = React.useState<boolean>(false);
+
+  function isAllRequiredFieldsOk() {
+    return (
+      url
+      && name
+      && description
+      && price
+      && img
+    )
+  }
+
+  function isFormValid() {
+    return (
+      isAllRequiredFieldsOk()
+      && !urlError
+      && !nameError
+      && !descriptionError
+      && !priceError
+      && !imgError
+    )
+  }
   
   function getProductList() {
     const productListFromLS = localStorage.getItem('productList');
@@ -64,6 +90,7 @@ export default function Crud2() {
   }
 
   function openEditProductModal(product:Product) {
+    setIsFieldDisabled(true)
     setUrl(product.url)
     setName(product.name)
     setDescription(product.description)
@@ -109,18 +136,48 @@ export default function Crud2() {
   }
 
   const handleUrlInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    if (/[a-z0-9]/.test(e.target.value)) {  
+      setUrlError(false);
+     }
+   else {
+     setUrlError(true);
+   }
       setUrl(e.target.value)
   };
   const handleNameInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    if (/^.{3,}$/.test(e.target.value)) {  
+      setNameError(false);
+     }
+    else {
+     setNameError(true);
+   }
     setName(e.target.value)
   };
   const handleDescriptionInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    if (/^.{3,}$/.test(e.target.value)) {  
+      setDescriptionError(false);
+     }
+    else {
+     setDescriptionError(true);
+   }
     setDescription(e.target.value)
   };
   const handlePriceInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-  setPrice(e.target.value)
+    if (/[0-9]/.test(e.target.value)) {  
+      setPriceError(false);
+     }
+    else {
+     setPriceError(true);
+   }
+    setPrice(e.target.value)
   };
   const handleImgInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    if (/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_.~#?&//=]*)/.test(e.target.value)) {  
+      setImgError(false);
+     }
+    else {
+     setImgError(true);
+   }
     setImg(e.target.value)
   };
 
@@ -145,7 +202,7 @@ export default function Crud2() {
         <DialogTitle id="edit-product">Ändra / lägg till produkt</DialogTitle>
         <DialogContent>
           <TextField
-            autoFocus
+            // autoFocus
             margin="dense"
             id="url"
             label="ProduktID"
@@ -154,9 +211,9 @@ export default function Crud2() {
             onChange={handleUrlInput}
             fullWidth
             disabled={isFieldDisabled}
+            error={urlError}
           />
           <TextField
-            autoFocus
             margin="dense"
             id="name"
             label="Namn"
@@ -164,9 +221,9 @@ export default function Crud2() {
             type="text"
             onChange={handleNameInput}
             fullWidth
+            error={nameError}
           />
           <TextField
-            autoFocus
             margin="dense"
             id="description"
             label="Beskrivning"
@@ -175,9 +232,9 @@ export default function Crud2() {
             type="text"
             onChange={handleDescriptionInput}
             fullWidth
+            error={descriptionError}
           />
           <TextField
-            autoFocus
             margin="dense"
             id="price"
             label="Pris"
@@ -185,9 +242,9 @@ export default function Crud2() {
             type="text"
             onChange={handlePriceInput}
             fullWidth
+            error={priceError}
           />
           <TextField
-            autoFocus
             margin="dense"
             id="img"
             label="Länk till bild"
@@ -196,13 +253,14 @@ export default function Crud2() {
             type="text"
             onChange={handleImgInput}
             fullWidth
+            error={imgError}
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Tillbaka
           </Button>
-          <Button onClick={handleSubmit} variant="contained" color="primary">
+          <Button disabled={!isFormValid()} onClick={handleSubmit} variant="contained" color="primary">
             Spara
           </Button>
         </DialogActions>
