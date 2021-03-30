@@ -8,7 +8,6 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Link } from 'react-router-dom';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -25,7 +24,11 @@ const useStyles = makeStyles((theme: Theme) =>
       marginBottom: '1rem',
     },
     link: {
-      textDecoration: 'none'
+      textDecoration: 'none',
+      color: 'grey'
+    },
+    icon: {
+      marginLeft: '1rem'
     }
   }),
 );
@@ -136,14 +139,11 @@ export default function Crud2() {
                 </Link>
               </Grid>
               <Grid item xs={12} sm={6} className={classes.paper}>
-                <Button variant="contained" color="primary" onClick={openAddProductModal}>Lägg till en produkt <AddCircleIcon/></Button>
+                <Button variant="contained" color="primary" onClick={openAddProductModal}>Lägg till en produkt <AddCircleIcon className={classes.icon}/></Button>
               </Grid>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="edit-product">Ändra produkt</DialogTitle>
+        <DialogTitle id="edit-product">Ändra / lägg till produkt</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Fyll i ändringarna och tryck på "spara" för att ändra i produktlistan.
-          </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
