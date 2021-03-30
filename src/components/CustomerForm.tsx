@@ -56,11 +56,6 @@ export default function CustomerForm(props: Props) {
     )
   }
 
-  const handleNext = () => {
-    // kolla så att det inte finns några fel, om inte gå vidare
-    props.handleNext();
-  }
-
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
      if (/[a-ö][A-Ö]/.test(e.target.value)) {  
        setFirstNameError(false);
@@ -92,7 +87,7 @@ export default function CustomerForm(props: Props) {
   };
   
   const handleZipChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    if (/^.{5,6}$/.test(e.target.value)) {  
+    if (/^[0-9]{3}\s?[0-9]{2}$/.test(e.target.value)) {  
       setZipError(false);
      }
     else {
@@ -237,15 +232,9 @@ export default function CustomerForm(props: Props) {
             error={emailError}
           />
         </Grid>
-        {/* <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Använd dessa uppgifter för betalningsdetaljer"
-          />
-        </Grid> */}
         <Grid container justify="space-evenly">
           <Box m={2}>
-            <Button disabled={!isFormValid()} variant="contained" color="primary" onClick={handleNext}>
+            <Button disabled={!isFormValid()} variant="contained" color="primary" onClick={props.handleNext}>
               Nästa
           </Button>
           </Box>
