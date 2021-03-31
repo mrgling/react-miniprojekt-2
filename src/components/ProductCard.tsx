@@ -15,6 +15,7 @@ import { CartContext } from './contexts/CartContext';
 
 const useStyles = makeStyles({
   root: {
+    width: '100%',
     maxWidth: 345,
   },
   media: {

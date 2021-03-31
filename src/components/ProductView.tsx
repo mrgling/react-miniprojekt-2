@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: 'center',
       color: theme.palette.text.secondary,
     },
+    item: {
+      display: 'flex',
+      justifyContent: 'center'
+    }
   }),
 );
 
@@ -39,7 +43,7 @@ export default function ProductView() {
         <Box pt={5} pb={0}>
           <Grid container spacing={3}>
             {productList.map((product, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
+              <Grid item className={classes.item} xs={12} sm={6} md={3} key={index}>
                   <ProductCard product={product} />
               </Grid>
             ))}
