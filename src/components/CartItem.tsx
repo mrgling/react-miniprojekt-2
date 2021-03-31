@@ -22,10 +22,9 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: theme.spacing(4, 0, 2),
     },
     media: {
-        height: 50,
-        width: 50,
-       // marginRight: '1rem',
-        borderRadius: '3rem'
+      height: 50,
+      width: 50,
+      borderRadius: '3rem'
     },
     deleteIcon: {
       margin: '0'
@@ -44,20 +43,17 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'flex-start',
       alignItems: 'center'
-    }
-    
+    }   
   }),
 );
 interface Props {
-    product: CartProduct;
+  product: CartProduct;
 }
 
 export default function CartItem(props: Props) {
   const classes = useStyles();
   const cart = useContext(CartContext);
-
   const { name, img, price, url, quantity} = props.product;
-
   const productUrl = `/produkt/${url}`;
 
   const increaseQuantityInCart = () => {
@@ -77,10 +73,9 @@ export default function CartItem(props: Props) {
 
   const totItemPrice = priceForItems();
 
-    return (
-      <div className={classes.root}>
-        <Grid container spacing={2} className={classes.container}>
-
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={2} className={classes.container}>
         <Grid item xs={3} sm={2} className={classes.gridItem}>
           <CardMedia className={classes.media} image={img} component={Link} to={productUrl} />
         </Grid>

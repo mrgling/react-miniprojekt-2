@@ -13,6 +13,7 @@ import Shipping from './Shipping';
 import { CardInfo } from './CardPayment';
 import { Order, sendOrderToApi } from '../mockedApi';
 import { CartContext } from './contexts/CartContext';
+import { Box } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -52,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const steps = ['Dina uppgifter', 'Fraktsätt', 'Betalsätt', 'Granska din beställning'];
-
 
 export default function Checkout() {
   const classes = useStyles();
@@ -113,48 +113,46 @@ export default function Checkout() {
 
   return (
     <React.Fragment>
-      <CssBaseline />
-      <main className={classes.layout}>
-        <Paper className={classes.paper}>
-          <Typography component="h1" variant="h4" align="center">
-            Kassa
+      <Box pb={2}>
+        <CssBaseline />
+        <main className={classes.layout}>
+          <Paper className={classes.paper}>
+            <Typography component="h1" variant="h4" align="center">
+              Kassa
           </Typography>
-          <div style={{display:'flex' ,justifyContent:'center'}}>
-          <div style={{minWidth: '12rem', paddingLeft: '1.7rem'}}>
-          <Stepper activeStep={activeStep} className={classes.stepper} orientation={'vertical'}>
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-
-          </div>
-
-          </div>
-          <React.Fragment>
-            {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  Tack för din order!
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <div style={{ minWidth: '12rem', paddingLeft: '1.7rem' }}>
+                <Stepper activeStep={activeStep} className={classes.stepper} orientation={'vertical'}>
+                  {steps.map((label) => (
+                    <Step key={label}>
+                      <StepLabel>{label}</StepLabel>
+                    </Step>
+                  ))}
+                </Stepper>
+              </div>
+            </div>
+            <React.Fragment>
+              {activeStep === steps.length ? (
+                <React.Fragment>
+                  <Typography variant="h5" gutterBottom>
+                    Tack för din order!
                 </Typography>
-                <Typography variant="subtitle1">
-                  <Typography>
-                  Ditt ordernummer är #{orderNumber}
-                  </Typography>
+                  <Typography variant="subtitle1">
+                    <Typography>
+                      Ditt ordernummer är #{orderNumber}
+                    </Typography>
                   Vi har skickat ett email med din orderbekräftelse och kommer att skicka en uppdatering när ordern är på väg.
                 </Typography>
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                {getStepContent(activeStep)}
-              </React.Fragment>
-            )}
-          </React.Fragment>
-        </Paper>
-      </main>
+                </React.Fragment>
+              ) : (
+                <React.Fragment>
+                  {getStepContent(activeStep)}
+                </React.Fragment>
+              )}
+            </React.Fragment>
+          </Paper>
+        </main>
+      </Box>
     </React.Fragment>
-
-
-);
+  );
 }

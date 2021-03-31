@@ -12,7 +12,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { Link } from 'react-router-dom';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -33,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function Crud2() {
+export default function CrudPage() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [url, setUrl] = React.useState('');
@@ -137,19 +136,20 @@ export default function Crud2() {
   const handleUrlInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (/^[a-z0-9-]+$/.test(e.target.value)) {  
       setUrlError(false);
-     }
+    }
     else {
-     setUrlError(true);
-   }
-      setUrl(e.target.value)
+      setUrlError(true);
+    }
+    setUrl(e.target.value)
   };
+
   const handleNameInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (/^.{3,}$/.test(e.target.value)) {  
       setNameError(false);
-     }
+    }
     else {
-     setNameError(true);
-   }
+      setNameError(true);
+    }
     setName(e.target.value)
   };
   const handleDescriptionInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -157,26 +157,28 @@ export default function Crud2() {
       setDescriptionError(false);
     }
     else {
-     setDescriptionError(true);
+      setDescriptionError(true);
     }
     setDescription(e.target.value)
   };
+
   const handlePriceInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (/^[0-9]{1,15}$/.test(e.target.value)) {  
       setPriceError(false);
     }
     else {
-     setPriceError(true);
+      setPriceError(true);
     }
     setPrice(e.target.value)
   };
+
   const handleImgInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_.~#?&//=]*)/.test(e.target.value)) {  
       setImgError(false);
-     }
+    }
     else {
      setImgError(true);
-   }
+    }
     setImg(e.target.value)
   };
 
@@ -191,126 +193,126 @@ export default function Crud2() {
               </Grid>
               <Grid item xs={12} sm={6} className={classes.paper}>
                 <Link className={classes.link} to="/">
-                    <Button variant="contained" color="primary">Gå tillbaka till butiken</Button>
+                  <Button variant="contained" color="primary">Gå tillbaka till butiken</Button>
                 </Link>
               </Grid>
               <Grid item xs={12} sm={6} className={classes.paper}>
-                <Button variant="contained" color="primary" onClick={openAddProductModal}>Lägg till en produkt <AddCircleIcon className={classes.icon}/></Button>
+                <Button variant="contained" color="primary" onClick={openAddProductModal}>Lägg till en produkt <AddCircleIcon className={classes.icon} /></Button>
               </Grid>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="edit-product">Ändra / lägg till produkt</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="url"
-            label="ProduktID"
-            defaultValue={url}
-            type="text"
-            onChange={handleUrlInput}
-            fullWidth
-            disabled={isFieldDisabled}
-            error={urlError}
-          />
-          <TextField
-            margin="dense"
-            id="name"
-            label="Namn"
-            defaultValue={name}
-            type="text"
-            onChange={handleNameInput}
-            fullWidth
-            error={nameError}
-          />
-          <TextField
-            margin="dense"
-            id="description"
-            label="Beskrivning"
-            multiline
-            defaultValue={description}
-            type="text"
-            onChange={handleDescriptionInput}
-            fullWidth
-            error={descriptionError}
-          />
-          <TextField
-            margin="dense"
-            id="price"
-            label="Pris"
-            defaultValue={price}
-            type="text"
-            onChange={handlePriceInput}
-            fullWidth
-            error={priceError}
-          />
-          <TextField
-            margin="dense"
-            id="img"
-            label="Länk till bild"
-            multiline
-            defaultValue={img}
-            type="text"
-            onChange={handleImgInput}
-            fullWidth
-            error={imgError}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Tillbaka
-          </Button>
-          <Button disabled={!isFormValid()} onClick={handleSubmit} variant="contained" color="primary">
-            Spara
-          </Button>
-        </DialogActions>
-      </Dialog>
-      <Hidden xsDown>
-        <Grid container spacing={2}>
-          <Grid item xs={3} sm={2} md={2} lg={1}>
-          </Grid>
-          <Hidden xsDown>
-              <Grid item xs={2} md={2} lg={1}>
-                <Typography variant="body1">
-                  ID
-                </Typography>
-              </Grid>
-          </Hidden>
-          <Grid item xs={5} sm={3} md={2} lg={2}>
-            <Typography variant="body1">
-              Namn
-            </Typography>
-          </Grid>
-          <Hidden smDown>
-              <Grid item xs={6} sm={4} md={4} lg={6}>
-              <Typography variant="body1">Beskrivning</Typography>
-              </Grid>
-          </Hidden>
-          <Grid item xs={4} sm={3} md={1} lg={1}>
-            <Typography variant="body1">Pris</Typography>
-          </Grid>
-          <Grid item xs={12} sm={1}>
-            <Typography variant="body1"></Typography>
-          </Grid>
-        </Grid>
-      </Hidden>
-            {productList.map((product, index) => (
-              <Grid item xs={12} key={index}>
-                  <CrudItem product={product} removeFromProductList={removeFromProductList} openEditProductModal={openEditProductModal}/>
-              </Grid>
-            ))}
-            <Grid item xs={12}>
-              <Typography variant="subtitle2" color="textSecondary" align="center">
+              <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="edit-product">Ändra / lägg till produkt</DialogTitle>
+                <DialogContent>
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="url"
+                    label="ID/url"
+                    defaultValue={url}
+                    type="text"
+                    onChange={handleUrlInput}
+                    fullWidth
+                    disabled={isFieldDisabled}
+                    error={urlError}
+                  />
+                  <TextField
+                    margin="dense"
+                    id="name"
+                    label="Namn"
+                    defaultValue={name}
+                    type="text"
+                    onChange={handleNameInput}
+                    fullWidth
+                    error={nameError}
+                  />
+                  <TextField
+                    margin="dense"
+                    id="description"
+                    label="Beskrivning"
+                    multiline
+                    defaultValue={description}
+                    type="text"
+                    onChange={handleDescriptionInput}
+                    fullWidth
+                    error={descriptionError}
+                  />
+                  <TextField
+                    margin="dense"
+                    id="price"
+                    label="Pris"
+                    defaultValue={price}
+                    type="text"
+                    onChange={handlePriceInput}
+                    fullWidth
+                    error={priceError}
+                  />
+                  <TextField
+                    margin="dense"
+                    id="img"
+                    label="Länk till bild"
+                    multiline
+                    defaultValue={img}
+                    type="text"
+                    onChange={handleImgInput}
+                    fullWidth
+                    error={imgError}
+                  />
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose} color="primary">
+                    Tillbaka
+                  </Button>
+                  <Button disabled={!isFormValid()} onClick={handleSubmit} variant="contained" color="primary">
+                    Spara
+                  </Button>
+                </DialogActions>
+              </Dialog>
+              <Hidden xsDown>
+                <Grid container spacing={2}>
+                  <Grid item xs={3} sm={2} md={2} lg={1}>
+                  </Grid>
+                  <Hidden xsDown>
+                    <Grid item xs={2} md={2} lg={1}>
+                      <Typography variant="body1">
+                        ID/url
+                      </Typography>
+                    </Grid>
+                  </Hidden>
+                  <Grid item xs={5} sm={3} md={2} lg={2}>
+                    <Typography variant="body1">
+                      Namn
+                    </Typography>
+                  </Grid>
+                  <Hidden smDown>
+                    <Grid item xs={6} sm={4} md={4} lg={6}>
+                      <Typography variant="body1">Beskrivning</Typography>
+                    </Grid>
+                  </Hidden>
+                  <Grid item xs={4} sm={3} md={1} lg={1}>
+                    <Typography variant="body1">Pris</Typography>
+                  </Grid>
+                  <Grid item xs={12} sm={1}>
+                    <Typography variant="body1"></Typography>
+                  </Grid>
+                </Grid>
+              </Hidden>
+              {productList.map((product, index) => (
+                <Grid item xs={12} key={index}>
+                  <CrudItem product={product} removeFromProductList={removeFromProductList} openEditProductModal={openEditProductModal} />
+                </Grid>
+              ))}
+              <Grid item xs={12}>
+                <Typography variant="subtitle2" color="textSecondary" align="center">
                   {'Copyright © '}
                   <Link className={classes.link} to="/">
                     {' Marsvinstema '}
                   </Link>
                   {new Date().getFullYear()}
-              </Typography>
+                </Typography>
+              </Grid>
             </Grid>
-          </Grid>
-        </Box>
-      </Container>
-    </div>
-  </>
+          </Box>
+        </Container>
+      </div>
+    </>
   );
 }

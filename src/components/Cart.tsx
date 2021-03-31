@@ -45,7 +45,7 @@ export default function Cart() {
                 <Box pb={2}>
                   <Typography variant="h4">
                     Kundvagn
-                </Typography>
+                  </Typography>
                 </Box>
                 {cart.map((product, index) => (
                   <CartItem product={product} key={index} />

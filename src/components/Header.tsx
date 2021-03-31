@@ -15,7 +15,7 @@ const StyledBadge = withStyles((theme) => ({
       border: `2px solid ${theme.palette.background.paper}`,
       padding: '0px',
     },
-  }))(Badge);
+}))(Badge);
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -35,13 +35,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function Header() { 
-
     const classes = useStyles();
-
     return (
         <CartContext.Consumer>
             {({ cart }) => {
-
                 const getCartLength = (cartCount: CartProduct[]) => {
                     let length = 0;
                     cartCount.forEach((CartProduct) => {
@@ -54,21 +51,21 @@ function Header() {
 
                 return (
                     <div style={headerStyle}>
-                        <div style={{marginLeft: '1rem'}}>
+                        <div style={{ marginLeft: '1rem' }}>
                             <Typography gutterBottom>
                                 <Link className={classes.header} style={linkStyle} to="/">
                                     MARSVINSTEMA
                                 </Link>
                             </Typography>
                         </div>
-                        <div style={{marginRight: '1rem'}}>
-                        <Link style={linkStyle} to="/kundvagn">
-                            <IconButton aria-label="cart">
-                                <StyledBadge badgeContent={cartLength} color="secondary">
-                                    <ShoppingCartIcon />
-                                </StyledBadge>
-                            </IconButton>
-                        </Link>
+                        <div style={{ marginRight: '1rem' }}>
+                            <Link style={linkStyle} to="/kundvagn">
+                                <IconButton aria-label="cart">
+                                    <StyledBadge badgeContent={cartLength} color="secondary">
+                                        <ShoppingCartIcon />
+                                    </StyledBadge>
+                                </IconButton>
+                            </Link>
                         </div>
                     </div>
                 )
@@ -87,9 +84,9 @@ const headerStyle: CSSProperties = {
 }
 
 const linkStyle: CSSProperties = {
-     textDecoration: 'none',
-     color: 'white',
-     fontFamily: 'Changa One'
+    textDecoration: 'none',
+    color: 'white',
+    fontFamily: 'Changa One'
 }
 
 export default Header;

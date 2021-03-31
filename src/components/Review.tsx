@@ -42,19 +42,19 @@ export default function Review(props: Props) {
   function calculateShippingPrice() {
     let price;
     if(props.shippingOption==='postnord') {
-       price = 49;
+      price = 49;
     }
     else if(props.shippingOption==='dhl') {
-        price = 149;
+      price = 149;
     }
     else {
-        price = 89;
+      price = 89;
     }
     return price;
   }
   const shippingPrice = calculateShippingPrice();
 
-  function priceFunc() {
+  function calculateTotalPrice() {
     let total = 0;
     cart.forEach(item => { 
       const subtotal = item.price * item.quantity;
@@ -63,7 +63,7 @@ export default function Review(props: Props) {
     total += shippingPrice
     return total;
   }  
-  const totalPrice = priceFunc();
+  const totalPrice = calculateTotalPrice();
 
   return (
     <React.Fragment>
@@ -122,28 +122,26 @@ export default function Review(props: Props) {
             </Grid>
           }
         </Grid>
-        <Grid container justify="space-evenly">
-          
+        <Grid container justify="space-evenly"> 
           {isLoading ? (
              <CircularProgress /> 
             ) : (
-            <>
-            <Box m={1}>
-              <Button color="primary" onClick={props.handleBack}>
-                Tillbaka
-              </Button>
-            </Box>
-            <Box m={1}>
-              <Button variant="contained" color="primary" onClick={props.handleNext}>
-                Slutför köp
-              </Button>
-            </Box>
-            </>
+              <>
+                <Box m={1}>
+                  <Button color="primary" onClick={props.handleBack}>
+                    Tillbaka
+                  </Button>
+                </Box>
+                <Box m={1}>
+                  <Button variant="contained" color="primary" onClick={props.handleNext}>
+                    Slutför köp
+                  </Button>
+                </Box>
+              </>
             )}
         </Grid>
       </Grid>
-    </React.Fragment>
-          
+    </React.Fragment>      
   );
 }
              

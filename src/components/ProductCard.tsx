@@ -1,4 +1,3 @@
-// import React, { useState } from 'react';
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -27,17 +26,12 @@ interface Props {
     product: Product;
 }
 
-
 export default function ProductCard(props: Props) {
   const classes = useStyles();
-  // const [isVisible, setIsVisible] = useState(true);
-  // const [product, setProduct] = useState<Product>();
   const cart = useContext(CartContext)
   const { name, img, price, url} = props.product;
-
   const productUrl = `/produkt/${url}`;
  
-
   return (
     <Card className={classes.root}>
       <CardActionArea component={Link} to={productUrl}>
@@ -56,12 +50,8 @@ export default function ProductCard(props: Props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        {/* <Button size="small" color="primary" onClick={() => setIsVisible(false)}>
-          Share
-        </Button> */}
         <Grid container justify="flex-end">
           <Button size="small" variant="contained" color="primary" onClick={() => cart.addToCart(props.product)}>
-            {/* onClick={() => addToCart(product)} */} 
             Lägg i kundvagn
           </Button>
         </Grid>

@@ -25,17 +25,12 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-//interface Props extends RouteComponentProps<{ name: string }> {}
-
 export default function ProductDetail() {
   const productList = JSON.parse(localStorage.getItem('productList')!);
   const classes = useStyles();
   const { params } = useRouteMatch<{ url: string }>();
   const cart = useContext(CartContext);
   const product = productList.find((p: Product) => p.url === params.url);
-
-  // condition ? whentrue : whenfalse
-  // if (condition) { whentrue } else { whenfalse }
 
   return (
     <Container maxWidth="sm">

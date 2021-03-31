@@ -44,7 +44,7 @@ export default function ProductView() {
           <Grid container spacing={3}>
             {productList.map((product, index) => (
               <Grid item className={classes.item} xs={12} sm={6} md={3} key={index}>
-                  <ProductCard product={product} />
+                <ProductCard product={product} />
               </Grid>
             ))}
           </Grid>

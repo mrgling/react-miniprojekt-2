@@ -14,7 +14,6 @@ interface Props {
 }
 
 export default function Shipping(props: Props) {
-
   const { shippingOption, onShippingChange } = props
   
   const handleShippingChange = (event: React.ChangeEvent<HTMLInputElement>) => {

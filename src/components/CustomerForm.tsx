@@ -22,7 +22,6 @@ export interface Customer {
 
 export default function CustomerForm(props: Props) {
   const { customer, onCustomerChange } = props
-
   const [firstNameError, setFirstNameError] = useState<boolean>(false);
   const [lastNameError, setLastNameError] = useState<boolean>(false);
   const [addressError, setAddressError] = useState<boolean>(false);
@@ -57,9 +56,9 @@ export default function CustomerForm(props: Props) {
   }
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-     if (/[a-ö][A-Ö]/.test(e.target.value)) {  
-       setFirstNameError(false);
-      }
+    if (/[a-ö][A-Ö]/.test(e.target.value)) {  
+      setFirstNameError(false);
+    }
     else {
       setFirstNameError(true);
     }
@@ -69,67 +68,67 @@ export default function CustomerForm(props: Props) {
   const handleLastNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (/[a-ö][A-Ö]/.test(e.target.value)) {  
       setLastNameError(false);
-     }
+    }
     else {
      setLastNameError(true);
-   }
+    }
     onCustomerChange({ ...customer, lastName: e.target.value });
   };
   
   const handleAddressChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (/^.{3,}$/.test(e.target.value)) {  
       setAddressError(false);
-     }
+    }
     else {
-     setAddressError(true);
-   }
+      setAddressError(true);
+    }
     onCustomerChange({ ...customer, address: e.target.value });
   };
   
   const handleZipChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (/^[0-9]{3}\s?[0-9]{2}$/.test(e.target.value)) {  
       setZipError(false);
-     }
+    }
     else {
      setZipError(true);
-   }
+    }
     onCustomerChange({ ...customer, zip: e.target.value });
   };
   
   const handleCityChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (/[a-ö][A-Ö]/.test(e.target.value)) {  
       setCityError(false);
-     }
+    }
     else {
-     setCityError(true);
-   }
+      setCityError(true);
+    }
     onCustomerChange({ ...customer, city: e.target.value });
   };
   
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (/^07([0-9][ -]*){7}[0-9]$/.test(e.target.value)) {  
       setPhoneNumberError(false);
-     }
+    }
     else {
-     setPhoneNumberError(true);
-   }
+      setPhoneNumberError(true);
+    }
     onCustomerChange({ ...customer, phoneNumber: e.target.value });
   };
   
   const handleEmailChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (/^\S+@\S+\.\S+$/.test(e.target.value)) {  
       setEmailError(false);
-     }
+    }
     else {
-     setEmailError(true);
-   }
+      setEmailError(true);
+    }
     onCustomerChange({ ...customer, email: e.target.value });
   };
 
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-      Leveransadress
+        Leveransadress
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
@@ -173,8 +172,7 @@ export default function CustomerForm(props: Props) {
             helperText={addressError && "Fyll i din adress"}
             error={addressError}
           />
-        </Grid>
-        
+        </Grid> 
         <Grid item xs={12} sm={6}>
           <TextField
             value={customer.zip}
@@ -202,8 +200,7 @@ export default function CustomerForm(props: Props) {
             helperText={cityError && "Fyll i din postort"}
             error={cityError}
           />
-        </Grid>
-        
+        </Grid>  
         <Grid item xs={12} sm={6}>
           <TextField
             value={customer.phoneNumber}
@@ -236,7 +233,7 @@ export default function CustomerForm(props: Props) {
           <Box m={2}>
             <Button disabled={!isFormValid()} variant="contained" color="primary" onClick={props.handleNext}>
               Nästa
-          </Button>
+            </Button>
           </Box>
         </Grid>
       </Grid>

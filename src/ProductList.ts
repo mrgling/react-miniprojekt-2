@@ -1,5 +1,3 @@
-
-
 export interface Product {
     name: string
     url: string
@@ -7,6 +5,7 @@ export interface Product {
     price: number
     img: string
 }
+
 export const mockedProducts: Product[] = [ 
     {
         name:'Soltält', 

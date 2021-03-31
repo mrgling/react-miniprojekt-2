@@ -98,7 +98,6 @@ class CartProvider extends Component<{}, State> {
                 increaseQuantity: this.increaseQuantity,
                 decreaseQuantity: this.decreaseQuantity,
                 emptyCart: this.emptyCart
-
             }}>
                 {this.props.children}
             </CartContext.Provider>

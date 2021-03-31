@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: theme.spacing(4, 0, 2),
     },
     media: {
-        height: 50,
-        width: 50,
-        borderRadius: '3rem'
+      height: 50,
+      width: 50,
+      borderRadius: '3rem'
     },
     deleteIcon: {
       margin: '0'
@@ -31,8 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
     container: {
       borderTop: '0.1rem solid lightgrey',
       paddingTop: '0.5rem',
-      paddingBottom: '0.5rem',
-      
+      paddingBottom: '0.5rem',  
     },
     gridItem: {
       display: 'flex',
@@ -43,38 +42,37 @@ const useStyles = makeStyles((theme: Theme) =>
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
-  
       }
   }),
 );
 interface Props {
-    product: Product;
-    removeFromProductList: (product:Product) => void;
-    openEditProductModal: (product:Product) => void;
+  product: Product;
+  removeFromProductList: (product:Product) => void;
+  openEditProductModal: (product:Product) => void;
 }
 
 export default function CrudItem(props: Props) {
   const classes = useStyles();
   const { name, img, price, url, description } = props.product;
 
-    return (
-      <div className={classes.root}>
-        <Grid container spacing={2} className={classes.container}>
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={2} className={classes.container}>
         <Grid item xs={3} sm={2} md={2} lg={1} className={classes.gridItem}>
-          <CardMedia className={classes.media} image={img}/>
+          <CardMedia className={classes.media} image={img} />
         </Grid>
         <Hidden xsDown>
-            <Grid item xs={3} sm={2} md={2} lg={1} className={classes.gridItem}>
-                <Typography variant="body1"><i>{url}</i></Typography>
-            </Grid>
+          <Grid item xs={3} sm={2} md={2} lg={1} className={classes.gridItem}>
+            <Typography variant="body1"><i>{url}</i></Typography>
+          </Grid>
         </Hidden>
         <Grid item xs={5} sm={3} md={2} lg={2} className={classes.gridItem}>
           <Typography variant="body1">{name}</Typography>
         </Grid>
         <Hidden smDown>
-            <Grid item xs={6} sm={4} md={4} lg={6} className={classes.gridItem}>
+          <Grid item xs={6} sm={4} md={4} lg={6} className={classes.gridItem}>
             <Typography variant="body1">{description}</Typography>
-            </Grid>
+          </Grid>
         </Hidden>
         <Grid item xs={4} sm={3} md={1} lg={1} className={classes.gridItem}>
           <Typography variant="body1">{price} kr</Typography>
